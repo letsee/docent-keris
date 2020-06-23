@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="114" height="31" viewBox="0 0 114 31">
+    <defs>
+        <style>
+            .cls-1{fill:#078fa8}.cls-2,.cls-3{fill:#fff}.cls-2{font-size:15px;font-family:NotoSansCJKkr-Medium,Noto Sans CJK KR;font-weight:500}
+        </style>
+    </defs>
+    <g transform="translate(-450 -149)">
+        <rect width="114" height="31" class="cls-1" rx="15.5" transform="translate(450 149)"/>
+        <g id="detial_icon" transform="translate(461 154.999)">
+            <g>
+                <g>
+                    <path id="패스_84" d="M2.122 2.123a7.257 7.257 0 0 1 10.613 9.886l.864.864.881-.881a.515.515 0 0 1 .728 0l4.126 4.126a2.275 2.275 0 0 1-3.217 3.217l-4.126-4.126a.515.515 0 0 1 0-.728l.881-.881-.864-.864A7.257 7.257 0 0 1 2.122 2.123zm14.724 16.485a1.246 1.246 0 0 0 1.762-1.762l-2.3-2.3-1.762 1.762zm-3.031-3.03l1.762-1.762-.732-.732-1.761 1.761zM2.85 11.658a6.224 6.224 0 1 0 0-8.807 6.234 6.234 0 0 0 0 8.807z" class="cls-3" transform="translate(0 -.001)"/>
+                </g>
+            </g>
+            <g transform="translate(2.316 2.316)">
+                <g>
+                    <path id="패스_85" d="M199.177 58.543a5.228 5.228 0 1 1-1.531 3.7 5.194 5.194 0 0 1 1.531-3.7zm.757 6.636a4.157 4.157 0 1 0-1.218-2.94 4.13 4.13 0 0 0 1.218 2.94z" class="cls-3" data-name="패스 85" transform="translate(-197.646 -57.012)"/>
+                </g>
+            </g>
+            <g transform="translate(5.133 5.133)">
+                <g>
+                    <path id="패스_86" d="M273.953 134.4h1.079v-1.079a.535.535 0 1 1 1.071 0v1.079h1.079a.535.535 0 1 1 0 1.071H276.1v1.079a.535.535 0 1 1-1.071 0v-1.079h-1.079a.535.535 0 0 1 0-1.071z" class="cls-3" data-name="패스 86" transform="translate(-273.418 -132.784)"/>
+                </g>
+            </g>
+        </g>
+
+        <text id="Details" class="cls-2" transform="translate(514 171)">
+            <tspan x="-29.288" y="0">상세 보기</tspan>
+        </text>
+    </g>
+</svg>

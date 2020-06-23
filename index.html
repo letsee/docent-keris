@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Letsee AR Demo - Ultima Cena</title>
+	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport" />
+	<script src="./Letsee.0.9.14.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">
+	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<!--	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>-->
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<!--	<script src="//code.jquery.com/jquery-migrate-3.0.1.min.js" integrity="sha256-F0O1TmEa4I8N24nY0bya59eP6svWcshqX1uzwaWC4F4=" crossorigin="anonymous"></script>-->
+
+	<script src="./vendor/jquery.scrollbar.min.js"></script>
+	<link rel="stylesheet" href="./vendor/jquery.scrollbar.css">
+
+	<script src="./vendor/hammer.min.js"></script>
+	<script src="./vendor/axios.min.js"></script>
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/comments.css">
+	<link rel="stylesheet" href="css/response.css">
+
+	<style media="place" type="text/css">
+		#container {
+			-letsee-target: uri('ultima-cena.json');
+			-letsee-position: coords(0, 0, 0);
+			/*border: 1px solid #f00;*/
+			width: 1000px;
+			height: 560px;
+		}
+	</style>
+
+	<style>
+		#comment-div #comment-box-wrapper {
+			background: rgba(0, 0, 0, 0.5);
+			width: 100%;
+			height: 100%;
+			min-height: 170px;
+			position: fixed;
+			top: 0;
+			z-index: 0;
+		}
+		#comment-div #comment-nav-wrapper {
+			background: rgba(255, 0, 0, 0);
+			width: 90px;
+			height: 100%;
+			position: fixed;
+			right: 0;
+			top: 0;
+			padding: 0;
+			margin: 0 auto;
+			overflow: hidden;
+			display: block;
+			text-align: center;
+			z-index: -1;
+		}
+		#comment-div #comment-success-wrapper {
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 0;
+			position: fixed;
+			right: 0;
+			top: 0;
+			padding: 0;
+			margin: 0 auto;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+
+<!--Detect the phone orientation-->
+<div id="detect">
+	<img id="detect_img" src="assets/rotate_detect.png" alt=""/>
+	<img id="detect_msg" src="assets/detect_msg.png" alt="">
+</div>
+
+<!--Show at first time to alert user-->
+<div id="capture" style="display: block">
+	<img id="cap1" src="assets/camera.png" alt="">
+	<p>작품을 정면으로 촬영해주세요.</p>
+</div>
+
+<div id="container" style="display: none;">
+
+	<header id="main-header">
+		<div class="inner">
+			<h1 id="chapterTitle">1. 최후의 만찬을 함께한 예수의 12제자</h1>
+			<p id="chapterBody">이름을 터치하면, 인물 정보를 볼 수 있습니다.</p>
+		</div>
+
+		<div id="chap2-bt" style="display: none;" onclick="selectAgain()" >
+			<button id="select-again" type="button"><img src="assets/refresh.png" alt=""> 다시선택</button>
+		</div>
+
+		<div id="pageControl">
+			<img id="prev" src="assets/preious-btn@3x.png" alt="">
+			<img id="next" src="assets/next-btn@3x.png" alt="">
+		</div>
+
+	</header>
+
+	<div id="topMenu" style="display: none">
+
+		<!--Main menu-->
+		<section id="menu" class="topBackground">
+			<h1>최후의 만찬</h1>
+			<p class="lt">(The Last Supper, Leonardo da Vinci 1452 ~ 1519)</p>
+			<ul>
+				<li id="overviewBtn">
+					<img src="assets/overview-icon.png" alt="">
+					<a href="#overview" onclick="openGuideline(1)">작품 개요</a>
+				</li>
+				<li id="watchPointBtn">
+					<img src="assets/watchpoint-icon.png" alt="">
+					<a href="#watchpoint" onclick="openWatchPoint()" rel="watchpoint">관전 포인트</a>
+				</li>
+				<li id="evaluationBtn">
+					<img style="width: 27% !important;" src="assets/expression-icon-2.png" alt="">
+					<a href="#expression" onclick="openExpression()" rel="expression">감상평</a>
+				</li>
+			</ul>
+			<div class="poweredby"><img src="./assets/letsee-logo.svg"></div>
+		</section>
+
+		<!--Overview of work-->
+		<section id="overview" class="topBackground" style="display: none">
+			<div id="tabs">
+				<ul>
+					<li><a href="#tabs-1">작품 개요</a></li>
+					<li><a href="#tabs-2">작품소개</a></li>
+					<li><a href="#tabs-3">작가소개</a></li>
+					<li><a href="#tabs-4">제작방식</a></li>
+				</ul>
+				<div class="tabItem" id="tabs-1">
+					<dl>
+						<dt>작품명</dt><dd>최후의 만찬 (The Last Supper)</dd>
+						<dt>작가</dt><dd>레오나르도 다빈치</dd>
+						<dt>종류</dt><dd>화벽에 유채와 템페라</dd>
+						<dt>크기</dt><dd>460 x 880cm</dd>
+						<dt>제작년도</dt><dd>1485 ~ 1497년</dd>
+						<dt>소장</dt><dd>산타마리아 델레 그라치에 성당, 밀라노</dd>
+					</dl>
+				</div>
+
+				<div class="tabItem" id="tabs-2">
+					<div class="textCell scrollbar-inner">
+						<h3>최후의 만찬 (The Last Supper)</h3>
+						<p style="justify-content: center; width: 72%">
+							최후의 만찬은 예수 그리스도가 십자가에 매달리기 전날, 제자들과 함께 마지막 식사를 나누는 장면을 담은 템페라기법의 프레스코화다.<br><br>이 작품은 밀라노 대성당에서 도보 20분 거리에 위치한 산타마리아 델레 그라치에 수도원의 식당벽에 그려져 있다. 유네스코는 1980년 산타마리아 델레 그라치에 수도원과 함께 이 작품을 세계문화유산으로 지정했다.
+							루브르박물관에 걸려 있는 모나리자와 함께 다빈치의 대표작으로 꼽히는 작품임에도 이 그림을 실제로 봤다는 사람은 많지 않다. 인터넷에서 예약을 하거나 일찌감치 줄을 섰다가 당일 입장권을 받아야 볼 수 있기 때문이다. 어렵게 입장해도 작품 앞에 머물 수 있는 시간은 15분으로 정해져 있다.<br><br>
+						</p>
+						<img id="supper-intro" style="margin-top: -40% !important;" src="assets/last-supper/the-last-supper.png" alt="">
+					</div>
+				</div>
+
+				<div class="tabItem" id="tabs-3">
+					<div class="textCell scrollbar-inner">
+						<h3>레오나르도 다빈치 (1452년 4월15일 ~ 1519년 5월2일)</h3>
+						<p style="justify-content: center; width: 72%;">
+							1452년 4월 15일 피렌체 근교 빈치에서 출생. 공증인 세르 피에로의 서자로 태어났다. 어머니는 카타리나(Catarina)라는 이름을 가진 농사꾼의 딸로, 신분의 차이로 아버지와 공식적인 혼인 관계를 맺지 못했다. 레오나르도 다빈치가 태어날 당시 그의 아버지는 다른 여자와 결혼한 상태였다.<br>
+							어릴 때부터 수학을 비롯한 여러 가지 학문을 배웠고, 음악에 재주가 뛰어났고 그림 그리는 것을 즐겼다. 1466년 피렌체로 가서 부친의 친구인 안드레아 델 베로키오에게서 도제수업을 받았으며, 이곳에서 인체 해부학을 비롯한 자연현상의 예리한 관찰과 정확한 묘사를 습득하여, 당시 사실주의의 교양과 기교를 갖추게 되었다.<br><br>
+							그의 특색인 깊고 객관적인 표현은, 그의 놀라운 사실적에 의해 가능했다. 사실상 15세기 르네상스 화가들의 사실기법을 집대성하여 명암에 의한 입체감과 공간의 표현에 성공했다. 점차 15세기적인 요소를 극복하고, 주관과 객관의 조화로 고전적 예술의 경지에 이르렀다.<br><br>
+
+							그는 만년에 이르러 과학적 관심을 갖고 수많은 소묘를 남겼다. 인체해부를 묘사한 그림들은 인체묘사와 의학발전에도 영향을 끼쳤다. 과학적 연구는 수학·물리·천문·식물·해부·지리·토목·기계 등 다방면에 이르며, 이들에 관한 수기(手記)나 인생론·회화론·과학론 등이 많이 남아 있다.<br>
+							오늘날 우리가 자연과학으로 분류하는 해부학·기체역학·동물학 등에도 깊은 관심을 가졌다. 그의 연구결과는 19세기 말에 들어서 주목을 받으면서, 다시 그의 과학적인 천재성으로서 조명되고있다. 현재 그의 기록이 23권의 책으로 남아 있다.<br><br>
+
+							르네상스의 가장 훌륭한 업적, 즉 원근법과 자연에의 과학적인 접근, 인간신체의 해부학적 구조, 이에 따른 수학적 비율 등이 그에 의해 완벽한 완성에 이르게 되었다. 그의 명성은 몇 점의 뛰어난 작품들에서 비롯하는데, 〈최후의 만찬〉·〈모나리자〉·〈동굴의 성모〉·〈동방박사의 예배〉 등이 그러하다. 그는 르네상스를 대표하는 가장 위대한 예술가일 뿐만 아니라, 지구상에 생존했던 가장 경이로운 천재 중 하나다. 1519년 프랑수아 1세의 초빙으로 프랑스의 보아주에 가서 건축·운하 공사에 종사하다가 죽었다.<br><br>
+
+							이렇게 그는 조각·건축·토목·수학·과학·음악에 이르기까지 모든 분야에 재능을 보였다. 이러한 그의 생애를 대개 5시기, 즉 제1차 피렌체 시대(1466~1482), 제1차 밀라노 시대(1482~1499), 제2차 피렌체 시대(1500~1506), 제2차 밀라노 시대(1506~1513), 로마·앙부아즈 시대(1513~1519)로 구분한다.<br><br>
+						</p>
+						<img id="artist-intro" style="margin-top: -123% !important;" src="assets/last-supper/leonardo-da-vinci-blackwhite@3x.png" alt="">
+					</div>
+				</div>
+
+				<div class="tabItem" id="tabs-4">
+					<div class="textCell scrollbar-inner">
+						<h3>템페라 (Tempera)</h3>
+						<p style="justify-content: center; width: 72%;">
+							포도주에 물을 타는 것과 안료를 이겨서 화구로 만들기 위해 고착제를 섞는 것을 템페라레(temperare)라고 하며, 그 혼합물 즉 고착제를 템페라라고 한다.<br><br>
+							계란을 비롯하여 아교, 아라비아 고무, 수지, 기름등 여러가지가 있으나 그 중에서도 계란이 대표적이었다. 한편, 고착제를 필요로 하지 않는 프레스코가 14세기에 이르러 넓게 보급되자 그와 구별하기 위해 고착제를 사용하는 화법, 그리고 그 화법에 의한 회화를 템페라(tempera)라고 한다.
+						</p>
+						<img id="tempera-intro" src="assets/last-supper/temperare.png" alt="">
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--Watch point-->
+		<section id="watchPoint">
+
+			<article id="chapter-1" style="display: none;">
+				<div class="inner">
+					<div id="chapter2tab">
+
+						<img id="person-detail" src="assets/person-detail-2.png" alt="">
+
+						<ul style="list-style: none; opacity: 0">
+							<li id="itembtn01"><a href="#item01" onclick="openChap3Item()">바돌로메</a></li>
+							<li id="itembtn02"><a href="#item02" onclick="openChap3Item()">대야고보</a></li>
+							<li id="itembtn03"><a href="#item03" onclick="openChap3Item()">베드로</a></li>
+							<li id="itembtn04"><a href="#item04" onclick="openChap3Item()">토마스</a></li>
+							<li id="itembtn05"><a href="#item05" onclick="openChap3Item()">필립보</a></li>
+							<li id="itembtn06"><a href="#item06" onclick="openChap3Item()">타데오</a></li>
+							<li id="itembtn07"><a href="#item07" onclick="openChap3Item()">안드레아</a></li>
+							<li id="itembtn08"><a href="#item08" onclick="openChap3Item()">유다</a></li>
+							<li id="itembtn09"><a href="#item09" onclick="openChap3Item()">요한</a></li>
+							<li id="itembtn10"><a href="#item10" onclick="openChap3Item()">소야고보</a></li>
+							<li id="itembtn11"><a href="#item11" onclick="openChap3Item()">마테</a></li>
+							<li id="itembtn12"><a href="#item12" onclick="openChap3Item()">시몬</a></li>
+						</ul>
+
+						<!--1. Bartholomew-->
+						<div id="item01" class="tabPannel">
+							<div class="box paraBg">
+								<div class="imgCell">
+									<img src="assets/last-supper/Bartholomew.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>바돌로메 (Bartholomew)</h5>
+									<p>
+										돌로메의 아들'이라는 뜻의 바돌로메는 빌립에게 전도를 받아 제자가 되었다. 예수님의 부활 후에 자신을 나타내 보인 사람 중의 하나이며, 예수님은 그를 보고 '간사한 것이 없는 참 이스라엘 사람' 이라고 하셨다. 바돌로메는 '주님이 자기 마음을 미리 아시고, 또 빌립과 만나기 전에 무화과 나무 아래 있는 것을 보았다'며 예수님을 하나님의 아들과 이스라엘의 왕으로 믿었다.<br><br>바돌로메는 에티오피아, 메소포타미아, 파르티아 (지금의 이란), 리카오니아 (지금의 터키), 아르메니아에서 선교활동 중 바빌로니아 왕에게 잡혀 살가죽이 벗겨지는 참형 끝에 순교하였다. 바르톨로메오의 유해는 로마에 있는 산 바르톨로메오 인더티베르 성당에 안치되어 있다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--2. James-->
+						<div id="item02" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/James_the_less.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>대야고보 (James)</h5>
+									<p>
+										야고보는 겐네사렛 호수에서 배를 띄워 고기를 잡는 어부였다. 예수님의 부르심을 받았을 때 아버지와 함께 그물을 손질하고 있었으나 곧 배를 버리고 예수님을 따라 나섰다. 야고보는 시몬의 장모가 열병에서 치유되는 현장, 야이로의 딸의 부활의 현장, 타볼산에서 예수님의 영광스런 변모에도, 겟세마네에서의 주님의 고통의 순간에도 베드로와 함께 그들 두 형제만이 특별히 동참하였다. 사도 중에서도 베드로·요한과 함께 스승 예수님의 사랑을 많이 받은 측근으로, 헤롯 아그리파 1세의 박해 때에 사도 가운데 최초로 순교당했다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--3. Peter-->
+						<div id="item03" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/Peter.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>베드로 (Peter)</h5>
+									<p>
+										예수님에 의해서 베드로(반석)라고 이름 붙여졌다. 예수님의 복음전파 초기 제자 중의 한 사람이고, 야곱, 요한과 함께 가장 사랑받고 항상 예수님의 옆에 있었다. 어부 출신으로서 바울처럼 교양이 있던 것은 아니었지만, 성격이 소박하고 정직했다. 그는 처음부터 예수님에 의해 12사도의 우두머리가 되어, 교회의 기둥으로서 교회를 돌볼 사명을 부여받았다. 예수님 사후 베드로는 예루살렘 교회의 중심 인물로 활동했고 유태인 뿐만 아니라 이방인 또한 교화 시켜 그가 유태교를 대하는 태도는 보수적이었을 망정 편협하지는 않았다. 로마의 교화 작업을 하던 중 네로 황제의 박해를 받아 순교했다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--4. Thomas-->
+						<div id="item04" class="tabPannel">
+							<div class="box paraBg">
+								<div class="imgCell">
+									<img src="assets/last-supper/Tomas.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>토마스 (Thomas)</h5>
+									<p>
+										예수님이 부활하여 다른 사도들에게 나타났다는 증언을 처음에는 “내 눈으로 그 분의 손에 있는 못 자국을 보고, 그 못 자국에 내 손가락을 넣어 보고, 또 내 손을 그 분의 옆구리에 넣어 보지 않고는 결코 믿지 못 하겠다” 라며 믿지 못하였다. <br><br>여드레가 지나고 사도들이 모두 모여 있을 때 예수님이 다시 나타나 토마스에게 “네 손가락으로 내 손을 만져 보아라. 또 네 손을 내 옆구리에 넣어 보아라”하고 그 표징을 보여주자 도마는 그제서야 “나의 주님! 나의 하나님!”하고 대답하자 예수님은 “너는 나를 보고서야 믿느냐? 나를 보지 않고도 믿는 자는 복이있도다” 라고 말하였다. 멀리 인도에서 선교활동 중 힌두교도의 창에 의해 순교하였다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--5. Phillip-->
+						<div id="item05" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/Philip.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>필립보 (Philip)</h5>
+									<p>
+										본래 세례자 요한의 제자였으나 후에 예수님을 만나 제자가 되었고 나다니엘을 예수님에게 인도하였다. 뱃새이다에서 예수님이 기적으로 5천명이나 되는 무리를 배불리 먹이는 현장에도 같이 있었으며 예수님께서 예루살렘에 입성하던 날에도 그를 만나게 해달라고 요청하는 그리스인들을 예수님에게 소개도 하였다.<br><br>
+										필립보는 성부 하나님을 보게 해달라고 예수님에게 청했는데 '필립보야, 들어라. 내가 이토록 오랫동안 너희와 같이 지냈는데도 너는 나를 모른다는 말이냐? 나를 보았으면 곧 아버지를 본 것이다' 라고 요한의 복음서 14장 8~9절은 적었다. 주로 예수님과 12사도의 식량공급을 맡았다. 사후 그의 유해는 로마의 12사도 성당에 안장되었다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--6. 타데오-->
+						<div id="item06" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/Thaddeus.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>타데오 (Thaddeus)</h5>
+									<p>
+										타대오는 '마음이 넓다'라는 뜻의 이름. 마태복음과 마가복음에서는 타대오라 부르고 누가 복음과 사도행전, 요한복음에서는 유다라 부른다. 성경에 타대오의 행적에 관한 기록이 단 한번 뿐이라 그에 대해 자세히는 알 수 없으나 묵묵히 하나님 말씀을 전하는 제자였다. 주로 팔레스티나, 메소포타 미아에서 선교하였고, 시몬과 함께 페르시아에서 순교한 것으로 전한다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--7. Andrew-->
+						<div id="item07" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/Andrew.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>안드레아 (Andrew)</h5>
+									<p>
+										안드레는 '남자답다'라는 뜻. 열두제자 중 요한과 함께 가장 먼저 예수님을 따랐으며 베드로를 예수님께 인도하였다. 베드로가 대중적인 복음전파에 힘썼다면 안드레는 조용하고 차분하게 개인적인 복음 전파에 주력하였다. 예수님 사후 소아시아, 스큐티아, 그리스 등에서 전도하다 기독교를 말살하라는 파타라스 총독에 붙잡혀 안드레의 사도직 상징인 X자형 십자가에 매달려 순교하였다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--8. Judas-->
+						<div id="item08" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/Judas.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>유다 (Judas)</h5>
+									<p>
+										최후의 만찬에서 예수님은 자신의 죽을 때가 다가오는 것을 깨닫고 사도들이 한창 식사를 하던 도중에 '내가 진실로 너희들에게 말하노니, 너희들 가운데 한 사람이 나를 팔아 넘길 것이다'하고 조용히 말하였다. 이에 사도들이 모두 근심하며 저마다 자기가 아니라고 부정하였다. 그 자가 누구인지 가르쳐 달라는 사도들의 성화에 못 이겨 예수님은 '나와 함께 접시에 손을 넣어 빵을 적시는 자, 그 자가 나를 팔아 넘길 것이다'라고 말했다. 그리고 빵 한 조각을 적신 다음 그것을 들어 유다에게 가져다 주었다. 유다는 은전 30냥에 예수님을 팔아 넘기고 예수님은 겟세마네 동산에서 기도 중 로마 군인에게 잡혀갔다. 유다는 양심의 가책을 못 이겨 목을 매달아 자살한다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--9. John-->
+						<div id="item09" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/John.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>요한 (John)</h5>
+									<p>
+										요한은 처음 세례 요한의 제자였으나 광야에서 시험을 받은 뒤 예수님의 제자가 되었다. 사도행전에서도 요한은 베드로와 함께 활동하며 투옥당하기도 했다. 성 바오로는 야고보와 베드로와 함께 요한을 일컬어 ‘교회의 기둥’이라고 불렀다. 후일 요한은 하나님의 말씀과 예수님의 진리를 증언 한 탓으로 파트모스 섬에서 유배생활을 했고, 에페수스에서 여생을 지내다가 그곳에서 선종하였다.<br><br>
+										성 히에로니무스에 따르면 성 요한은 너무나 연세가 많아서 군중들에게 설교할 수 없었고, 다만 간단한 말만 하였다고 한다. 교회 전승에 의하면 신약성경의 네 번째 복음서와 서간 3개 그리고 묵시록은 성 요한의 저작물이라고 전해져 온다. 사도 요한의 문장은 독수리이다. 그 이유는 요한 복음서의 서두가 매우 높은 위치에 있기 때문이다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--10. James-->
+						<div id="item10" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/James.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>소야고보 (James the less)</h5>
+									<p>
+										야고보는 어려서 부터 신앙심이 두터워 엄격하고 경건한 수양 생활로 고기와 술을 일절 입에 대지 않았다. 유대 역사가 프라우비오 요세푸스는 야고보가 유대인 폭동(AD 62) 때에 순교하였다 하여 '의인 야고보’로 불렀다. 열 두 제자 중에서 가장 미남이었다는 일화가 있으며 기도 또한 가장 많이 한 제자이기도 했다. 예수님을 만난 후에 평생을 은근하고 조용한 가운데 예수님을 섬겼던 제자였다.<br><br>
+										제자 야고보와 다른 주의 형제 야고보는 성령 강림 이후 예루살렘 교회를 위탁 받아 예루살렘의 첫 번째 감독으로 선출되어 교회를 다스리는 등 포교 활동을 열심히 하였고, 신약성서 '야고보의 편지'의 저자이다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--11. Matthew-->
+						<div id="item11" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/Matthew.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>마대 (Matthew)</h5>
+									<p>
+										마태는 '하나님의 선물'이라는 뜻. 본래 유대 땅에 설치된 로마 세관에서 세리로 근무하던 마태는 겟세마네 동산에서 예수님을 버리고 도망했다. 부활하신 주님을 만나고 오순절날 성령 세례를 받은후에야 비로소 사도 직분을 감당할 수 있었다. 성령이 충만해진 마태는 천국복음을 전하며 스스로를 낮추고 예수님 그리스도만을 높이는 충성된 청지기가 되었다. 또한 유대인들을 위해 '마태복음'을 기록하여 왕 되신 예수님 그리스도를 증거하고 사랑의 빚을 갚는 헌신된 삶을 살았다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<!--12. Simon-->
+						<div id="item12" class="tabPannel">
+							<div class="box topBackground">
+								<div class="imgCell">
+									<img src="assets/last-supper/Simon.jpg" alt="">
+								</div>
+								<div class="textCell scrollbar-inner">
+									<h5>시몬 (Simon)</h5>
+									<p>
+										시몬은 사도가 되기 전에는 바리새파로 구성된 극단적인 유대 민족주의를 대표하는 열심당의 일원이었으며, 로마 제국으로부터의 유대인 해방을 부르짖었다. 예언에 따라 메시아가 이 땅 위에 강림하면 군대를 이끌고 로마 제국을 몰아내 조국을 해방시켜 주리라고 굳게 믿고 있었다. 그래서 초라한 행색을 한 예수님을 결코 자신들이 그토록 고대하던 메시아로 인정하지 않았으나 예수님의 설교와 기적을 듣고 본 후 감화되어 제자가 되었다. 유다 타데오와 함께 페르시아 지역으로 가서 포교 활동을 벌이다 톱으로 몸이 두동강나는 형벌로 순교했다.<br><br>
+									</p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</article>
+
+			<article id="chapter-2" style="display: none;">
+				<div class="inner">
+					<img src="assets/last-supper/the-last-supper-no-person.png" alt="">
+					<div class="text">
+						<p class="title">인물(3개월) <strong>&lt; <em>만찬메뉴(2년6개월)</em></strong></p>
+						<p style="margin-top: -8% !important;">
+							최후의 만찬은 다른 그림들 보다 두배 이상의 기간이 더 걸렸다.<br>
+							식탁에 어떤 그림을 그려 넣어야 할지 고심하느라 시간이 더 걸렸다고 한다.<br>
+							다빈치의 관심이 어디를 향했는지를 가늠할 수 있다.
+						</p>
+					</div>
+				</div>
+			</article>
+
+			<article id="chapter-3" style="display: none;">
+				<div class="inner">
+					<div id="comparison">
+						<figure style="z-index: 1000">
+							<div id="divisor"></div>
+						</figure>
+						<div style="z-index: 1000" class="handle" id="comparisonHandle"></div>
+						<input style="z-index: 1000" type="range" min="0" max="100" value="50" id="slider" oninput="moveDivisor()">
+					</div>
+
+					<div id="nailDetail" style="display: none">
+						<div class="textCell">
+							<div class="imgCell">
+								<img src="assets/last-supper/nail.png" alt="">
+							</div>
+
+							<h5>못자국과 소실점</h5>
+							<p>
+								지난 500년동안 불순물이 쌓이고, 표면이 심각하게 갈라지는 문제를 복원하기 위해, 복원작업을 진행하던 중 예수 얼굴 옆의 못자국을 발견했다.<br><br>레오나르도 다빈치는 이 그림을 그리기 시작할 무렵, 벽면중앙에 작은 못을 박았으며, 이 못자국을 소실점으로 하여 수학적으로 완벽한 대칭을 이루는 1:1.6 비율의 황금비율의 균형을 완성한 것이다.
+							</p>
+						</div>
+					</div>
+				</div>
+			</article>
+
+			<article id="chapter-4" style="display: none;">
+				<div class="inner">
+					<div id="chapter5Note">
+						<img src="./assets/music-notes.gif" alt="" style="width: 100%; margin: 0 auto">
+					</div>
+
+					<div id="chapter5Video">
+						<div class="video">
+							<div class="video-container">
+								<!--								<iframe width="320" height="180" src="https://www.youtube.com/embed/mJsaB1hD1Uo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+								<iframe width="560" height="315" src="https://www.youtube.com/embed/MkuIzdHwOAk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+			</article>
+		</section>
+	</div>
+</div>
+
+<section id="menu-layout" class="menu-layout-bg" style="display: none;">
+	<p id="ltitle">조작 가이드</p>
+	<div id="content-layout">
+		<p>각 버튼들을 눌러서 페이지 이동을<br>할 수 있습니다.</p>
+
+		<div id="ic-gr">
+			<img id="sum" src="assets/menu-layout-img.png" alt="">
+		</div>
+
+	</div>
+	<button id="openBtn" type="button" onclick="openContent()">시작하기</button>
+</section>
+
+<!--Navigation panel for main page-->
+<div id="nav-main" style="display: none">
+	<div id="nav-main-home">
+		<a href="#"><img src="assets/home.png" width="50px" alt=""></a>
+	</div>
+	<div id="nav-main-overview">
+		<a href="#"><img id="nav-main-overview-img" src="assets/overview-white.png" width="50px" alt=""></a>
+	</div>
+	<div id="nav-main-watch-point">
+		<a href="#"><img id="nav-main-watch-point-img" src="assets/watch-point-white.png" width="50px" alt=""></a>
+	</div>
+	<div id="nav-main-comment-page">
+		<a href="#"><img src="assets/comment-white.png" width="50px" alt=""></a>
+	</div>
+</div>
+
+<!--<div id="dummy"><img src="./assets/ultima_cena.jpg" alt=""></div>-->
+
+<!-- THIS PART IS FOR COMMENTS.HTML PAGE-->
+<div id="comment-div" style="display: none">
+	<!--Navigation panel for comments.html page-->
+	<div id="comment-nav-wrapper" style="display: none"></div>
+	<div id="nav">
+		<div id="nav-home">
+			<a href="#"><img src="assets/home.png" width="50px" alt=""></a>
+		</div>
+		<div id="nav-comment" onclick="writeComments()">
+			<img id="nav-text" src="assets/text-input-nav.png" width="50px" alt="">
+			<img id="nav-text-bg" src="assets/text-input-blue.png" width="50px" alt="" style="display: none">
+		</div>
+		<div id="nav-emoji" onclick="createEmojiBox()">
+			<img id="nav-emo" src="assets/emoji-nav.png" width="50px" alt="">
+			<img id="nav-emo-bg" src="assets/emoji-blue.png" width="50px" alt="" style="display: none">
+		</div>
+		<div id="btn-reset" onClick="showResetModal()">
+			<img src="" width="50px" alt="">
+		</div>
+	</div>
+
+	<!--Page information-->
+	<div id="pageInfo" style="display: none">
+		<div id="guide-header"><h2>AR로 감상평을 남겨주세요</h2></div>
+		<div id="guide-text">
+			<ol>
+				<li>문자 또는 이모티콘으로 감상평을 남길 수 있습니다.</li>
+				<li>문자나 이모티콘의 크기를 조절하거나,<br/>
+					회전은 물론 원하는 위치에 AR로 남겨보세요 </li>
+			</ol>
+		</div>
+		<div id="guide-icons">
+			<div id="gr2">
+				<img id="ic-text" src="assets/text-input.png" width="50px" alt="">
+				<img id="ic-emo" src="assets/emoji-input.png" width="50px" alt="">
+			</div>
+			<div id="gr1">
+				<img id="ic-scale" src="assets/swipe-side.png" width="50px" alt="">
+				<img id="ic-zoom" src="assets/swipe-top.png" width="50px" alt="">
+			</div>
+		</div>
+		<div id="guide-button"> <button id="btnEnter" type="button" onclick="initAR()">시작하기</button></div>
+	</div>
+
+	<!--Header guide-->
+	<div id="guide" style="display:none;">
+		<p id="guide-msg">문자 & 이모티콘으로 감상평을 남겨주세요</p>
+	</div>
+
+	<!--Confirm to submit to server-->
+	<div id="confirm" style="display: none">
+		<p id="c1">크기를 조절하거나 위치를 지정해주세요</p>
+		<button id="btCancel" type="button" class="inline">취소</button>
+		<button id="btOK" type="button" class="inline">저장</button>
+	</div>
+
+	<!--Box for leaving comments-->
+	<div id="comment-box-wrapper" style="display: none">
+		<div id="comment-box" style="display: none">
+			<p>감상평 작성</p>
+			<form id="frComment">
+				<label for="comment-box-content">내용</label>
+				<input type="text" id="comment-box-content" name="comment-box-content" value="" placeholder="(15자 이내로 간단하게 남겨주세요)" autofocus>
+				<br>
+				<label for="comment-box-nickname">닉네임</label>
+				<input type="text" id="comment-box-nickname" name="comment-box-nickname" value="" placeholder="(닉네임을 남겨주세요. 한글 5자 이내)">
+				<br>
+			</form>
+			<button id="btCancel-box" type="button" class="inline" onclick="cancelCommentBox()">취소</button>
+			<button id="btOK-box" type="button" class="inline" onclick="addComments()">저장</button>
+		</div>
+	</div>
+
+	<!--Show after user submit comments/emoji successfully-->
+	<div id="comment-success-wrapper" style="display: none;">
+		<div id="comment-success" style="display: none">
+			<p>감상평이 저장되었습니다.</p>
+			<button id="btnSuccess" type="button" onclick="finishComment()">확인</button>
+		</div>
+	</div>
+
+	<!--Emoticons functions-->
+	<div id="ft-functions" style="display:block;">
+		<div id="emotions" style="display: none">
+			<div class="emoji-box-item"></div>
+		</div>
+	</div>
+
+	<!-- remove modal -->
+	<div id="remove-modal-bg" style="display: none">
+		<div id="remove-modal-box">
+			<div id="remove-modal-header">
+				<div id="remove-modal-header-text">
+					<p>모두 지우시겠습니까?</p>
+				</div>
+			</div>
+			<div id="remove-modal-footer">
+				<div id="remove-modal-footer-cancel">
+					<button>아니오</button>
+				</div>
+				<div id="remove-modal-footer-ok">
+					<button>예</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END COMMENTS.HTML PAGE-->
+
+<script type="text/javascript">
+
+	function showMainContent(){
+		document.getElementById('capture').style.display = 'none';
+		// document.getElementById('topMenu').style.display = 'block';
+
+		if (document.getElementById('nav').style.display === 'block') {
+			document.getElementById('topMenu').style.display = 'none';
+		}
+		else {
+			document.getElementById('topMenu').style.display = 'block';
+		}
+	}
+
+	let item = 0;
+	function openGuideline(n) {
+
+		console.log('n: ' + n);
+		document.getElementById('menu-layout').style.display = 'block';
+		document.getElementById('nav-main').style.display = 'none';
+		document.getElementById('menu').style.display = 'none';
+
+		if (n === 1){
+			item = 1;
+		}
+		else if (n ===2 ) {
+			item = 2;
+		}
+		else if (n === 3) {
+			item = 3;
+		}
+	}
+
+	function openContent() {
+
+		document.getElementById('menu-layout').style.display = 'none';
+
+		if (item === 1) {
+			console.log('open: openOverview');
+			openOverview();
+		}
+		else if (item === 2) {
+			console.log('open: openWatchPoint');
+			// openWatchPoint();
+		}
+		else if (item === 3) {
+			console.log('open: openExpression');
+			//openExpression();
+		}
+	}
+
+	function openOverview() {
+		console.log('openOverview');
+		document.getElementById('overview').style.display = 'block';
+		document.getElementById('nav-main').style.display = 'block';
+		document.getElementById("nav-main-overview-img").src = "./assets/overview-blue.png";
+	}
+
+	function openWatchPoint(){
+
+		document.getElementById('chapter-1').style.display = 'block';
+
+		document.getElementById("menu").style.display = "none";
+		document.getElementById("overview").style.display = "none";
+		document.getElementById("watchPoint").style.display = "block";
+		document.getElementById("main-header").style.display = "block";
+		document.getElementById('nav-main').style.display = 'block';
+		document.getElementById("nav-main-overview-img").src = "./assets/overview-white.png";
+		document.getElementById('nav-main-watch-point-img').src = "./assets/watchpoint-blue.png";
+	}
+
+	function openChap3Item(){
+		document.getElementById('chap2-bt').style.display = 'block';
+		document.getElementById('chapterBody').style.display = 'none';
+	}
+
+	function openExpression(){
+
+		document.getElementById('topMenu').style.display = 'none';
+		document.getElementById('comment-div').style.display = 'block';
+		document.getElementById('pageInfo').style.display = 'block';
+		document.getElementById('guide').style.display = 'none';
+		document.getElementById('nav').style.display = 'none';
+		document.getElementById('nav-main').style.display = 'none';
+	}
+
+	// THIS SCRIPT FOR COMMENTS.HTML PAGE
+	let editObject = null;
+	let helpRenderable = null;
+
+	let CURRENT_URI = null;
+	let currentTarget = null;
+	const world = new Object3D();
+
+	// count comments.
+	let commentsIndex = 0;
+	let confirmBoxIndex = "";
+
+	let renderItems = [];
+
+	// Template : JSON type which save renderable item's position, rotation, scale and imageUrl.
+	const commentTemplate= {
+		"id": null,
+		"type": null,
+		"content": null,
+		"position": {
+			"_x": null,
+			"_y": null,
+			"_z": null
+		},
+		"rotation": {
+			"_x": null,
+			"_y": null,
+			"_z": null
+		},
+		"scale": {
+			"_x": null,
+			"_y": null,
+			"_z": null
+		}
+	};
+
+	let commentObject = {...commentTemplate};
+	let helpObject = {...commentTemplate};
+
+	$(document).ready(function() {
+		initBtnEvent();
+		getComments();
+
+		var emojiArray =[
+			'😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '☺️', '😊',
+			'😇', '🙂', '🙃', '😉', '😌', '😍', '😘', '😗', '😙', '😚',
+			'😋', '😜', '😝', '😛', '🤑', '🤗', '🤓', '😎', '🤡', '🤠',
+			'😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😣', '😖',
+			'😫', '😩', '😤', '😠', '😡', '😶', '😐', '😑', '😯', '😦',
+			'😧', '😮', '😲', '😵', '😳', '😱', '😨', '😰', '😢', '😥',
+			'🤤', '😭', '😓', '😪', '😴', '🙄', '🤔', '🤥', '😬', '🤐',
+			'🤢', '🤧', '😷', '🤒', '🤕', '❤️', '💛', '💚', '💙', '💜', '🖤', '💔', '❣️', '💕', '💞',
+			'💓', '💗', '💖', '💘', '💝', '😈', '👿', '👹', '👺', '💩',
+			'👻', '💀', '☠️', '👽', '👾', '🤖', '🎃', '😺', '😸', '😹',
+			'😻', '😼', '😽', '🙀', '😿', '😾', '👐', '🙌', '👏', '🙏',
+			'🤝', '👍', '👎', '👊', '✊', '🤛', '🤜', '🤞', '✌️', '🤘',
+			'👌', '👈', '👉', '👆', '👇', '☝️', '✋', '🤚', '🖐', '🖖',
+			'👋', '🤙', '💪', '🖕', '✍️', '🤳', '💅', '🖖', '💄', '💋',
+			'👄', '👅', '👂', '👃', '👣', '👁', '👀', '🗣', '👤', '👥',
+			'🍏', '🍎', '🍐', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓', '🍈',
+			'🍒', '🍑', '🍍', '🥝', '🥑', '🍅', '🍆', '🥒', '🥕', '🌽',
+			'🌶', '🥔', '🍠', '🌰', '🥜', '🍯', '🥐', '🍞', '🥖', '🧀',
+			'🥚', '🍳', '🥓', '🥞', '🍤', '🍗', '🍖', '🍕', '🌭', '🍔',
+			'🍟', '🥙', '🌮', '🌯', '🥗', '🥘', '🍝', '🍜', '🍲', '🍥',
+			'🍣', '🍱', '🍛', '🍚', '🍙', '🍘', '🍢', '🍡', '🍧', '🍨',
+			'🍦', '🍰', '🎂', '🍮', '🍭', '🍬', '🍫', '🍿', '🍩', '🍪',
+			'🥛', '🍼', '☕️', '🍵', '🍶', '🍺', '🍻', '🥂', '🍷', '🥃',
+			'🍸', '🍹', '🍾', '🥄', '🍴', '🍽',
+			'🌎', '🌍', '🌏', '🌕', '🌖', '🌗', '🌘', '🌑',
+			'🌒', '🌓', '🌔', '🌚', '🌝', '🌞', '🌛', '🌜', '🌙', '💫',
+			'⭐️', '🌟', '✨', '⚡️', '🔥', '💥', '☄️', '☀️', '🌤', '⛅️',
+			'🌥', '🌦', '🌈', '☁️', '🌧', '⛈', '🌩', '🌨', '☃️', '⛄️',
+			'❄️', '🌬', '💨', '🌪', '🌫', '🌊', '💧', '💦', '☔️',
+			'👶', '👦', '👧', '👨', '👩', '👱‍♀️', '👱', '👴', '👵', '👲',
+			'👳‍♀️', '👳', '👮‍♀️', '👮', '👷‍♀️', '👷', '💂‍♀️', '💂', '🕵️‍♀️', '🕵️',
+			'👩‍⚕️', '👨‍⚕️', '👩‍🌾', '👨‍🌾', '👩‍🍳', '👨‍🍳', '👩‍🎓', '👨‍🎓', '👩‍🎤', '👨‍🎤',
+			'👩‍🏫', '👨‍🏫', '👩‍🏭', '👨‍🏭', '👩‍💻', '👨‍💻', '👩‍💼', '👨‍💼', '👩‍🔧', '👨‍🔧',
+			'👩‍🔬', '👨‍🔬', '👩‍🎨', '👨‍🎨', '👩‍🚒', '👨‍🚒', '👩‍✈️', '👨‍✈️', '👩‍🚀', '👨‍🚀',
+			'👩‍⚖️', '👨‍⚖️', '🤶', '🎅', '👸', '🤴', '👰', '🤵', '👼', '🤰',
+			'🙇‍♀️', '🙇', '💁', '💁‍♂️', '🙅', '🙅‍♂️', '🙆', '🙆‍♂️', '🙋', '🙋‍♂️',
+			'🤦‍♀️', '🤦‍♂️', '🤷‍♀️', '🤷‍♂️', '🙎', '🙎‍♂️', '🙍', '🙍‍♂️', '💇', '💇‍♂️',
+			'💆', '💆‍♂️', '🕴', '💃', '🕺', '👯', '👯‍♂️', '🚶‍♀️', '🚶', '🏃‍♀️',
+			'🏃', '👫', '👭', '👬', '💑', '👩‍❤️‍👩', '👨‍❤️‍👨', '💏', '👩‍❤️‍💋‍👩', '👨‍❤️‍💋‍👨',
+			'👪', '👨‍👩‍👧', '👨‍👩‍👧‍👦', '👨‍👩‍👦‍👦', '👨‍👩‍👧‍👧', '👩‍👩‍👦', '👩‍👩‍👧', '👩‍👩‍👧‍👦', '👩‍👩‍👦‍👦', '👩‍👩‍👧‍👧',
+			'👨‍👨‍👦', '👨‍👨‍👧', '👨‍👨‍👧‍👦', '👨‍👨‍👦‍👦', '👨‍👨‍👧‍👧', '👩‍👦', '👩‍👧', '👩‍👧‍👦', '👩‍👦‍👦', '👩‍👧‍👧',
+			'👨‍👦', '👨‍👧', '👨‍👧‍👦', '👨‍👦‍👦', '👨‍👧‍👧', '👚', '👕', '👖', '👔', '👗',
+			'👙', '👘', '👠', '👡', '👢', '👞', '👟', '👒', '🎩', '🎓',
+			'👑', '⛑', '🎒', '👝', '👛', '👜', '💼', '👓', '🕶', '🌂',
+			'☂️', '🎀', '🎊', '🎉',
+			'🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯',
+			'🦁', '🐮', '🐷', '🐽', '🐸', '🐵', '🙊', '🙉', '🐒',
+			'🐔', '🐧', '🐦', '🐤', '🐣', '🐥', '🦆', '🦅', '🦉', '🦇',
+			'🐺', '🐗', '🐴', '🦄', '🐝', '🐛', '🦋', '🐌', '🐚', '🐞',
+			'🐜', '🕷', '🕸', '🐢', '🐍', '🦎', '🦂', '🦀', '🦑', '🐙',
+			'🦐', '🐠', '🐟', '🐡', '🐬', '🦈', '🐳', '🐋', '🐊', '🐆',
+			'🐅', '🐃', '🐂', '🐄', '🦌', '🐪', '🐫', '🐘', '🦏', '🦍',
+			'🐎', '🐖', '🐐', '🐏', '🐑', '🐕', '🐩', '🐈', '🐓', '🦃',
+			'🕊', '🐇', '🐁', '🐀', '🐿', '🐾', '🐉', '🐲', '🌵', '🎄',
+			'🌲', '🌳', '🌴', '🌱', '🌿', '☘️', '🍀', '🎍', '🎋', '🍃',
+			'🍂', '🍁', '🍄', '🌾', '💐', '🌷', '🌹', '🥀', '🌻', '🌼',
+			'🌸', '🌺',
+			'⚽️', '🏀', '🏈', '⚾️', '🎾', '🏐', '🏉', '🎱', '🏓', '🏸',
+			'🥅', '🏒', '🏑', '🏏', '⛳️', '🏹', '🎣', '🥊', '🥋', '⛸',
+			'🎿', '⛷', '🏂', '🏋️‍♀️', '🏋️', '🤺', '🤼‍♀️', '🤼‍♂️', '🤸‍♀️', '🤸‍♂️',
+			'⛹️‍♀️', '⛹️', '🤾‍♀️', '🤾‍♂️', '🏌️‍♀️', '🏌️', '🏄‍♀️', '🏄', '🏊‍♀️', '🏊',
+			'🤽‍♀️', '🤽‍♂️', '🚣‍♀️', '🚣', '🏇', '🚴‍♀️', '🚴', '🚵‍♀️', '🚵', '🎽',
+			'🏅', '🎖', '🥇', '🥈', '🥉', '🏆', '🏵', '🎗', '🎫', '🎟',
+			'🎪', '🤹‍♀️', '🤹‍♂️', '🎭', '🎨', '🎬', '🎤', '🎧', '🎼', '🎹',
+			'🥁', '🎷', '🎺', '🎸', '🎻', '🎲', '🎯', '🎳', '🎮', '🎰',
+			'🚗', '🚕', '🚙', '🚌', '🚎', '🏎', '🚓', '🚑', '🚒', '🚐',
+			'🚚', '🚛', '🚜', '🛴', '🚲', '🛵', '🏍', '🚨', '🚔', '🚍',
+			'🚘', '🚖', '🚡', '🚠', '🚟', '🚃', '🚋', '🚞', '🚝', '🚄',
+			'🚅', '🚈', '🚂', '🚆', '🚇', '🚊', '🚉', '🚁', '🛩', '✈️',
+			'🛫', '🛬', '🚀', '🛰', '💺', '🛶', '⛵️', '🛥', '🚤', '🛳',
+			'⛴', '🚢', '⚓️', '🚧', '⛽️', '🚏', '🚦', '🚥', '🗺', '🗿',
+			'🗽', '⛲️', '🗼', '🏰', '🏯', '🏟', '🎡', '🎢', '🎠', '⛱',
+			'🏖', '🏝', '⛰', '🏔', '🗻', '🌋', '🏜', '🏕', '⛺️', '🛤',
+			'🛣', '🏗', '🏭', '🏠', '🏡', '🏘', '🏚', '🏢', '🏬', '🏣',
+			'🏤', '🏥', '🏦', '🏨', '🏪', '🏫', '🏩', '💒', '🏛', '⛪️',
+			'🕌', '🕍', '🕋', '⛩', '🗾', '🎑', '🏞', '🌅', '🌄', '🌠',
+			'🎇', '🎆', '🌇', '🌆', '🏙', '🌃', '🌌', '🌉', '🌁',
+			'⌚️', '📱', '📲', '💻', '⌨️', '🖥', '🖨', '🖱', '🖲', '🕹',
+			'🗜', '💽', '💾', '💿', '📀', '📼', '📷', '📸', '📹', '🎥',
+			'📽', '🎞', '📞', '☎️', '📟', '📠', '📺', '📻', '🎙', '🎚',
+			'🎛', '⏱', '⏲', '⏰', '🕰', '⌛️', '⏳', '📡', '🔋', '🔌',
+			'💡', '🔦', '🕯', '🗑', '🛢', '💸', '💵', '💴', '💶', '💷',
+			'💰', '💳', '💎', '⚖️', '🔧', '🔨', '⚒', '🛠', '⛏', '🔩',
+			'⚙️', '⛓', '🔫', '💣', '🔪', '🗡', '⚔️', '🛡', '🚬', '⚰️',
+			'⚱️', '🏺', '🔮', '📿', '💈', '⚗️', '🔭', '🔬', '🕳', '💊',
+			'💉', '🌡', '🚽', '🚰', '🚿', '🛁', '🛀', '🛎', '🔑', '🗝',
+			'🚪', '🛋', '🛏', '🛌', '🖼', '🛍', '🛒', '🎁', '🎈', '🎏',
+			'🎎', '🏮', '🎐', '✉️', '📩', '📨', '📧',
+			'💌', '📥', '📤', '📦', '🏷', '📪', '📫', '📬', '📭', '📮',
+			'📯', '📜', '📃', '📄', '📑', '📊', '📈', '📉', '🗒', '🗓',
+			'📆', '📅', '📇', '🗃', '🗳', '🗄', '📋', '📁', '📂', '🗂',
+			'🗞', '📰', '📓', '📔', '📒', '📕', '📗', '📘', '📙', '📚',
+			'📖', '🔖', '🔗', '📎', '🖇', '📐', '📏', '📌', '📍',
+			'🎌', '🏳️', '🏴', '🏁', '✂️', '🖊', '🖋', '✒️', '🖌',
+			'🖍', '📝', '✏️', '🔍', '🔎', '🔏', '🔐', '🔒', '🔓',
+			'💟', '☮️', '✝️', '☪️', '🕉',
+			'☸️', '✡️', '🔯', '🕎', '☯️', '☦️', '🛐', '⛎', '♈️', '♉️',
+			'♊️', '♋️', '♌️', '♍️', '♎️', '♏️', '♐️', '♑️', '♒️', '♓️',
+			'🆔', '⚛️', '🉑', '☢️', '☣️', '📴', '📳', '🈶', '🈚️', '🈸',
+			'🈺', '🈷️', '✴️', '🆚', '💮', '🉐', '㊙️', '㊗️', '🈴', '🈵',
+			'🈹', '🈲', '🅰️', '🅱️', '🆎', '🆑', '🅾️', '🆘', '❌', '⭕️',
+			'🛑', '⛔️', '📛', '🚫', '💯', '💢', '♨️', '🚷', '🚯', '🚳',
+			'🚱', '🔞', '📵', '🚭', '❗️', '❕', '❓', '❔', '‼️', '⁉️',
+			'🔅', '🔆', '〽️', '⚠️', '🚸', '🔱', '⚜️', '🔰', '♻️', '✅',
+			'🈯️', '💹', '❇️', '✳️', '❎', '🌐', '💠', 'Ⓜ️', '🌀', '💤',
+			'🏧', '🚾', '♿️', '🅿️', '🈳', '🈂️', '🛂', '🛃', '🛄', '🛅',
+			'🚹', '🚺', '🚼', '🚻', '🚮', '🎦', '📶', '🈁', '🔣', 'ℹ️',
+			'🔤', '🔡', '🔠', '🆖', '🆗', '🆙', '🆒', '🆕', '🆓', '0️⃣', // 0
+			'1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟', // 1, 2, 3, 4, 5, 6, 7, 8, 9
+			'🔢', '#️⃣', '*️⃣', '▶️', '⏸', '⏯', '⏹', '⏺', '⏭', '⏮',
+			'⏩', '⏪', '⏫', '⏬', '◀️', '🔼', '🔽', '➡️', '⬅️', '⬆️',
+			'⬇️', '↗️', '↘️', '↙️', '↖️', '↕️', '↔️', '↪️', '↩️', '⤴️',
+			'⤵️', '🔀', '🔁', '🔂', '🔄', '🔃', '🎵', '🎶', '➕', '➖',
+			'➗', '✖️', '💲', '💱', '™️', '©️', '®️', '〰️', '➰', '➿',
+			'🔚', '🔙', '🔛', '🔝', '✔️', '☑️', '🔘', '⚪️', '⚫️', '🔴',
+			'🔵', '🔺', '🔻', '🔸', '🔹', '🔶', '🔷', '🔳', '🔲', '▪️',
+			'▫️', '◾️', '◽️', '◼️', '◻️', '⬛️', '⬜️', '🔈', '🔇', '🔉',
+			'🔊', '🔔', '🔕', '📣', '📢', '👁‍🗨', '💬', '💭', '🗯', '♠️',
+			'♣️', '♥️', '♦️', '🃏', '🎴', '🀄️', '🕐', '🕑', '🕒', '🕓',
+			'🕔', '🕕', '🕖', '🕗', '🕘', '🕙', '🕚', '🕛', '🕜', '🕝',
+			'🕞', '🕟', '🕠', '🕡', '🕢', '🕣', '🕤', '🕥', '🕦', '🕧',
+			'🏳️', '🏴', '🏁', '🚩', '🏳️‍🌈', '🇦🇫', '🇦🇽', '🇦🇱', '🇩🇿', '🇦🇸',
+			'🇦🇩', '🇦🇴', '🇦🇮', '🇦🇶', '🇦🇬', '🇦🇷', '🇦🇲', '🇦🇼', '🇦🇺', '🇦🇹',
+			'🇦🇿', '🇧🇸', '🇧🇭', '🇧🇩', '🇧🇧', '🇧🇾', '🇧🇪', '🇧🇿', '🇧🇯', '🇧🇲',
+			'🇧🇹', '🇧🇴', '🇧🇦', '🇧🇼', '🇧🇷', '🇮🇴', '🇻🇬', '🇧🇳', '🇧🇬', '🇧🇫',
+			'🇧🇮', '🇰🇭', '🇨🇲', '🇨🇦', '🇮🇨', '🇨🇻', '🇧🇶', '🇰🇾', '🇨🇫', '🇹🇩',
+			'🇨🇱', '🇨🇳', '🇨🇽', '🇨🇨', '🇨🇴', '🇰🇲', '🇨🇬', '🇨🇩', '🇨🇰', '🇨🇷',
+			'🇨🇮', '🇭🇷', '🇨🇺', '🇨🇼', '🇨🇾', '🇨🇿', '🇩🇰', '🇩🇯', '🇩🇲', '🇩🇴',
+			'🇪🇨', '🇪🇬', '🇸🇻', '🇬🇶', '🇪🇷', '🇪🇪', '🇪🇹', '🇪🇺', '🇫🇰', '🇫🇴',
+			'🇫🇯', '🇫🇮', '🇫🇷', '🇬🇫', '🇵🇫', '🇹🇫', '🇬🇦', '🇬🇲', '🇬🇪', '🇩🇪',
+			'🇬🇭', '🇬🇮', '🇬🇷', '🇬🇱', '🇬🇩', '🇬🇵', '🇬🇺', '🇬🇹', '🇬🇬', '🇬🇳',
+			'🇬🇼', '🇬🇾', '🇭🇹', '🇭🇳', '🇭🇰', '🇭🇺', '🇮🇸', '🇮🇳', '🇮🇩', '🇮🇷',
+			'🇮🇶', '🇮🇪', '🇮🇲', '🇮🇱', '🇮🇹', '🇯🇲', '🇯🇵', '🎌', '🇯🇪', '🇯🇴',
+			'🇰🇿', '🇰🇪', '🇰🇮', '🇽🇰', '🇰🇼', '🇰🇬', '🇱🇦', '🇱🇻', '🇱🇧', '🇱🇸',
+			'🇱🇷', '🇱🇾', '🇱🇮', '🇱🇹', '🇱🇺', '🇲🇴', '🇲🇰', '🇲🇬', '🇲🇼', '🇲🇾',
+			'🇲🇻', '🇲🇱', '🇲🇹', '🇲🇭', '🇲🇶', '🇲🇷', '🇲🇺', '🇾🇹', '🇲🇽', '🇫🇲',
+			'🇲🇩', '🇲🇨', '🇲🇳', '🇲🇪', '🇲🇸', '🇲🇦', '🇲🇿', '🇲🇲', '🇳🇦', '🇳🇷',
+			'🇳🇵', '🇳🇱', '🇳🇨', '🇳🇿', '🇳🇮', '🇳🇪', '🇳🇬', '🇳🇺', '🇳🇫', '🇰🇵',
+			'🇲🇵', '🇳🇴', '🇴🇲', '🇵🇰', '🇵🇼', '🇵🇸', '🇵🇦', '🇵🇬', '🇵🇾', '🇵🇪',
+			'🇵🇭', '🇵🇳', '🇵🇱', '🇵🇹', '🇵🇷', '🇶🇦', '🇷🇪', '🇷🇴', '🇷🇺', '🇷🇼',
+			'🇼🇸', '🇸🇲', '🇸🇦', '🇸🇳', '🇷🇸', '🇸🇨', '🇸🇱', '🇸🇬', '🇸🇽', '🇸🇰',
+			'🇸🇮', '🇬🇸', '🇸🇧', '🇸🇴', '🇿🇦', '🇰🇷', '🇸🇸', '🇪🇸', '🇱🇰', '🇧🇱',
+			'🇸🇭', '🇰🇳', '🇱🇨', '🇵🇲', '🇻🇨', '🇸🇩', '🇸🇷', '🇸🇿', '🇸🇪', '🇨🇭',
+			'🇸🇾', '🇹🇼', '🇹🇯', '🇹🇿', '🇹🇭', '🇹🇱', '🇹🇬', '🇹🇰', '🇹🇴', '🇹🇹',
+			'🇹🇳', '🇹🇷', '🇹🇲', '🇹🇨', '🇹🇻', '🇻🇮', '🇺🇬', '🇺🇦', '🇦🇪', '🇬🇧',
+			'🇺🇸', '🇺🇾', '🇺🇿', '🇻🇺', '🇻🇦', '🇻🇪', '🇻🇳', '🇼🇫', '🇪🇭', '🇾🇪',
+			'🇿🇲', '🇿🇼',
+		];
+		for(var i = 0; i < emojiArray.length; i++){
+			var span = document.createElement('span');
+			span.innerHTML = '<span onclick="addEmoji(\''+emojiArray[i]+'\');">'+emojiArray[i]+'</span>';
+			document.querySelector('.emoji-box-item').appendChild(span);
+		}
+	});
+
+	$('#comment-box-content').focusout(function (e) {
+		$('#comment-box-nickname').focus();
+	});
+
+	// Show successful message
+	function finishComment() {
+		document.getElementById('comment-success').style.display = 'none';
+		document.getElementById('comment-success-wrapper').style.display = 'none';
+
+		// Change background color for nav buttons
+		document.getElementById('nav-text-bg').style.display = 'none';
+		document.getElementById('nav-text').style.display = 'block';
+
+		document.getElementById('nav-emo-bg').style.display = 'none';
+		document.getElementById('nav-emo').style.display = 'block';
+
+		// Show guide for user
+		document.getElementById('guide').style.display = 'block';
+	}
+
+	// Called when user clicks on '확인' button in the page info
+	function initAR() {
+		document.getElementById('pageInfo').style.display = 'none';
+		document.getElementById('nav').style.display = 'block';
+
+		document.getElementById('nav-text').style.display = 'block';
+		document.getElementById('nav-text-bg').style.display = 'none';
+		document.getElementById('nav-emo').style.display = 'block';
+		document.getElementById('nav-emo-bg').style.display = 'none';
+
+		document.getElementById('guide').style.display = 'block';
+
+		showRenderables();
+	}
+
+	// User cancel writing comments
+	function cancelCommentBox() {
+
+		// Change background color for nav buttons
+		document.getElementById('nav-text-bg').style.display = 'none';
+		document.getElementById('nav-text').style.display = 'block';
+
+		document.getElementById('nav-emo-bg').style.display = 'none';
+		document.getElementById('nav-emo').style.display = 'block';
+
+		document.getElementById('comment-box').style.display = 'none';
+		document.getElementById('comment-box-wrapper').style.display = 'none';
+		document.getElementById('comment-box-wrapper').style.zIndex = '0';
+
+		document.getElementById('guide').style.display = 'block';
+		world.remove(editObject);
+		commentsIndex --;
+	}
+
+	// Called when user clicks on '문자입력' button to start writing comments
+	function writeComments() {
+		console.log('Click 문자입력');
+
+		document.getElementById('guide').style.display = 'none';
+		document.getElementById('emotions').style.display = 'none';
+		document.getElementById('confirm').style.display = 'none';
+
+		document.getElementById('pageInfo').style.display = 'none';
+
+		document.getElementById('comment-box').style.display = 'block';
+		document.getElementById('comment-box-wrapper').style.display = 'block';
+		document.getElementById('comment-box-wrapper').style.zIndex = '5000';
+
+		// Change background color for nav buttons
+		document.getElementById('nav-text-bg').style.display = 'block';
+		document.getElementById('nav-text').style.display = 'none';
+
+		document.getElementById('nav-emo-bg').style.display = 'none';
+		document.getElementById('nav-emo').style.display = 'block';
+
+		if(editObject !== null) {
+			world.remove(editObject);
+			editObject = null;
+		}
+
+		if(helpObject !== null) {
+			world.remove(helpObject);
+			helpObject = null
+		}
+	}
+
+	// Called when user clicks on '저장' button in comment box
+	function addComments() {
+		let cmt_content = document.getElementById('comment-box-content').value;
+		let cmt_nickname = document.getElementById('comment-box-nickname').value;
+
+		let content_bytes = getBytesString(cmt_content.toString());
+		let nickname_bytes = getBytesString(cmt_nickname.toString());
+		console.log(content_bytes + " " + nickname_bytes);
+
+		if (content_bytes > 30 || content_bytes === 0 || cmt_content === null || cmt_content === '') {
+			document.getElementById('comment-box-content').style.border = '1px solid red';
+			console.log('내용을 15자 이내로 간단하게 남겨주세요!');
+			window.alert("내용을 15자 이내로 간단하게 남겨주세요!");
+			return;
+		}
+		if (nickname_bytes > 10 || nickname_bytes === 0 || cmt_nickname === null || cmt_nickname === '') {
+			document.getElementById('comment-box-nickname').style.border = '1px solid red';
+			window.alert("닉네임을 5자 이내로 남겨주세요!");
+			return;
+		}
+
+		if (content_bytes <= 30 && nickname_bytes  <= 10) {
+
+			document.getElementById('comment-box').style.display = 'none';
+			document.getElementById('comment-box-wrapper').style.display = 'none';
+			document.getElementById('comment-box-wrapper').style.zIndex = '0';
+
+			document.getElementById('confirm').style.display = 'block';
+			document.getElementById('confirm').style.zIndex = '5000';
+			document.getElementById('comment-nav-wrapper').style.display = 'block';
+			document.getElementById('comment-nav-wrapper').style.zIndex = '2000';
+
+			let str_count = ((cmt_content.toString().length > cmt_nickname.toString().length)? cmt_content.toString().length : cmt_nickname.toString().length);
+			let helpDiv = createHelpDiv('comment', str_count);
+			const help = createHelpRenderable(helpDiv);
+			world.add(help);
+
+			const type = 'comment';
+			const div = createCommentDiv(cmt_content, cmt_nickname);
+			const commentRenderable = createCommentRenderable(div, type);
+			world.add(commentRenderable);
+		}
+		// After add comment and send to server, reset input text
+		document.getElementById('comment-box-content').value = '';
+		document.getElementById('comment-box-nickname').value = '';
+	}
+
+	// Called when user clicks on '이모티콘' button to start insert emoji
+	function createEmojiBox(){
+
+		document.getElementById('pageInfo').style.display = 'none';
+		document.getElementById('ft-functions').style.display = 'block';
+		document.getElementById('emotions').style.display = 'block';
+
+		// Change background color for nav buttons
+		document.getElementById('nav-text-bg').style.display = 'none';
+		document.getElementById('nav-text').style.display = 'block';
+
+		document.getElementById('nav-emo-bg').style.display = 'block';
+		document.getElementById('nav-emo').style.display = 'none';
+
+		document.getElementById('confirm').style.display = 'none';
+		document.getElementById('emotions').style.display = 'block';
+
+		document.getElementById('comment-box').style.display = "none";
+		document.getElementById('comment-box-wrapper').style.display = 'none';
+		document.getElementById('comment-box-wrapper').style.zIndex = '0';
+		document.getElementById('guide').style.display = "none";
+
+
+		document.querySelector('.emoji-box-item').appendChild(document.createElement('br'));
+		document.querySelector('.emoji-box-item').appendChild(document.createElement('br'));
+
+		if(editObject !== null) {
+			world.remove(editObject);
+			editObject = null;
+		}
+
+		if(helpObject !== null) {
+			world.remove(helpObject);
+			helpObject = null
+		}
+	}
+
+	function showResetModal() {
+		document.getElementById('remove-modal-bg').style.display = 'block';
+	}
+
+	// User adds emotions
+	function addEmoji(i) {
+		console.log('add emotions: ' + i);
+		document.getElementById('emotions').style.display = 'none';
+
+		document.getElementById('confirm').style.display = 'block';
+		document.getElementById('confirm').style.zIndex = '5000';
+		document.getElementById('comment-nav-wrapper').style.display = 'block';
+		document.getElementById('comment-nav-wrapper').style.zIndex = '2000';
+
+		document.getElementById('guide').style.display = "none";
+
+		let helpDiv = createHelpDiv('emoji');
+		const help = createHelpRenderable(helpDiv);
+		world.add(help);
+
+		const type = 'emoji';
+		const div =
+			`	<div class="imagebox">
+						<div class="emo-items" style="font-size: 100px">${i}</div>
+					</div>`;
+		const emojiRenderable = createCommentRenderable(div, type);
+		world.add(emojiRenderable);
+		confirmBoxIndex = "emoji";
+	}
+
+	// Reset comments from the server
+	function resetComments() {
+
+		// delete from server
+		axios
+			.get('classes/docent_comments', {
+				params: {
+					order: '-createdAt'
+				}
+			})
+			.then(result => {
+				let batchRequests = [];
+				let resultObjects = result.data.results;
+
+				resultObjects.forEach((item) => {
+					let request = {
+						"method": "DELETE",
+						"path": `/parse/classes/docent_comments/${item.objectId}`
+					};
+					batchRequests.push(request);
+				});
+
+				axios.post('batch',{requests: batchRequests})
+					.then(result => {
+						console.log("Remove all data from parse server");
+						window.alert('감상평 데이터가 모두 삭제되었습니다.');
+            renderItems = [];
+					})
+					.catch(error => {
+						console.log(error);
+					})
+			})
+			.catch(error => {
+				console.log(error);
+			})
+
+
+	}
+	// fix : Duplicated onclick event.
+	// This button event is for confirm buttons
+	function initBtnEvent() {
+		document.getElementById("btOK").addEventListener("click", function(){
+			postComment(editObject);
+			document.getElementById('confirm').style.display = 'none';
+			document.getElementById('confirm').style.zIndex = '0';
+
+			document.getElementById('comment-nav-wrapper').style.display = 'none';
+			document.getElementById('comment-nav-wrapper').style.zIndex = '-1';
+
+			document.getElementById('comment-success').style.display = 'block';
+			document.getElementById('comment-success-wrapper').style.display = 'block';
+			document.getElementById('comment-success-wrapper').style.zIndex = '1000';
+
+			if(helpObject !== null) {
+				world.remove(helpObject);
+				helpObject = {...commentTemplate};
+			}
+		});
+		document.getElementById("btCancel").addEventListener("click", function() {
+			console.log(confirmBoxIndex);
+			closeConfirmBox(confirmBoxIndex);
+			world.remove(editObject);
+			commentsIndex --;
+
+			if(helpObject!== null) {
+				world.remove(helpObject);
+				helpObject = {...commentTemplate};
+			}
+
+		});
+
+		// main navigation event
+		document.getElementById("nav-main-home").addEventListener("click", function() {
+			document.getElementById('nav-main').style.display = 'none';
+			document.getElementById("comment-div").style.display = "none";
+			document.getElementById("menu").style.display = "block";
+			document.getElementById("overview").style.display = "none";
+			document.getElementById('menu-layout').style.display = 'none';
+			document.getElementById("watchPoint").style.display = "none";
+			document.getElementById("main-header").style.display = "none";
+			document.getElementById("nav-main-overview-img").src = "./assets/overview-white.png";
+			document.getElementById("nav-main-watch-point-img").src = "./assets/watch-point-white.png";
+		});
+		document.getElementById("nav-main-overview").addEventListener("click", function() {
+			document.getElementById("menu").style.display = "none";
+			document.getElementById("watchPoint").style.display = "none";
+			document.getElementById("main-header").style.display = "none";
+			document.getElementById("overview").style.display = "block";
+			document.getElementById("nav-main-overview-img").src = "./assets/overview-blue.png";
+			document.getElementById("nav-main-watch-point-img").src = "./assets/watch-point-white.png";
+		});
+		document.getElementById("nav-main-watch-point").addEventListener("click", function() {
+			document.getElementById('chapter-1').style.display = 'block';
+			document.getElementById("menu").style.display = "none";
+			document.getElementById("watchPoint").style.display = "block";
+			document.getElementById("main-header").style.display = "block";
+			document.getElementById("overview").style.display = "none";
+			document.getElementById("nav-main-overview-img").src = "./assets/overview-white.png";
+			document.getElementById('nav-main-watch-point-img').src = "./assets/watchpoint-blue.png";
+		});
+		document.getElementById("nav-main-comment-page").addEventListener("click", function() {
+			document.getElementById("watchPoint").style.display = "none";
+			document.getElementById("main-header").style.display = "none";
+			document.getElementById("overview").style.display = "none";
+			document.getElementById("menu").style.display = "none";
+			document.getElementById("comment-div").style.display = "block";
+
+			document.getElementById('pageInfo').style.display = 'block';
+			document.getElementById("nav").style.display = "none";
+			document.getElementById("nav-main").style.display = "none";
+		});
+
+		// navigation event for comments page
+		document.getElementById("nav-home").addEventListener("click", function() {
+
+			document.getElementById("topMenu").style.display = "block";
+			document.getElementById("menu").style.display = "block";
+			document.getElementById("nav-main").style.display = "none";
+			document.getElementById("nav").style.display = "none";
+			document.getElementById('ft-functions').style.display = 'none';
+
+			if (document.getElementById('confirm').style.display === 'block'){
+				document.getElementById("topMenu").style.display = "none";
+			}
+
+			if(document.getElementById('confirm').style.display !=="block" && document.getElementById('comment-box').style.display !== 'block') {
+				document.getElementById("comment-div").style.display = "none";
+				// document.getElementById("menu").style.display = "block";
+				// document.getElementById("nav-main").style.display = "block";
+				document.getElementById("nav").style.display = "none";
+				document.getElementById("nav-main-overview-img").src = "./assets/overview-white.png";
+				document.getElementById("nav-main-watch-point-img").src = "./assets/watch-point-white.png";
+
+				// Hide Renderable
+				hideRenderables();
+			}
+		});
+
+		document.getElementById('remove-modal-footer-cancel').addEventListener('click', function() {
+			document.getElementById('remove-modal-bg').style.display = 'none';
+		});
+
+		document.getElementById('remove-modal-footer-ok').addEventListener('click', function() {
+			resetComments();
+			document.getElementById('remove-modal-bg').style.display = 'none';
+
+			// delete from local.
+			renderItems.forEach(function(item) {
+				world.remove(item);
+			})
+		});
+	}
+
+	// Create data (comment and emoji) to send to server
+	function createCommentDiv(comment, nickname) {
+		let commentText = "#" + comment;
+		const div =
+			`
+				<div>
+					<div>
+					<font class="user-comment">${commentText}</font>
+					</div>
+
+					<div>
+						<img class="user-comment-img" src="assets/nickname-white.png"/>
+						<font  class="user-comment-nickname">${nickname}</font>
+					</div>
+				</div>
+			`;
+
+		return div;
+	}
+
+	// Function to make renderable item and renderable item's position, rotation, scale.
+	function createDOMRenderable(value, _position = null, _rotation = null, _scale = null) {
+		let element = document.createElement('div');
+		element.innerHTML = value;
+
+		const renderableEle = new DOMRenderable(element);
+
+		if (_position) renderableEle.position.set(..._position);
+
+		if (_rotation) {
+			renderableEle.rotateX(_rotation[0]);
+			renderableEle.rotateY(_rotation[1]);
+			renderableEle.rotateZ(_rotation[2]);
+		}
+
+		if (_scale) {
+			renderableEle.scale.set(..._scale);
+		}
+
+		// if (_scale) renderableEle.scale.set(..._scale);
+		return renderableEle;
+	}
+
+	/**
+	 * Function to make text renderable item.
+	 */
+	function createCommentRenderable(_value, _type) {
+		let position = [0, 0, (-50 * commentsIndex) - 150];
+
+		commentsIndex++;
+
+		let rotation = [0, 0, 0];
+		let scale = [1, 1, 1];
+		let renderable = null;
+		let uid = UUID();
+
+		let type = _type;
+		if (type !== "comment" && type !== "emoji") {
+			type = null
+		}
+
+		renderable = createDOMRenderable(`<div data-id="${uid}" data-type="${type}">${_value}</div>`, position, rotation, scale);
+		renderable.comment_type = type;
+
+		editObject = renderable;
+
+		return renderable;
+
+	}
+
+	function createHelpDiv(type, str_count) {
+		let helpDiv;
+		if(type === "comment") {
+			let width = 150 + str_count * 30;
+			helpDiv = `<div id="content-helper" style="width:${width}px; height:150px;  position:relative; margin-top: 5px">
+											<div style="width:100%; height:50%;">
+												<div style="float:left;"><img  src="assets/outline-top-left.png"></div>
+												<div style="float:right;"><img  src="assets/outline-top-right.png"></div>
+											</div>
+											<div style="width:100%; height:50%;margin-top:20px">
+												<div style="float:left; "><img src="assets/outline-bottom-left.png"></div>
+												<div style="float:right;"><img src="assets/outline-bottom-right.png"></div>
+											</div>
+									</div>`;
+
+		} else if (type === "emoji") {
+			helpDiv = `<div id="content-helper" style="width:200px; height:140px; margin-top:20px; position:relative">
+											<div style="width:100%; height:50%;">
+												<div style="float:left;"><img  src="assets/outline-top-left.png"></div>
+												<div style="float:right;"><img  src="assets/outline-top-right.png"></div>
+											</div>
+											<div style="width:100%; height:50%; margin-top: 10px">
+												<div style="float:left; "><img src="assets/outline-bottom-left.png"></div>
+												<div style="float:right;"><img src="assets/outline-bottom-right.png"></div>
+											</div>
+									</div>`;
+		} else  {
+			helpDiv = "";
+		}
+
+		return helpDiv;
+	}
+
+	function createHelpRenderable(_value) {
+		let position = [0, 0, (-50 * commentsIndex) - 150];
+		let rotation = [0, 0, 0];
+		let scale = [1, 1, 1];
+		let renderable = null;
+		let uid = UUID();
+
+		renderable = createDOMRenderable(`<div data-id="${uid}" data-type="help">${_value}</div>`, position, rotation, scale);
+		helpObject = renderable;
+
+		return renderable;
+	}
+
+	/**
+	 * Function to initialize world.
+	 */
+	function initWorld(e) {
+		let uri = e.target.uri;
+
+		if (CURRENT_URI == null) {
+			CURRENT_URI = uri;
+			currentTarget = app.engine.getEntity(CURRENT_URI);
+			e.target.addRenderable(world);
+		}
+
+		if (uri !== CURRENT_URI) {
+			app.engine.getEntity(CURRENT_URI).removeRenderable(world);
+			CURRENT_URI = uri;
+			currentTarget = app.engine.getEntity(CURRENT_URI);
+			e.target.addRenderable(world);
+		}
+	}
+
+	// Function to get uuid
+	function UUID() {
+		let d = new Date().getTime();
+
+		if (typeof performance !== 'undefined' && typeof performance.now === 'function') {
+			d += performance.now(); // use high-precision timer if available
+		}
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+			let r = (d + Math.random() * 16) % 16 | 0;
+
+			d = Math.floor(d / 16);
+			return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+		});
+	}
+
+	// Called when user clicks on 'Cancel' button to confirm
+	function closeConfirmBox(_type) {
+		console.log('CANCEL: ' + _type);
+
+		// Change background color for nav buttons
+		document.getElementById('nav-text-bg').style.display = 'none';
+		document.getElementById('nav-text').style.display = 'block';
+
+		document.getElementById('nav-emo-bg').style.display = 'none';
+		document.getElementById('nav-emo').style.display = 'block';
+
+		document.getElementById('confirm').style.display = 'none';
+		document.getElementById('confirm').style.zIndex = '0';
+
+		document.getElementById('comment-nav-wrapper').style.display = 'none';
+		document.getElementById('comment-nav-wrapper').style.zIndex = '-1';
+
+		document.getElementById('guide').style.display = 'block';
+
+		if (_type === 'comment') {
+			//document.getElementById('user-input').style.display = 'none';
+		} else if (_type === 'emoji') {
+			document.getElementById('emotions').style.display = 'none';
+		}
+	}
+
+	// parse Server
+	axios.defaults.baseURL = 'https://browser.letsee.io:8337/parse';
+	axios.defaults.headers.common['X-Parse-Application-Id'] = 'awe2019wallboard';
+
+	// TODO: create Object which import info about position, div, ...
+	function postComment(commentRenderable) {
+		console.log('postComment');
+		renderItems.push(commentRenderable);
+		return new Promise((resolve, reject) => {
+			let commentObject = makeCommentObject(commentRenderable);
+			axios.post('classes/docent_comments', commentObject)
+				.then((result) => {
+					resolve(result);
+					editObject = null
+				})
+				.catch(error => {
+					reject(error);
+					editObject = null
+				})
+		})
+	}
+
+	function makeCommentObject(renderable) {
+		commentObject = {...commentTemplate};
+
+		commentObject.type = renderable;
+
+		commentObject.position = {
+			"_x": renderable.position.x,
+			"_y": renderable.position.y,
+			"_z": renderable.position.z
+		};
+
+		commentObject.rotation = {
+			"_x": renderable.rotation.x,
+			"_y": renderable.rotation.y,
+			"_z": renderable.rotation.z
+		};
+
+		commentObject.scale = {
+			"_x": renderable.scale.x,
+			"_y": renderable.scale.y,
+			"_z": renderable.scale.z
+		};
+
+		let $commentDiv = $(`${renderable.element.innerHTML}`);
+		commentObject.id = $commentDiv.attr('data-id');
+		commentObject.type = $commentDiv.attr('data-type');
+		commentObject.content = $commentDiv[0].outerHTML;
+
+		return commentObject;
+		//commentObject.content = renderable.element.innerHTML;
+	}
+
+	// Get data (comments & emotions) from server
+	function getComments() {
+		console.log('getComments');
+		return new Promise((resolve, reject) => {
+			axios.get('classes/docent_comments', {
+				params: {
+					order: '-createdAt'
+				}
+			})
+				.then(data => {
+					printCommentItemsFromJson(data.data.results);
+					editObject = null;
+				})
+				.catch(error => {
+					reject(error);
+				})
+		})
+	}
+
+	// Function to make renderable and add to world using json data
+	function printCommentItemsFromJson(data) {
+		// let cardObjects = JSON.parse(JSON.stringify(data));
+		// console.log(data);
+		data.forEach(function (item, index) {
+			let position = [item.position._x, item.position._y, (index * 50) - 150];
+			let rotation = [item.rotation._x, item.rotation._y, item.rotation._z];
+			let scale = [item.scale._x, item.scale._y, item.scale._z];
+			let renderableItem = createDOMRenderable(item.content, position, rotation, scale);
+			world.add(renderableItem);
+			renderItems.push(renderableItem);
+		});
+	}
+
+	function hideRenderables() {
+		console.log('hideRenderables');
+
+		renderItems.forEach(function(item) {
+			world.remove(item);
+		})
+	}
+
+	function showRenderables() {
+		console.log('showRenderables');
+
+		let commentBox = document.getElementById('comment-box');
+		let emotions = document.getElementById('emotions');
+		let confirm = document.getElementById('confirm');
+		let infoBox = document.getElementById('pageInfo');
+
+		if(commentBox.style.display !== 'block' && emotions.style.display !== 'block' && confirm.style.display !== 'block')
+			document.getElementById('guide').style.display = 'block';
+
+		renderItems.forEach(function(item) {
+			world.add(item);
+		})
+	}
+	// END COMMENT.HTML SCRIPT
+
+	// Loading Engine
+	const config = {
+		"appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
+		"trackerType": "PLANAR",
+		"isSteady": true
+	};
+
+	// setTimeout(showMainContent, 1000);
+
+	const app = new Letsee(config);
+	if(app !== null && typeof app !== 'undefined') {
+		app.addEventListener('trackstart', e => {
+			showMainContent();
+			initWorld(e);
+
+			// check nav-comment is display or not
+			if (document.getElementById('nav').style.display === 'block') {
+				// comment is open
+				showRenderables();
+			}
+			else {
+				// comment page is close
+				hideRenderables();
+			}
+		});
+	}
+
+	jQuery(document).ready(function(){
+		$('#tabs').tabs();
+		$('#chapter2tab').tabs({collapsible: true,active: false});
+		$('.scrollbar-inner').scrollbar();
+	});
+
+	const chapter2Img = $('#chapter2tab img');
+	const chapter2TabList = $('#chapter2tab ul');
+	const chapter2TabListBtn = $('#chapter2tab ul li');
+
+	chapter2TabListBtn.each(function() {
+		$(this).click(function() {chapter2TabList.hide();})
+
+	});
+
+	// $('#chapter-3 .close').on('click', function(e) {
+	// 	$("#chpter3tab").tabs({ active:false});
+	// 	chapter3TabList.show();
+	// });
+
+	function selectAgain() {
+		console.log('selectAgain');
+		$("#chapter2tab").tabs({ active:false});
+		chapter2TabList.show();
+
+		document.getElementById('chap2-bt').style.display = 'none';
+		document.getElementById('chapterBody').style.display = 'block';
+	}
+
+	let currentChapter = 1;
+	const nextBtn = $('#next');
+	const prevBtn = $('#prev');
+	const chapterObg = {
+		1: {
+			title: "1.최후의 만찬을 함께한 예수의 12제자",
+			body: "이름을 터치하면, 인물 정보를 볼 수 있습니다."
+		},
+		2: {
+			title: "2.작품 완성에 2년9개월이나 걸린 이유는?",
+			body: ""
+		},
+		3: {
+			title: "3.완벽한 구도와 비율",
+			body: '<div id="chap4-body"><p>완벽한 대칭을 이루는 1:1.6의 황금비율</p></div>' +
+				'<div id="chapter4Control" class="controlBtns"><a href="#" class="chapter4Detail"></a></div>'
+		},
+		4: {
+			title: "4.작품 속 숨겨진 음악",
+			body: '<div id="chap5-body"><p>인물들의 손과 음식을 음표로 해석, 40초 짜리 찬송곡을 발견.</p></div>' +
+				'<div id="chapter5Control" class="controlBtns"><a href="#" class="chapter5Detail"></a></div>'
+		}
+	};
+
+	nextBtn.on('click', function(e) {
+
+		// Set position for header (title & body) for different chapter
+		if (currentChapter === 1) {
+			document.getElementById('chapterTitle').style.marginTop = "38px";
+		}
+		if (currentChapter === 2) {
+			document.getElementById('chapterTitle').style.marginTop = "16px";
+		}
+
+		if (currentChapter < 4) {
+			changeChapter(currentChapter, false);
+			currentChapter++;
+			// console.log('currentChapter: ' + currentChapter);
+		}
+
+		// Disable the next button for the last chapter
+		if (currentChapter === 4) {
+			document.getElementById('next').style.opacity = '0.2';
+		} else {
+			document.getElementById('next').style.opacity = '1';
+		}
+
+	});
+	prevBtn.on('click', function(e) {
+
+		// Set position for header (title & body) for different chapter
+		if (currentChapter === 3) {
+			document.getElementById('chapterTitle').style.marginTop = "38px";
+		}
+
+		document.getElementById('next').style.opacity = '1';
+		if (currentChapter > 1) {
+			changeChapter(currentChapter, true);
+			currentChapter--;
+			// console.log(currentChapter);
+		}
+	});
+	// chapter 4 controll
+	let chapter4Flag = true;
+	let chapter5Flag = true;
+	function setTopControl() {
+		$('#chapter4Control a').click(function() {
+			if(chapter4Flag) {
+				$('#chapter-3 #comparison').fadeOut(200);
+				$('#chapter-3 #nailDetail').fadeIn(200);
+				chapter4Flag = false;
+				$(this).attr('class','chapter4Return');
+			} else {
+				$('#chapter-3 #comparison').fadeIn(200);
+				$('#chapter-3 #nailDetail').fadeOut(200);
+				chapter4Flag = true;
+				$(this).attr('class','chapter4Detail');
+			}
+		});
+
+		$('#chapter5Control a').click(function() {
+			if(chapter5Flag) {
+				$('#chapter-4 #chapter5Note').fadeOut(200);
+				$('#chapter-4 #chapter5Video').fadeIn(200);
+				chapter5Flag = false;
+				$(this).attr('class','chapter5Return');
+			} else {
+				$('#chapter-4 #chapter5Note').fadeIn(200);
+				$('#chapter-4 #chapter5Video').fadeOut(200);
+				chapter5Flag = true;
+				$(this).attr('class','chapter5Detail');
+			}
+		})
+	}
+
+	function changeChapter(num, direction) {
+		const curEle = $('#chapter-'+num);
+		const nextEleNum = (direction) ? num-1 : num+1;
+		const nextEle = $('#chapter-'+nextEleNum);
+		curEle.fadeOut(200);
+		nextEle.fadeIn(200);
+		// $('#chapNum').html(nextEleNum);
+		$('#chapterTitle').html(chapterObg[nextEleNum].title);
+		$('#chapterBody').html(chapterObg[nextEleNum].body);
+		setTopControl();
+		// console.log(nextEle);
+	}
+
+	// Comparison
+	var divisor = document.getElementById("divisor"),
+		slider = document.getElementById("slider");
+	function moveDivisor() {
+		divisor.style.width = slider.value+"%";
+		$('#comparisonHandle').css('left',`${slider.value}%`);
+	}
+	moveDivisor();
+
+	// Function to get bytes by strings .
+	function getBytesString(str) // str은 inputbox에 입력된 문자열이고,lengths는 제한할 문자수 이다.
+	{
+		var len = 0;
+
+		for (var i=0; i<str.length; i++)
+		{
+			var n = str.charCodeAt(i); // charCodeAt : String개체에서 지정한 인덱스에 있는 문자의 unicode값을 나타내는 수를 리턴한다.
+			// 값의 범위는 0과 65535사이이여 첫 128 unicode값은 ascii문자set과 일치한다.지정한 인덱스에 문자가 없다면 NaN을 리턴한다.
+			if ((n>= 0) && (n<256))
+				len ++;
+			else len += 2; // 한글이면 2byte로 계산한다.
+		}
+		return len;
+	}
+</script>
+
+<script type="text/javascript" src="js/hammer.js"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/4.2.0/screenfull.min.js"></script>-->
+<!--<script>let fs=!1;document.documentElement.addEventListener("click",()=>{screenfull.enabled&&!fs&&(screenfull.request(),fs=!0)});</script>-->
+</body>
+</html>

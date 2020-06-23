@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="68.709" height="24.381" viewBox="0 0 68.709 24.381">
+    <defs>
+        <style>
+            .cls-1{fill:#1295aa}.cls-2,.cls-3{fill:#fff}.cls-3{font-size:12px;font-family:AppleSDGothicNeo-Medium,Apple SD Gothic Neo;font-weight:500;letter-spacing:-.01em}
+        </style>
+    </defs>
+    <g transform="translate(-360 -73)">
+        <rect width="80" height="26" class="cls-1" rx="16" transform="translate(360 73)"/>
+        <g id="detial_icon" transform="translate(366.649 77.432)">
+            <g>
+                <g>
+                    <path d="M1.568 1.569a5.361 5.361 0 0 1 7.841 7.3l.639.639.652-.648a.38.38 0 0 1 .538 0l3.049 3.049a1.681 1.681 0 0 1-2.377 2.377l-3.051-3.049a.38.38 0 0 1 0-.538l.651-.651-.638-.638a5.361 5.361 0 0 1-7.3-7.841zm10.878 12.179a.92.92 0 1 0 1.3-1.3l-1.7-1.7-1.3 1.3zm-2.239-2.239l1.3-1.3-.541-.541-1.3 1.3zm-8.1-2.9a4.6 4.6 0 1 0 0-6.507 4.606 4.606 0 0 0-.001 6.511z" class="cls-2" transform="translate(0 -.001)"/>
+                </g>
+            </g>
+            <g transform="translate(1.711 1.711)">
+                <g>
+                    <path d="M198.777 58.143a3.862 3.862 0 1 1-1.131 2.731 3.837 3.837 0 0 1 1.131-2.731zm.559 4.9a3.071 3.071 0 1 0-.9-2.172 3.051 3.051 0 0 0 .901 2.175z" class="cls-2" transform="translate(-197.646 -57.012)"/>
+                </g>
+            </g>
+            <g transform="translate(3.792 3.792)">
+                <g>
+                    <path d="M273.813 133.976h.8v-.8a.4.4 0 0 1 .791 0v.8h.8a.4.4 0 0 1 0 .791h-.8v.8a.4.4 0 0 1-.791 0v-.8h-.8a.4.4 0 1 1 0-.791z" class="cls-2" transform="translate(-273.418 -132.784)"/>
+                </g>
+            </g>
+        </g>
+        <text id="Details" class="cls-3" transform="translate(400.164 89.433)">
+            <tspan x="-16.512" y="0">상세 보기</tspan>
+        </text>
+    </g>
+</svg>
