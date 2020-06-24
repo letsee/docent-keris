@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport" />
+	<script src="Letsee.0.9.14.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">
+	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+	
+	<style media="place" type="text/css">
+		#container {
+			-letsee-target: uri('ultima-cena.json');
+			-letsee-position: coords(0, 0, 0);
+			width: 1000px;
+			height: 560px;
+		}
+	</style>
+	
+	<style>
+		#blur {
+			background-color: rgba(0,0,0,.9);
+			position: absolute;
+			margin: 0 auto;
+			width: 1000px;
+			height: 560px;
+			z-index: 0;
+		}
+		#bg {
+			position: absolute;
+			margin: 0 auto;
+			width: 1000px;
+			height: 560px;
+			z-index: -1;
+		}
+		#night{
+			position: fixed;
+			top: 0; left: 0; bottom: 0; right: 0;
+			pointer-events: none;
+			/*background: rgba(0,0,0,.9);*/
+		}
+		.searchlight {
+			position: absolute;
+			z-index: 100;
+			width: 1000px;
+			height: 560px;
+			cursor: none;
+			background: rgba(0,0,0,.9);
+		}
+		.searchlight.on {
+			background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 60%, rgba(0,0,0,1) 100%); /* FF3.6+ */
+			background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 60%,rgba(0,0,0,1) 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 60%,rgba(0,0,0,1) 100%); /* Opera 12+ */
+			background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 60%,rgba(0,0,0,1) 100%); /* IE10+ */
+			background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 50%,rgba(0,0,0,1) 60%,rgba(0,0,0,1) 100%); /* W3C */
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="night"></div>
+<!--		<div class="searchlight"></div>-->
+<!--		<div id="blur"></div>-->
+		<img id="bg" src="ultima_cena.jpg" alt="">
+	</div>
+
+<script>
+  // Loading Engine
+  const config = {
+    "appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
+    "trackerType": "PLANAR",
+    "isSteady": true
+  };
+  const app = new Letsee(config);
+  if(app !== null && typeof app !== 'undefined') {
+    app.addEventListener('trackstart', e => {
+      initWorld(e);
+    });
+  }
+
+  let CURRENT_URI = null;
+  const world = new Object3D();
+  function initWorld(e) {
+    let uri = e.target.uri;
+  
+    if (CURRENT_URI == null) {
+      CURRENT_URI = uri;
+      currentTarget = app.engine.getEntity(CURRENT_URI);
+      e.target.addRenderable(world);
+    }
+  
+    if (uri !== CURRENT_URI) {
+      app.engine.getEntity(CURRENT_URI).removeRenderable(world);
+      CURRENT_URI = uri;
+      currentTarget = app.engine.getEntity(CURRENT_URI);
+      e.target.addRenderable(world);
+    }
+  }
+
+  // spotlight
+  /*$('.searchlight')
+  .on('mousemove', function(event) {
+    $(this).addClass('on').css({'margin-left': event.pageX - 50, 'margin-top': event.pageY - 50});
+  })
+  .on('mouseout', function(event) {
+    $(this).removeClass('on');
+  })
+  .on('click', function() {
+    // $(this).fadeOut(function() {
+    //   $(this).remove();
+    // });
+  });*/
+
+  let spotlight = document.getElementById("night");
+  let bgElement = document.getElementById('bg');
+  let spotlightwidth = 128;
+  let spotlightheight = 128;
+
+  // Register touch event handlers
+  bgElement.addEventListener('touchstart', process_touchstart, false);
+  bgElement.addEventListener('touchmove', process_touchmove, false);
+  // bgElement.addEventListener('touchcancel', process_touchcancel, false);
+  // bgElement.addEventListener('touchend', process_touchend, false);
+
+  // touchstart handler
+  function process_touchstart(ev) {
+    // Use the event's data to call out to the appropriate gesture handlers
+    switch (ev.touches.length) {
+      case 1: handle_one_touch(ev); break;
+      case 2: handle_two_touches(ev); break;
+      case 3: handle_three_touches(ev); break;
+      default: gesture_not_supported(ev); break;
+    }
+  }
+  
+  function handle_one_touch(ev) {
+    // spotlight.style.backgroundImage = "-webkit-radial-gradient(" + (ev.pageX) + "px " + (ev.pageY) + "px, " + spotlightwidth + "px " + spotlightheight + "px, transparent 50%, #000022)";
+  }
+  function handle_two_touches(ev) {}
+  function handle_three_touches(ev) {}
+  function gesture_not_supported(ev) {}
+
+  // touchmove handler
+  function process_touchmove(ev) {
+    // Set call preventDefault()
+    ev.preventDefault();
+    spotlight.style.backgroundImage = "-webkit-radial-gradient(" + (ev.pageX) + "px " + (ev.pageY) + "px, " + spotlightwidth + "px " + spotlightheight + "px, transparent 50%, #000022)";
+  }
+</script>
+</body>
+</html>

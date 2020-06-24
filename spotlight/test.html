@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Spotlight</title>
+	<style>
+		html, body
+		{
+			min-height: 100%;
+			font-family: sans-serif;
+			cursor: none;
+		}
+		
+		label
+		{
+			display: inline-block;
+			width: 75px;
+		}
+		
+		#night
+		{
+			position: fixed;
+			top: 0; left: 0; bottom: 0; right: 0;
+			
+			pointer-events: none;
+		}
+		
+		.float.right { float: right; }
+		#bg{
+			margin: 0 auto;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<!-- The div that makes the spotlight happen -->
+	<div id="container">
+		<div id="night"></div>
+		<img id="bg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg/1200px-The_Last_Supper_-_Leonardo_Da_Vinci_-_High_Resolution_32x16.jpg" alt=""/>
+	</div>
+	
+	<script>
+    // console.clear();
+    
+    window.addEventListener("load", function(event) {
+      let spotlight = document.getElementById("night");
+      // let sizedisplay = document.getElementById("currentsize");
+      let spotlightwidth = 128;
+      let spotlightheight = 128;
+      
+      //register an event to move the spotlight
+      document.onmousemove = function(event) {
+        spotlight.style.backgroundImage = "-webkit-radial-gradient(" + event.pageX + "px " + event.pageY + "px, " + spotlightwidth + "px " + spotlightheight + "px, transparent 50%, #000022)";
+        sizedisplay.value = spotlightwidth + "x" + spotlightheight;
+      };
+      //fire the event for the first time
+      document.onmousemove({ pageX: 100, pageY: 100 });
+      
+      // document.getElementById("spotlightwidth").oninput = function(event) {
+      //   spotlightwidth = this.value;
+      // };
+      // document.getElementById("spotlightheight").oninput = function(event) {
+      //   spotlightheight = this.value;
+      // };
+    });
+	</script>
+</body>
+</html>
