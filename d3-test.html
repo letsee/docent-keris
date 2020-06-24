@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Letsee AR Demo - Ultima Cena</title>
+	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport" />
+	<script src="./Letsee.0.9.14.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">
+	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+	<script src="./vendor/jquery.scrollbar.min.js"></script>
+	<link rel="stylesheet" href="./vendor/jquery.scrollbar.css">
+
+	<script src="./vendor/hammer.min.js"></script>
+	<script src="./vendor/axios.min.js"></script>
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/comments.css">
+	<link rel="stylesheet" href="css/response.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
+
+	<style media="place" type="text/css">
+		#container {
+			-letsee-target: uri('ultima-cena.json');
+			-letsee-position: coords(0, 0, 0);
+			/*border: 1px solid #f00;*/
+			width: 1000px;
+			height: 560px;
+			border: 3px solid red;
+		}
+
+		#d3 {
+			-letsee-target: uri('ultima-cena.json');
+			-letsee-position: coords(0, 0, 0);
+			/*border: 1px solid #f00;*/
+			width: 1000px;
+			height: 560px;
+			border: 3px solid green;
+		}
+
+		#d3-node {
+			width: 100px;
+			height: 100px;
+			border: 1px solid pink
+		}
+
+		.link {
+			stroke: #000;
+			stroke-width: 1.5px;
+		}
+
+		.node {
+			cursor: move;
+			fill: #ccc;
+			stroke: #000;
+			stroke-width: 1.5px;
+		}
+
+		.node.fixed {
+			fill: #f00;
+		}
+	</style>
+
+	<style>
+
+	</style>
+</head>
+<body>
+<div id="container" style="display: block;"></div>
+<div id="d3"></div>
+<div id="d3-node"></div>
+<!-- END COMMENTS.HTML PAGE-->
+
+<script type="text/javascript">
+
+	let CURRENT_URI = null;
+	let currentTarget = null;
+	const world = new Object3D();
+
+	// Loading Engine
+	const config = {
+		"appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
+		"trackerType": "PLANAR",
+		"isSteady": true
+	};
+
+	// setTimeout(showMainContent, 1000);
+	function initWorld(e) {
+		let uri = e.target.uri;
+
+		if (CURRENT_URI == null) {
+			CURRENT_URI = uri;
+			currentTarget = app.engine.getEntity(CURRENT_URI);
+			e.target.addRenderable(world);
+		}
+
+		if (uri !== CURRENT_URI) {
+			app.engine.getEntity(CURRENT_URI).removeRenderable(world);
+			CURRENT_URI = uri;
+			currentTarget = app.engine.getEntity(CURRENT_URI);
+			e.target.addRenderable(world);
+		}
+	}
+
+	const app = new Letsee(config);
+	if(app !== null && typeof app !== 'undefined') {
+		app.addEventListener('trackstart', e => {
+			initWorld(e);
+			initD3()
+			// // check nav-comment is display or not
+			// if (document.getElementById('nav').style.display === 'block') {
+			// 	// comment is open
+			// 	// showRenderables();
+			// }
+			// else {
+			// 	// comment page is close
+			// 	// hideRenderables();
+			// }
+		});
+	}
+
+	const initD3 = () => {
+		let width = 1000
+		let height = 560;
+
+		let force = d3.layout.force()
+				.size([width, height])
+				.charge(-400)
+				.linkDistance(40)
+				.on("tick", tick);
+
+		let drag = force.drag().on("dragstart", dragstart);
+
+		// d3.js를 그리는 영역을 지정한다.
+		let svg = d3.select("#d3").append("svg")
+				.attr("width", width)
+				.attr("height", height);
+
+
+		let link = svg.selectAll(".link")
+		let node = svg.selectAll(".node");
+
+		d3.json("graph.json", function(error, graph) {
+			if (error) throw error;
+
+			force
+					.nodes(graph.nodes)
+					.links(graph.links)
+					.start();
+
+			link = link.data(graph.links)
+					.enter().append("line")
+					.attr("class", "link");
+
+			node = node.data(graph.nodes)
+					.enter().append("circle")
+					.attr("class", "node")
+					.attr("r", 12)
+					.on("dblclick", dblclick)
+					.call(drag);
+		});
+
+		function tick() {
+			link.attr("x1", function(d) { return d.source.x; })
+					.attr("y1", function(d) { return d.source.y; })
+					.attr("x2", function(d) { return d.target.x; })
+					.attr("y2", function(d) { return d.target.y; });
+
+			node.attr("cx", function(d) { return d.x; })
+					.attr("cy", function(d) { return d.y; });
+		}
+
+		function dblclick(d) {
+			d3.select(this).classed("fixed", d.fixed = false);
+		}
+
+		function dragstart(d) {
+			d3.select(this).classed("fixed", d.fixed = true);
+		}
+	}
+</script>
+
+<!--<script type="text/javascript" src="js/hammer.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/4.2.0/screenfull.min.js"></script>-->
+<!--<script>let fs=!1;document.documentElement.addEventListener("click",()=>{screenfull.enabled&&!fs&&(screenfull.request(),fs=!0)});</script>-->
+</body>
+</html>
