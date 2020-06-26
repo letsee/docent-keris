@@ -19,8 +19,8 @@
 	<link rel="stylesheet" href="css/comments.css">
 	<link rel="stylesheet" href="css/response.css">
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>
-
+<!--	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.js"></script>-->
+	<script src="https://d3js.org/d3.v4.min.js"></script>
 	<style media="place" type="text/css">
 		#container {
 			-letsee-target: uri('ultima-cena.json');
@@ -82,7 +82,7 @@
 </head>
 <body>
 <div id="container" style="display: block;"></div>
-<div id="d3"></div>
+<div id="d3"> <svg width="1000" height="560"></svg></div>
 <!-- END COMMENTS.HTML PAGE-->
 
 <script type="text/javascript">
@@ -120,9 +120,7 @@
 		if(app !== null && typeof app !== 'undefined') {
 			app.addEventListener('trackstart', e => {
 				initWorld(e);
-				initD3()
 			});
-
 		}
 	}
 
@@ -131,182 +129,336 @@
 	 */
 	$(document).ready(() => {
 		InitLetsee();
+		initD3()
 	});
 
 	const initD3 = () => {
-		const data = {
+		let data = {
 			"nodes": [
-				{"x": 100, "y": 80, "text": "바르톨로메오", "name": "바르톨로메오"},
-				{"x": 200, "y": 500, "text": "예수", "name": "안드레"},
-				{"x": 300, "y": 800, "text": "예수", "name": "베드로"},
-				// {"x": 20, "y": 500, "text": "예수", "name": "요한"},
-				// {"x": 30, "y": 800, "text": "예수", "name": "토마스"},
-				// {"x": 30, "y": 500, "text": "예수", "name": "필립보"},
-				// {"x": 40, "y": 800, "text": "예수", "name": "마테오"},
-				// {"x": 40, "y": 500, "text": "예수", "name": "성 시몬"},
-				// {"x": 50, "y": 800, "text": "예수", "name": "큰 야보고"},
-				// {"x": 50, "y": 500, "text": "예수", "name": "유다"},
-				// {"x": 60, "y": 800, "text": "예수", "name": "예수"},
-				// {"x": 60, "y": 500, "text": "예수", "name": "작은 야보고"},
-				// {"x": 63, "y": 200, "text": "예수", "name": "유대"},
-
-				{"x": 400, "y": 200, "text": "바르톨로메오-원점", "name": "바르톨로메오-원점"},
-				{"x": 500, "y": 500, "text": "예수", "name": "안드레-원점"},
-				{"x": 600, "y": 800, "text": "예수", "name": "베드로-원점"},
-				// {"x": 20, "y": 500, "text": "예수", "name": "요한-원점"},
-				// {"x": 30, "y": 800, "text": "예수", "name": "토마스-원점"},
-				// {"x": 30, "y": 500, "text": "예수", "name": "필립보-원점"},
-				// {"x": 40, "y": 800, "text": "예수", "name": "마테오-원점"},
-				// {"x": 40, "y": 500, "text": "예수", "name": "성 시몬-원점"},
-				// {"x": 50, "y": 800, "text": "예수", "name": "큰 야보고-원점"},
-				// {"x": 50, "y": 500, "text": "예수", "name": "유다-원점"},
-				// {"x": 60, "y": 800, "text": "예수", "name": "예수-원점"},
-				// {"x": 60, "y": 500, "text": "예수", "name": "작은 야보고-원점"},
-				// {"x": 63, "y": 200, "text": "예수", "name": "유대-원점"}
+				{
+					"name": "바로톨로메오",
+					"id": "1",
+					"value": "1",
+					"cvr": "123"
+				},
+				{
+					"name": "안드레아",
+					"id": "2",
+					"value": "0.25",
+					"cvr": "7445"
+				},
+				{
+					"name": "베드로",
+					"id": "3",
+					"value": "0.25",
+					// "cvr": "24582"
+				},
+				{
+					"name": "요한",
+					"id": "4",
+					"value": "0.1",
+					"cvr": "12351"
+				},
+				{
+					"name": "토마스",
+					"id": "5",
+					"value": "0.15",
+					"cvr": "783456"
+				},
+				{
+					"name": "필립보",
+					"id": "6",
+					"value": "0.05"
+				},
+				{
+					"name": "마테오",
+					"id": "7",
+					"value": "0.250"
+				},
+				{
+					"name": "성 시몬",
+					"id": "8",
+					"value": "0.250"
+				},
+				{
+					"name": "큰 야보고",
+					"id": "9",
+					"value": "0.10"
+				},
+				{
+					"name": "유다",
+					"id": "11",
+					"value": "0.150",
+					"cvr": "10096669"
+				},
+				{
+					"name": "예수",
+					"id": "10",
+					"value": "0.1500"
+				},
+				{
+					"name": "작은 야보고",
+					"id": "10",
+					"value": "0.1500"
+				},
+				{
+					"name": "유대",
+					"id": "10",
+					"value": "0.1500"
+				}
 			],
 			"links": [
-				{"source":  "바르톨로메오", "target":  "바르톨로메오-원점"},
+				{
+					"source": "2",
+					"target": "1"
+				},
+				{
+					"source": "3",
+					"target": "1"
+				},
+				{
+					"source": "4",
+					"target": "1"
+				},
+				{
+					"source": "5",
+					"target": "1"
+				},
+				{
+					"source": "6",
+					"target": "1"
+				},
+				{
+					"source": "7",
+					"target": "2"
+				},
+				{
+					"source": "8",
+					"target": "3"
+				},
+				{
+					"source": "9",
+					"target": "4"
+				},
+				{
+					"source": "11",
+					"target": "5"
+				},
+				{
+					"source": "10",
+					"target": "11"
+				}
 			]
 		};
 
-		// {"source":  2, "target":  3},
-		// {"source":  4, "target":  5},
-		// {"source":  6, "target":  7},
-		// {"source":  8, "target":  9}
+		// Create somewhere to put the force directed graph
+		let svg = d3.select("svg"),
+				width = svg.attr("width"),
+				height = svg.attr("height");
+		/**
+		 * 사각형 rect의 가로와 세로 그리고 대각선의 길이를 구한다.
+		 */
+		var rectWidth = 140;
+		var rectHeight = 60;
+		var minDistance = Math.sqrt(rectWidth * rectWidth + rectHeight * rectHeight);
 
-		data.nodes.forEach(function(d, i) {
-			d.group = i;
-		});
+		// Set up the simulation and add forces
+		// force를 선언하기 전에 force를 담을 simulation을 설정함.
+		var simulation = d3.forceSimulation()
+				.nodes(data.nodes);
 
-		data.nodes.forEach(function(d) {
-			data.links.forEach(function(e) {
-				if (e.source === d.name || e.target === d.name) {
-					data.nodes.find(function(f) {
-						return f.name === e.source
-					}).links = d.links;
-					data.nodes.find(function(f) {
-						return f.name === e.target
-					}).links = d.links;
-				}
-			})
-		});
+		// links에 forceLinks를 구현하고 id를 설정한다.
+		var link_force = d3.forceLink(data.links)
+				.id(function (d) {
+					return d.id;
+				}).distance(minDistance).strength(1);
 
-		// init d3 canvas
-		let width = 1000;
-		let height = 560;
-		// let force = d3.layout.force()
-		// 		.size([width, height])
-		// 		.charge(-400)
-		// 		.linkDistance(40)
-		// 		.on("tick", tick);
+		// 다채힘을 설정한다.. 무슨소린지..
+		var charge_force = d3.forceManyBody()
+				.strength(-1000);
 
-		// d3.js를 그리는 영역을 지정한다.
-		let svg = d3.select("#d3").append("svg")
-				.attr("width", width)
-				.attr("height", height);
+		// force의 중심점을 설정한다.
+		var center_force = d3.forceCenter(width / 2, height / 2);
+
+		// force값을 선언한다.
+		simulation
+				.force("charge_force", charge_force)
+				.force("center_force", center_force)
+				.force("links", link_force)
+				.force('y', d3.forceY(height / 2).strength(0.10));
 
 
-		let link = svg.selectAll(".link");
-		// let node = svg.selectAll(".node");
-		let node = svg.selectAll(".g");
+		// Add tick instructions:
+		simulation.on("tick", tickActions);
 
-		// 데이터 설정
-		link = link.data(data.links)
+		/**
+		 * Add encompassing group for the zoom1.
+		 * svg에 그룹을 추가하고 class 명을 everything으로 선언
+		 */
+		var g = svg.append("g")
+				.attr("class", "everything");
+
+		/**
+		 * 1. 위에서 선언한 최상위 그룹에서 group은 body태그를 찾는다.
+		 * 2. 그 아래에 div를 만들고 tooltip으로 class를 선언 후 Opacity를 0으로 준다.
+		 */
+		var div = g.select("body").append("div")
+				.attr("class", "tooltip")
+				.style("opacity", 0);
+
+		// Draw lines for the links
+
+		/**
+		 * 1. 최상위 group에 하나의 group을 추가하며 이 그룹의 class는 links로 선언한다.
+		 * 2. 해당 links(group)는 모든 svg의 line을 찾아서 data를 바인딩하며, 해당 바인딩되는 데이터는 data.links에 존재한다.
+		 * 3. enter의 결과로 각각의
+		 *
+		 *
+		 * => enter는 selection에 바인드된 데이터들 중에 아직 실제 문서 요소를 가지지 못 하는 것들을 찾아내서 가상의 객체로 만들어 반환해줌 (데이터의 초기 결합), 데이터 개수 만큼 태그가 부족할때, 부족한 갯수만큼 플레이스 홀더를 반환
+		 *
+	 */
+		var link = g.append("g")
+				.attr("class", "links")
+				.selectAll("line")
+				.data(data.links)
 				.enter()
 				.append("line")
-		 		.attr("class", "link");
+				.attr("stroke-width", 2)
+				.style("stroke", linkColour);
 
-		node = node.data(data.nodes)
+		// Draw rects and texts for the nodes
+		var nodes = g.append("g")
+				.attr("class", "nodes");
+
+		var node = nodes.selectAll("node")
+				.data(data.nodes)
 				.enter()
-				// .attr("transform", (data) => {
-				// 	return `translate(${data.x} ${data.y})`
-				// })
-				.append('svg:rect')
-				.attr("class", "rect")
-				.attr("width", 20)
-				.attr("height", 20)
-				// .attr("x", (d) => {
-				// 	return d.x
-				// })
-				.attr("style" ,"fill:blue;stroke:pink;stroke-width:5;fill-opacity:0.1;stroke-opacity:0.9")
-				// .attr("y", (d) => {
-				// 	return d.y
-				// })
-				// .on("dblclick", dblclick)
-				.append("svg:text")
-				.text((data) => {
-					return data.text
+				.append("g");
+
+		node
+				.on("mouseover", function (d) {
+					d3.select(this).select("rect").style("fill", "red");
+					div.transition()
+							.duration(200)
+							.style("opacity", .9);
+					div.html("asdasd")
+							.style("left", (d3.event.pageX) + "px")
+							.style("top", (d3.event.pageY - 28) + "px");
+				})
+				.on("mouseout", function (d) {
+					d3.select(this).select("rect").style("fill", rectColour);
+
+					div.transition()
+							.duration(500)
+							.style("opacity", 0);
 				});
-				// .call(drag);
-
-
-		var force = d3.layout
-						.force()
-						.size([width, height])
-						.charge(-400)
-						.linkDistance(40)
-						.on("tick", () => {
-							link
-								.attr("x1", function(d) {
-									const source  = data.nodes.find((item) => {
-										return item.name === d.source
-									});
-									return source.x;
-								})
-								.attr("y1", function(d) {
-									const source  = data.nodes.find((item) => {
-										return item.name === d.source
-									});
-									return source.y;
-								})
-								.attr("x2", function(d) {
-									const target  = data.nodes.find((item) => {
-										return item.name === d.target
-									});
-									return target.x;
-								})
-								.attr("y2", function(d) {
-									const target  = data.nodes.find((item) => {
-										return item.name === d.target
-									});
-									return target.y;
-								});
-
-							node
-								.attr("cx",(d) => {
-									return d.x
-								} )
-								.attr("cy", function(d) {
-									return d.y;
-								});
-						});
 
 
 
+		var rect = node.append("rect")
+				.attr("x", -rectWidth / 2)
+				.attr("y", -rectHeight / 2)
+				.attr("width", rectWidth)
+				.attr("height", rectHeight)
+				.attr("fill", rectColour);
 
-		force.nodes(data.nodes).links(data.links).start();
+		var textName = node.append("text")
+				.text(function (d) {
+					return d.name;
+				})
+				.attr("y", 5)
+				.style("text-anchor", "middle");
 
+		// var textCvr = node.append("text")
+		// 		.text(function (d) {
+		// 			return d.cvr;
+		// 		})
+		// 		.attr("y", 0)
+		// 		.style("text-anchor", "middle");
 
-		let drag = force.drag().on("dragstart", dragstart);
+		// var textOwned = node.append("text")
+		// 		.text(function (d) {
+		// 			return (parseFloat(d.value) * 100).toFixed(2) + "%";
+		// 		})
+		// 		.attr("y", 15)
+		// 		.style("text-anchor", "middle");
 
+		node.attr("transform", function (d) {
+			return "translate(" + d.x + "," + d.y + ")"
+		});
 
+		// Add drag capabilities
+		var drag_handler = d3.drag()
+				.on("start", drag_start)
+				.on("drag", drag_drag)
+				.on("end", drag_end);
 
-		function tick() {
-			link.attr("x1", function(d) { return d.source.x; })
-					.attr("y1", function(d) { return d.source.y; })
-					.attr("x2", function(d) { return d.target.x; })
-					.attr("y2", function(d) { return d.target.y; });
+		drag_handler(node);
 
-			node.attr("cx", function(d) { return d.x; })
-					.attr("cy", function(d) { return d.y; });
+		// Add zoom capabilities
+		var zoom_handler = d3.zoom()
+				.on("zoom", zoom_actions);
+
+		zoom_handler(svg);
+
+		/** Functions **/
+
+		function rectColour(d) {
+			if (d.person) {
+				return "blue";
+			} else {
+				return "pink";
+			}
 		}
 
-		function dblclick(d) {
-			d3.select(this).classed("fixed", d.fixed = false);
+		// Function to choose the line colour and thickness
+		function linkColour(d) {
+			return "black";
 		}
 
-		function dragstart(d) {
-			d3.select(this).classed("fixed", d.fixed = true);
+		// Drag functions
+		function drag_start(d) {
+			if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+			d.fx = d.x;
+			d.fy = d.y;
+		}
+
+		// Make sure you can't drag the rect outside the box
+		function drag_drag(d) {
+			d.fx = d3.event.x;
+			d.fy = d3.event.y;
+		}
+
+		function drag_end(d) {
+			if (!d3.event.active) simulation.alphaTarget(0);
+			d.fx = null;
+			d.fy = null;
+		}
+
+		// Zoom functions
+		function zoom_actions() {
+			g.attr("transform", d3.event.transform)
+		}
+
+		function tickActions() {
+			// update node positions each tick of the simulation
+			node.attr("transform", function (d) {
+				return "translate(" + d.x + "," + d.y + ")"
+			});
+			// update link positions
+			link
+				.attr("x1", function (d) {
+					return d.source.x;
+				})
+				.attr("y1", function (d) {
+					return d.source.y;
+				})
+				.attr("x2", function (d) {
+					return d.target.x;
+				})
+				.attr("y2", function (d) {
+					return d.target.y;
+				});
 		}
 	}
 </script>
