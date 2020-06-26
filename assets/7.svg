@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" viewBox="0 0 49 49">
+    <defs>
+        <filter id="prefix__사각형_7" width="49" height="49" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dx="3" dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g filter="url(#prefix__사각형_7)">
+        <rect id="prefix__사각형_7-2" width="40" height="40" fill="#fff" data-name="사각형 7" rx="20" transform="translate(1.5 1.5)"/>
+    </g>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="62.161" height="52.78" viewBox="0 0 62.161 52.78">
+    <defs>
+        <filter id="prefix__타원_65" width="22.27" height="22.27" x="19.945" y="19.167" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="1"/>
+            <feGaussianBlur result="blur" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__패스_27" width="62.161" height="52.78" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="1"/>
+            <feGaussianBlur result="blur-2" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur-2" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <style>
+            .prefix__cls-2{fill:#fff}
+        </style>
+    </defs>
+    <g id="prefix__ico_camera" opacity="0.85">
+        <g filter="url(#prefix__타원_65)" transform="translate(3.5 3.5) translate(-3.5 -3.5)">
+            <circle id="prefix__타원_65-2" cx="6.635" cy="6.635" r="6.635" class="prefix__cls-2" data-name="타원 65" transform="translate(23.45 22.67)"/>
+        </g>
+        <g filter="url(#prefix__패스_27)" transform="translate(3.5 3.5) translate(-3.5 -3.5)">
+            <path id="prefix__패스_27-2" d="M279.216 270.071h-6.821l-1.388-2.922a6.641 6.641 0 0 0-5.989-3.814h-11.475a6.638 6.638 0 0 0-5.987 3.814l-1.388 2.922h-6.822a6.71 6.71 0 0 0-6.646 6.734v23.573a6.71 6.71 0 0 0 6.646 6.736h39.87a6.71 6.71 0 0 0 6.646-6.736v-23.573a6.71 6.71 0 0 0-6.646-6.734zm-39.074 8.558a2.2 2.2 0 1 1 2.167-2.2 2.182 2.182 0 0 1-2.167 2.2zm19.138 23.435a13.472 13.472 0 1 1 13.29-13.472 13.383 13.383 0 0 1-13.289 13.472z" class="prefix__cls-2" data-name="패스 27" transform="translate(-229.2 -259.83)"/>
+        </g>
+    </g>
+</svg>

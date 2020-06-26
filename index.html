@@ -5,21 +5,30 @@
 	<title>Letsee AR Demo - Ultima Cena</title>
 	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport" />
 	<script src="./Letsee.0.9.14.js"></script>
+<!--	<script src="https://intra.letsee.io:10000/lib/letsee-0.9.20.js"></script>-->
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">
+	
 	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+	
+	<!-- jQuery -->
+<!--	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
+<!--	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>-->
+	
+	
 	<script src="./vendor/jquery.scrollbar.min.js"></script>
 	<link rel="stylesheet" href="./vendor/jquery.scrollbar.css">
 
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/comments.css">
 	<link rel="stylesheet" href="css/response.css">
+	
+	<script src="js/main.js"></script>
 
 	<style media="place" type="text/css">
 		#container {
 			-letsee-target: uri('ultima-cena.json');
 			-letsee-position: coords(0, 0, 0);
-			/*border: 1px solid #f00;*/
 			width: 1000px;
 			height: 560px;
 			border: 1px solid red;
@@ -28,19 +37,118 @@
 </head>
 <body>
 
-<!--Detect the phone orientation-->
+<!--###################################################### 증강전 #####################################################-->
 <div id="detect">
-	<img id="detect_img" src="assets/rotate_detect.png" alt=""/>
+	<img id="detect_img" src="assets/phone-rotation.svg" alt=""/>
 	<img id="detect_msg" src="assets/detect_msg.png" alt="">
 </div>
 
 <!--Show at first time to alert user-->
 <div id="capture" style="display: block">
-	<img id="cap1" src="assets/camera.png" alt="">
+	<img id="cap1" src="assets/ico-camera.svg" alt="">
 	<p>작품을 정면으로 촬영해주세요.</p>
 </div>
 
-<div id="container" style="">
+<!-- Spotlight-->
+<div id="night" onclick="activeSpotlight()">
+	<img id="overlayGuide" src="assets/hands.svg" alt="">
+	<button id="spotLightBtn">자동 비추기</button>
+</div>
+
+<div id="container">
+	
+	<!--################################################## Introduce ##################################################-->
+	<div id="tab-header">
+		<div id="tab-1" onclick="switchTab(1)">
+			<div class="tab-item-wrapper">
+				<img src="assets/ico-introduce.svg" alt="">
+				<p>작품 소개</p>
+			</div>
+		</div>
+		<div id="tab-2" onclick="switchTab(2)">
+			<div class="tab-item-wrapper">
+				<img src="assets/ico-12-mens.svg" alt="">
+				<p>12제자</p>
+			</div>
+		</div>
+		<div id="tab-3" onclick="switchTab(3)">
+			<div class="tab-item-wrapper">
+				<img src="assets/ico-1-per.svg" alt="">
+				<p>1% 비밀</p>
+			</div>
+		</div>
+		<div id="tab-4" onclick="switchTab(4)">
+			<div class="tab-item-wrapper">
+				<img src="assets/ico-pwcode.svg" alt="">
+				<p>암호 코드</p>
+			</div>
+		</div>
+	</div>
+	
+	<div id="main-title">
+		<p id="title">최후의 만찬</p>
+		<p id="author">(레오나르도 다빈치, 1452∼1519)</p>
+	</div>
+	
+	<img id="layerviewBtn" src="assets/layerview-btn.svg" alt="">
+	
+	<!--################################################## Tab Content ##################################################-->
+	<div id="main-content">
+		
+		<!-- Content tab-1 -->
+		<div id="content-1">
+			<img class="closeBtn" src="assets/7.svg" alt="" onclick="closeContent()">
+			<h2>최후의 만찬 (The Last Supper, 1485 ~ 1497)</h2>
+			<p> '최후의 만찬'은 예수 그리스도가 십자가에 매달리기 전날 제자들과 함께 최후의 만찬의 정경을 그린 것이다.
+				밀라노의 산타마리아 델레 그라치에 수도원(Chiesa di Santa Maria delle Grazie)의 식당 벽에 그려져 있으며, 1980년 산타마리아 델레 그라치에 수도원과 함께 유네스코 세계문화유산으로 지정했다. 
+				<br><br>
+				다빈치는 예수와 12제자가 등장하는 그림 안에서는 여러 가지 일들이 동시에 벌어지고 상황을 등장인물들의 심리묘사와 함께 전체 화면의 조형성을 표현하고자 했다. 예루살렘의 어느 방에서 펼쳐진 역사적 사건에 등장하는 각 인물의 몸짓과 손짓, 미묘한 속임수와 암시를 역동적인 상황에 맞춰 절묘하게 묘사했다.
+			</p>
+			
+			<img id="intro-vinci" src="assets/vinci-0@3x.png" alt="">
+		</div>
+		
+		<!-- Content tab-2 -->
+		<div id="content-2">
+			<h1>최후의 만찬을 함께한 예수의 제자들은 누구?</h1>
+			
+			<button id="u1" onclick="showPeopleInfo('u1')">베드로</button>
+			<button id="u2" onclick="showPeopleInfo('u2')">큰 야고보</button>
+			
+			<div id="peopleInfo" style="display: none">
+				<img class="closeBtn" src="assets/7.svg" alt="" onclick="closePeopleInfo('u1')">
+				<h3>베드로</h3>
+				<p>
+					성질이 급한 베드로는 요한에게 배신자가 누구인지 물어보려는 듯 일어서고 있는데 베드로의 오른손에 식사 때 쓰는 칼을 쥔 채 앞에 있는 유다를 건드려 놀라게 하고 잇다.
+				</p>
+			</div>
+		</div>
+		
+		<!-- Content tab-3 -->
+		<div id="content-3">
+			<h1>명작의 탄생 그 안에 든 1%의 비밀은?</h1>
+		
+		</div>
+		
+		
+		
+	</div>
+	
+	
+	
+	
+</div>
+
+
+
+
+
+<!--##################################################### Footer ####################################################-->
+<div id="footer">
+	<div id="footer-wrapper">
+		<img id="logo" src="assets/letsee-signature-w-rgb.png" alt="">
+		<p id="copyright">Copyright (c) Letsee, Inc</p>
+	</div>
 </div>
 
 <script type="text/javascript">
@@ -69,7 +177,6 @@
 				e.target.addRenderable(world);
 			}
 		};
-
 		const config = {
 			"appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
 			"trackerType": "PLANAR",
@@ -87,6 +194,7 @@
 				switchPage(0)
 			})
 		}
+  
 	}
 
 	/**
@@ -94,35 +202,15 @@
 	 */
 	$(document).ready(() => {
 		InitLetsee();
+    $('#main-content').hide();
+    $('#night').hide();
 	});
-
-	/**
-	 * Change page function
-	 * 0: Initial Page (Before Detecting)
-	 * 1: Main Page
-	 */
-
-	function switchPage(num) {
-		switch (num) {
-			// Initial Page
-			case 0: {
-				document.getElementById('capture').style.display = 'block';
-				break;
-			}
-
-			// Main Page
-			case 1: {
-				document.getElementById('capture').style.display = 'none';
-				break;
-			}
-		}
-	}
-
-
+  
+  $('#layerviewBtn').click((e) => {
+    $('#tab-1').addClass('tab-active');
+    switchTab(1);
+  });
 
 </script>
-<!--<script type="text/javascript" src="js/hammer.js"></script>-->
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/screenfull.js/4.2.0/screenfull.min.js"></script>-->
-<!--<script>let fs=!1;document.documentElement.addEventListener("click",()=>{screenfull.enabled&&!fs&&(screenfull.request(),fs=!0)});</script>-->
 </body>
 </html>

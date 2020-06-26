@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26">
+    <defs>
+        <filter id="prefix__패스_10" width="23.319" height="23.32" x="1.34" y="1.34" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="1"/>
+            <feGaussianBlur result="blur" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__패스_11" width="13.799" height="13.821" x="6.108" y="6.097" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="1"/>
+            <feGaussianBlur result="blur-2" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur-2" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__사각형_4" width="26" height="9.638" x="0" y="8.181" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="1"/>
+            <feGaussianBlur result="blur-3" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur-3" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__사각형_5" width="9.638" height="26" x="8.181" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="1"/>
+            <feGaussianBlur result="blur-4" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur-4" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <style>
+            .prefix__cls-1{fill:#fff}
+        </style>
+    </defs>
+    <g id="prefix__ico_1per">
+        <g filter="url(#prefix__패스_10)" transform="translate(3.5 3.5) translate(-3.5 -3.5)">
+            <path id="prefix__패스_10-2" d="M226.617 62.919v-2.188h2.638v-2.638h2.188v4.826zm-7.3-9.494v-2.638h2.638V48.6h-4.827v4.826zm12.131 0V48.6h-4.826v2.188h2.638v2.638zm-9.493 9.494v-2.188h-2.638v-2.638h-2.188v4.826z" class="prefix__cls-1" data-name="패스 10" transform="translate(-212.28 -43.76)"/>
+        </g>
+        <g filter="url(#prefix__패스_11)" transform="translate(3.5 3.5) translate(-3.5 -3.5)">
+            <path id="prefix__패스_11-2" d="M231.69 65.561a2.4 2.4 0 1 1 2.4 2.41 2.41 2.41 0 0 1-2.4-2.41z" class="prefix__cls-1" data-name="패스 11" transform="translate(-222.08 -53.55)"/>
+        </g>
+        <g filter="url(#prefix__사각형_4)" transform="translate(3.5 3.5) translate(-3.5 -3.5)">
+            <path id="prefix__사각형_4-2" d="M0 0H17V0.638H0z" class="prefix__cls-1" data-name="사각형 4" transform="translate(3.5 11.68)"/>
+        </g>
+        <g filter="url(#prefix__사각형_5)" transform="translate(3.5 3.5) translate(-3.5 -3.5)">
+            <path id="prefix__사각형_5-2" d="M0 0H17V0.638H0z" class="prefix__cls-1" data-name="사각형 5" transform="rotate(-90 16.09 4.41)"/>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+    <defs>
+        <filter id="prefix__ico_pwcode" width="25" height="25" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="1"/>
+            <feGaussianBlur result="blur" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g id="prefix__ico_pwcode-2" data-name="ico_pwcode" filter="url(#prefix__ico_pwcode)">
+        <path id="prefix__ico_pwcode-3" fill="#fff" d="M223.067 215.9c-1.659.478-3.305-.163-3.681-1.437s.661-2.69 2.319-3.169a3.747 3.747 0 0 1 1.911-.058v-5.193s-7.978 1.389-8 1.39c0 0 .007 7.669 0 7.691a3.045 3.045 0 0 1-2.395 2.613c-1.657.478-3.3-.164-3.681-1.437s.661-2.691 2.319-3.17a3.756 3.756 0 0 1 1.914-.057v-8.5a.74.74 0 0 1 .65-.836c.561-.106 9.812-1.693 10.426-1.817.434-.088.606.02.606.4l.008 10.954a3.04 3.04 0 0 1-2.396 2.626z" data-name="ico_pwcode" transform="translate(-205.96 -198.39)"/>
+    </g>
+</svg>

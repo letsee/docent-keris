@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29" height="25" viewBox="0 0 29 25">
+    <defs>
+        <filter id="prefix__패스_3" width="12.295" height="12.31" x="12.637" y="4.415" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="2"/>
+            <feGaussianBlur result="blur" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__패스_4" width="20.871" height="17.291" x="4.031" y="4.235" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="2"/>
+            <feGaussianBlur result="blur-2" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur-2" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__패스_5" width="29" height="25" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dx="1" dy="2"/>
+            <feGaussianBlur result="blur-3" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur-3" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <style>
+            .prefix__cls-1{fill:#fff}
+        </style>
+    </defs>
+    <g id="prefix__ico_introduce">
+        <g filter="url(#prefix__패스_3)" transform="translate(3.5 2.5) translate(-3.5 -2.5)">
+            <path id="prefix__패스_3-2" d="M207.882 16.657a1.648 1.648 0 1 1 1.648 1.655 1.655 1.655 0 0 1-1.648-1.655z" class="prefix__cls-1" data-name="패스 3" transform="translate(-191.74 -8.09)"/>
+        </g>
+        <g filter="url(#prefix__패스_4)" transform="translate(3.5 2.5) translate(-3.5 -2.5)">
+            <path id="prefix__패스_4-2" d="M201.989 23.262h-11.871v-4.144l2.5-4.147 4.03 5.592 1.71-1.512z" class="prefix__cls-1" data-name="패스 4" transform="translate(-182.59 -8.24)"/>
+        </g>
+        <g filter="url(#prefix__패스_5)" transform="translate(3.5 2.5) translate(-3.5 -2.5)">
+            <path id="prefix__패스_5-2" d="M201.074 6.23h-16.968a1.522 1.522 0 0 0-1.516 1.529V20.7a1.522 1.522 0 0 0 1.516 1.529h16.969a1.522 1.522 0 0 0 1.515-1.529V7.759a1.522 1.522 0 0 0-1.516-1.529zm-.357 12.6a1.522 1.522 0 0 1-1.516 1.529h-13.223a1.522 1.522 0 0 1-1.516-1.529V9.633a1.522 1.522 0 0 1 1.516-1.533H199.2a1.522 1.522 0 0 1 1.516 1.529z" class="prefix__cls-1" data-name="패스 5" transform="translate(-179.09 -3.73)"/>
+        </g>
+    </g>
+</svg>

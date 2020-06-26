@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="85.581" height="86.377" viewBox="0 0 85.581 86.377">
+    <defs>
+        <style>
+            .prefix__cls-3{fill:none;stroke:#0ff;stroke-linecap:round;stroke-linejoin:round;stroke-width:3.3px}
+        </style>
+    </defs>
+    <g id="prefix__phone_rotation" transform="translate(-475.941 -384.937)">
+        <g id="prefix__사각형_195" fill="none" stroke="aqua" stroke-dasharray="4 4" stroke-linecap="round" stroke-width="2px" data-name="사각형 195" transform="rotate(90 67.313 492.628)">
+            <rect width="46" height="82.326" stroke="none" rx="5"/>
+            <rect width="44" height="80.326" x="1" y="1" rx="4"/>
+        </g>
+        <path id="prefix__패스_28" fill="#fff" d="M540.264 400.01l-34.635-.124a5.463 5.463 0 0 0-5.44 5.456l-.247 70.749a5.464 5.464 0 0 0 5.4 5.494l34.635.124a5.464 5.464 0 0 0 5.44-5.456l.247-70.749a5.464 5.464 0 0 0-5.4-5.494zm-23.856 4.979c0-.8.479-1.454 1.059-1.451l10.934.039c.579 0 1.052.659 1.048 1.459v.106c0 .8-.48 1.454-1.059 1.452l-10.934-.039c-.58 0-1.052-.659-1.048-1.459zm10.045 72.379l-7.556-.027a2.514 2.514 0 0 1 .018-5.027l7.556.027a2.514 2.514 0 0 1-.018 5.027zm14.014-11.183a1.83 1.83 0 0 1-1.828 1.833l-31.863-.114a1.83 1.83 0 0 1-1.815-1.846l.189-54.115a1.83 1.83 0 0 1 1.827-1.833l31.864.114a1.83 1.83 0 0 1 1.814 1.846z" data-name="패스 28" transform="translate(-24 -10.394)"/>
+        <path id="prefix__패스_29" d="M13.429 0a17.38 17.38 0 0 1 6.138 12.346A17.448 17.448 0 0 1 0 30.6" class="prefix__cls-3" data-name="패스 29" transform="rotate(-69 556.92 -178.175)"/>
+        <path id="prefix__패스_30" d="M4.5 0L0 3.636l3.937 4.32" class="prefix__cls-3" data-name="패스 30" transform="rotate(-69 576.655 -191.573)"/>
+    </g>
+</svg>
