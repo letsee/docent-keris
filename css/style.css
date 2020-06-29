@@ -167,6 +167,9 @@ table {
   left: 45%;
 }
 
+#container {
+  background: rgba(0, 0, 0, 0.3);
+}
 #container #tab-header {
   position: fixed;
   height: 70px;
@@ -186,8 +189,8 @@ table {
 }
 #container #tab-header #tab-1, #container #tab-header #tab-2, #container #tab-header #tab-3, #container #tab-header #tab-4 p {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 1.5em;
+  font-weight: 700;
   font-stretch: normal;
   font-style: normal;
   line-height: 1.5;
@@ -196,7 +199,7 @@ table {
   color: #ffffff;
 }
 #container #tab-header .tab-item-wrapper {
-  width: 80%;
+  width: 100%;
   height: 70px;
   border: 1px solid yellow;
   margin: 0 auto;
@@ -208,10 +211,11 @@ table {
   top: 50%;
 }
 #container #tab-header .tab-item-wrapper img {
-  left: 35%;
+  left: 32%;
+  width: 25%;
 }
 #container #tab-header .tab-item-wrapper p {
-  left: 60%;
+  left: 63%;
 }
 #container #main-title {
   border: 1px solid red;
@@ -226,7 +230,7 @@ table {
 }
 #container #main-title #title {
   text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.6);
-  font-size: 48px;
+  font-size: 4em;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -237,7 +241,7 @@ table {
 }
 #container #main-title #author {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-  font-size: 16px;
+  font-size: 1.5em;
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -251,12 +255,13 @@ table {
   transform: translate(-50%, -50%);
   top: 90%;
   left: 50%;
-  border: solid 1.5px #00deff;
   border-radius: 34px;
+  box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+  border: solid 1.5px #00deff;
   background-color: rgba(0, 235, 255, 0.5);
   padding: 0.5em 1.2em 0.6em 1.2em;
   font-size: 1.5em;
-  font-weight: bold;
+  font-weight: 700;
   font-stretch: normal;
   font-style: normal;
   letter-spacing: normal;
