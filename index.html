@@ -11,10 +11,7 @@
 	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	
-	<!-- jQuery -->
-<!--	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>-->
-<!--	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>-->
-	
+<!--	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>-->
 	
 	<script src="./vendor/jquery.scrollbar.min.js"></script>
 	<link rel="stylesheet" href="./vendor/jquery.scrollbar.css">
@@ -22,6 +19,7 @@
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/comments.css">
 	<link rel="stylesheet" href="css/response.css">
+	<link rel="stylesheet" href="vendor/animation.css">
 	
 	<script src="js/main.js"></script>
 
@@ -50,8 +48,9 @@
 </div>
 
 <!-- Spotlight-->
-<div id="night" onclick="activeSpotlight()">
+<div id="night">
 	<img id="overlayGuide" src="assets/hands.svg" alt="">
+	<img id="centerPoint" src="assets/point-red.svg" alt="" style="display: none">
 	<button id="spotLightBtn">자동 비추기</button>
 </div>
 
@@ -126,9 +125,31 @@
 		
 		<!-- Content tab-3 -->
 		<div id="content-3">
-			<h1>명작의 탄생 그 안에 든 1%의 비밀은?</h1>
-		
+			<div id="secretPanel">
+				<h1>명작의 탄생 그 안에 든 1%의 비밀은?</h1>
+				<div id="redPoint"></div>
+				<img id="line" src="assets/line.svg" alt="">
+				<button id="vanishingPointBtn" onclick="showVanishingPointInfo()">원근법과 소실점</button>
+				<div id="layer"></div>
+			</div>
+			
+			<div id="vanishingPointPanel" style="display: none" >
+				<h3>원근법과 소실점</h3>
+				<p id="vanishingInfo">
+					레오나르도는  ‘모든 선이 모여드는 하나의 점’ 을 말하며,
+					이 그림의  소실점을 벽면 중앙에 작은 못을 박았다.
+					이를 바탕으로 수학적으로 완벽한 대칭을 이루는
+					1:1:6 비율의 균형을 완성한 것이다.
+					<br><br>
+					지난 500년 동안 불순물이 쌓이고,
+					표면이 심각하게 갈라지는 문제를 해결하기 위해
+					복원 작업을 진행하던 중
+					예수 얼굴 오른쪽 관자놀이에 뚫린 못 자국을 발견했다.
+				</p>
+				<img src="assets/jesus-point.png" alt="">
+			</div>
 		</div>
+		
 		
 		
 		
@@ -138,10 +159,6 @@
 	
 	
 </div>
-
-
-
-
 
 <!--##################################################### Footer ####################################################-->
 <div id="footer">

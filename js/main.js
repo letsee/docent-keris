@@ -82,6 +82,8 @@ function switchTab(num) {
       $('#night').show();
       let bg = "-webkit-radial-gradient(38% 50%, 64px 64px, transparent 50%, rgb(0, 0, 34))";
       $('#night').css('backgroundImage', bg);
+  
+      document.addEventListener('touchstart', process_touchstart, false);
       
       break;
     }
@@ -135,6 +137,13 @@ function showPeopleInfo(_people) {
   }
 }
 
+function showVanishingPointInfo(){
+  
+  $('#secretPanel').hide();
+  $('#vanishingPointPanel').show();
+  
+}
+
 // Register touch event handlers
 document.addEventListener('touchmove', process_touchmove, false);
 
@@ -150,9 +159,36 @@ function process_touchmove(ev) {
   let bg = "-webkit-radial-gradient(" + pageX + "px " + pageY + "px, " + spotlightwidth + "px " + spotlightheight + "px, transparent 50%, #000022)";
   $('#night').css('backgroundImage', bg);
   
+  // console.log(`pageX: ${pageX} /// pageY: ${pageY}`);
+  // center: pageX: 564.30078125 /// pageY: 370.0078125
+  
+  if (pageX >= 564 && pageY >= 370) {
+    $('#centerPoint').show();
+    
+    setTimeout((e) => {
+      $('#night').css('animation', 'fadeOut 2s');
+  
+      $('#tab-header').show();
+      $('#tab-header').css('animation', 'fadeInDown 1s');
+      $('#night').hide();
+  
+      $('#content-3').show();
+      $('#content-3').css('animation', 'fadeIn 2s');
+    }, 500);
+  }
 }
 
-function activeSpotlight() {
-  $('#overlayGuide').hide();
-  $('#spotLightBtn').hide();
+// touchstart handler
+function process_touchstart(ev) {
+  switch (ev.touches.length) {
+    case 1:
+      console.log('touch start');
+      $('#overlayGuide').hide();
+      $('#spotLightBtn').hide();
+      break;
+    case 2: break;
+    case 3: break;
+    default: break;
+  }
 }
+
