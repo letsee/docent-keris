@@ -47,6 +47,7 @@ function switchTab(num) {
       $('#content-1').show();
       $('#content-2').hide();
       $('#content-3').hide();
+      $('#content-4').hide();
       
       break;
     }
@@ -60,8 +61,9 @@ function switchTab(num) {
       
       $('#content-2').show();
       $('#content-1').hide();
-      
       $('#content-3').hide();
+      $('#content-4').hide();
+      
       break;
     }
     
@@ -73,9 +75,10 @@ function switchTab(num) {
   
       // hide all
       $('#tab-header').hide();
-      $('#content-3').hide();
       $('#content-1').hide();
       $('#content-2').hide();
+      $('#content-3').hide();
+      $('#content-4').hide();
   
       // show overlay for spotlight
       $('#overlay').show();
@@ -93,13 +96,33 @@ function switchTab(num) {
       $('#tab-1').removeClass('tab-active');
       $('#tab-2').removeClass('tab-active');
       $('#tab-3').removeClass('tab-active');
+      
+      $('#content-1').hide();
+      $('#content-2').hide();
+      $('#content-3').hide();
+      $('#content-4').show();
+      // $("#content-4").load();
+      
       break;
     }
   }
 }
 
-function closeContent() {
-  $('#content-1').hide();
+function closeContent(id) {
+  $(id).hide();
+  
+  if(id === '#vanishingPointPanel'){
+    $('#secretPanel').show();
+  }
+  
+  if(id === '#videoPanel'){
+    $('#notePanel').show();
+  }
+}
+
+function showVideoPanel() {
+  $('#notePanel').hide();
+  $('#videoPanel').show();
 }
 
 function closePeopleInfo(_people) {
@@ -162,7 +185,7 @@ function process_touchmove(ev) {
   // console.log(`pageX: ${pageX} /// pageY: ${pageY}`);
   // center: pageX: 564.30078125 /// pageY: 370.0078125
   
-  if (pageX >= 564 && pageY >= 370) {
+  if (pageX >= screen.width/2 && pageY >= screen.height/2) {
     $('#centerPoint').show();
     
     setTimeout((e) => {

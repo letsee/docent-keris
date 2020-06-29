@@ -141,26 +141,24 @@ table {
   }
 
   #spotLightBtn {
-    font-size: 16px;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-    text-align: center;
-    color: #ffffff;
-
-    width: 118px;
-    height: 44px;
-    border-radius: 34px;
-    box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
-    border: solid 1.5px #00deff;
-    background-color: rgba(0, 235, 255, 0.5);
-
     position: absolute;
     transform: translate(-50%, -50%);
     top: 90%;
     left: 50%;
+
+    border: solid 1.5px #00deff;
+    border-radius: 34px;
+    background-color: rgba(0, 235, 255, 0.5);
+    padding: 0.5em 1.2em 0.6em 1.2em;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   }
   #centerPoint {
     position: absolute;
@@ -267,7 +265,20 @@ table {
     transform: translate(-50%, -50%);
     top: 90%;
     left: 50%;
-    cursor:pointer;
+
+    border: solid 1.5px #00deff;
+    border-radius: 34px;
+    background-color: rgba(0, 235, 255, 0.5);
+    padding: 0.5em 1.2em 0.6em 1.2em;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    opacity: 0.9;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   }
 
   #main-content {
@@ -344,6 +355,7 @@ table {
         line-height: 1.45;
         letter-spacing: normal;
         text-align: center;
+        width: 100%;
         color: #ffffff;
         margin: 5% 0 0 0;
       }
@@ -457,13 +469,47 @@ table {
         left: 50%;
         z-index: 40;
       }
-      #line{
+      .wrap {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 44%;
         left: 50%;
         width: 100%;
         z-index: 30;
+
+        #linestart {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        .st0 {
+          fill:none;
+          stroke-width:2px;
+          stroke:yellow;
+        }
+
+        #line1 {stroke-dasharray:1443; stroke-dashoffset:1443; animation: ani 0.8s; animation-fill-mode: forwards; }
+        #line2 {stroke-dasharray:2559; stroke-dashoffset:2559; animation: ani 0.8s 0.3s; animation-fill-mode: forwards;}
+        #line3 {stroke-dasharray:2559; stroke-dashoffset:2559; animation: ani 0.8s 0.6s; animation-fill-mode: forwards;}
+
+        #line4 {stroke-dasharray:2072; stroke-dashoffset:2072; animation: ani 0.8s 0.9s; animation-fill-mode: forwards;}
+        #line5 {stroke-dasharray:2072; stroke-dashoffset:2072; animation: ani 0.8s 1.2s; animation-fill-mode: forwards;}
+
+        #line6 {stroke-dasharray:1450; stroke-dashoffset:1450; animation: ani 0.8s 1.5s; animation-fill-mode: forwards;}
+        #line7 {stroke-dasharray:1284; stroke-dashoffset:1284; animation: ani 0.8s 1.8s; animation-fill-mode: forwards;}
+        #line8 {stroke-dasharray:1284; stroke-dashoffset:1284; animation: ani 0.8s 2.1s; animation-fill-mode: forwards;}
+        #line9 {stroke-dasharray:1285; stroke-dashoffset:1285; animation: ani 0.8s 2.4s; animation-fill-mode: forwards;}
+        #line10 {stroke-dasharray:1285; stroke-dashoffset:1285; animation: ani 0.8s 2.7s; animation-fill-mode: forwards;}
+        #line11 {stroke-dasharray:1450; stroke-dashoffset:1450; animation: ani 0.8s 3s; animation-fill-mode: forwards;}
+        #line12 {stroke-dasharray:2560; stroke-dashoffset:2560; animation: ani 0.8s 3.3s; animation-fill-mode: forwards;}
+        #line13 {stroke-dasharray:2560; stroke-dashoffset:2560; animation: ani 0.8s 3.6s; animation-fill-mode: forwards;}
+
+        #line14 {stroke-dasharray:753; stroke-dashoffset:753; animation: ani 0.8s 3.9s; animation-fill-mode: forwards;}
+        #line15 {stroke-dasharray:753; stroke-dashoffset:753; animation: ani 0.8s 4.2s; animation-fill-mode: forwards;}
+        #line16 {stroke-dasharray:753; stroke-dashoffset:753; animation: ani 0.8s 4.5s; animation-fill-mode: forwards;}
+        #line17 {stroke-dasharray:753; stroke-dashoffset:753; animation: ani 0.8s 4.8s; animation-fill-mode: forwards;}
+        #line18 {stroke-dasharray:753; stroke-dashoffset:753; animation: ani 0.8s 5.1s; animation-fill-mode: forwards;}
+        #line19 {stroke-dasharray:753; stroke-dashoffset:753; animation: ani 0.8s 5.4s; animation-fill-mode: forwards;}
       }
       h1 {
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
@@ -475,6 +521,7 @@ table {
         letter-spacing: normal;
         text-align: center;
         color: #ffffff;
+        width: 100%;
         transform: translate(-50%, -50%);
         top: 10%;
         left: 50%;
@@ -482,23 +529,21 @@ table {
         position: absolute;
       }
       #vanishingPointBtn {
-        font-size: 16px;
+        border: solid 1.5px #00deff;
+        border-radius: 34px;
+        background-color: rgba(0, 235, 255, 0.5);
+        padding: 0.5em 1.2em 0.6em 1.2em;
+        font-size: 1.5em;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
-        line-height: 1.5;
         letter-spacing: normal;
         text-align: center;
         color: #ffffff;
+        opacity: 0.9;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+
         z-index: 50;
-
-        width: 130px;
-        height: 44px;
-        border-radius: 34px;
-        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
-        border: solid 1.5px #00deff;
-        background-color: rgba(0, 235, 255, 0.5);
-
         position: absolute;
         transform: translate(-50%, -50%);
         top: 90%;
@@ -506,18 +551,25 @@ table {
       }
       #vanishingPointPanel{
         width: 90%;
-        height: 300px;
+        height: 400px;
         border-radius: 16px;
         box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
         background-color: rgba(0, 0, 0, 0.65);
-        padding: 20px;
+        padding: 22px;
         position: absolute;
         transform: translate(-50%, -50%);
         top: 50%;
         left: 50%;
 
+        .closeBtn {
+          position: absolute;
+          transform: translate(50%, -50%);
+          top: 6%;
+          left: 88%;
+          width: 10%;
+        }
         h3{
-          //font-size: 18px;
+          font-size: 28px;
           font-weight: bold;
           font-stretch: normal;
           font-style: normal;
@@ -525,9 +577,10 @@ table {
           letter-spacing: normal;
           text-align: left;
           color: #77ebfc;
+          margin-bottom: 22px;
         }
         #vanishingInfo{
-          //font-size: 14px;
+          font-size: 24px;
           font-weight: 500;
           font-stretch: normal;
           font-style: normal;
@@ -535,20 +588,150 @@ table {
           letter-spacing: normal;
           text-align: left;
           color: #ffffff;
+          width: 55%;
         }
-
         img {
           float: right;
-          position: relative;
+          position: absolute;
+          transform: translate(0, -50%);
+          top: 50%;
+          right: 5%;
+          width: 35%;
         }
       }
-
     }
 
+    #content-4{
+
+      h1 {
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.45;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        top: 10%;
+        left: 50%;
+        z-index: 50;
+        position: absolute;
+      }
+      .note_area {
+        display:block;
+        position: absolute;
+        left:50%;
+        transform: translate(-50%);
+        bottom: 24%;
+        width:100%;
+        text-align: center;
+
+        img {
+          width: 100%;
+          height: 140px;
+        }
+      }
+      .btn_area {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        bottom: 5%;
+        opacity: 0.96;
+        -webkit-transform: translate(-50%);
+
+        .blue_btn {
+          box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
+          display: inline-block;
+          -moz-border-radius: 4em;
+          -webkit-border-radis: 4em;
+          border-radius: 4em;
+          position: relative;
+          overflow: hidden;
+
+          .light {
+            background-color: rgba(255, 255, 255, 0.2);
+            height: 100%;
+            width: 3em;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -90px;
+            transform: skewX(-45deg) translateX(0);
+            -webkit-transform: skewX(-45deg) translateX(0);
+            animation: example 6s 1s infinite;
+          }
+          #hiddenMusicBtn {
+            border: solid 1.5px #00deff;
+            background-color: rgba(0, 235, 255, 0.5);
+            padding: 0.5em 1.2em 0.6em 1.2em;
+            font-size: 1.5em;
+            font-weight: bold;
+            font-stretch: normal;
+            font-style: normal;
+            letter-spacing: normal;
+            text-align: center;
+            color: #ffffff;
+            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
+      #videoPanel{
+        width: 90%;
+        height: 400px;
+        border-radius: 16px;
+        box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.65);
+
+        padding: 22px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+
+        .closeBtn {
+          position: absolute;
+          transform: translate(50%, -50%);
+          top: 6%;
+          left: 88%;
+          width: 10%;
+        }
+        h3{
+          font-size: 28px;
+          font-weight: bold;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.33;
+          letter-spacing: normal;
+          text-align: left;
+          color: #77ebfc;
+          margin-bottom: 22px;
+        }
+        #videoInfo{
+          font-size: 24px;
+          font-weight: 500;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.29;
+          letter-spacing: normal;
+          text-align: left;
+          color: #ffffff;
+          width: 38%;
+        }
+        .video-container{
+          float: right;
+          position: absolute;
+          transform: translate(0, -50%);
+          top: 58%;
+          right: 5%;
+        }
+      }
+    }
   }
 
 }
-
 
 #footer {
   position: fixed;
@@ -594,9 +777,17 @@ table {
 
 }
 
-
-
-
+@keyframes ani {
+  to {stroke-dashoffset:0;}
+}
+@keyframes example {
+  0%   {left:-90px; top:0px;}
+  10%  {left:300px; top:0px;}
+  20% {left:-90px; top:0px;}
+  30%  {left:300px; top:0px;}
+  40% {left:-90px; top:0px;}
+  100% {left:-90px; top:0px;}
+}
 
 
 

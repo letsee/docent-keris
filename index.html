@@ -89,14 +89,14 @@
 		<p id="author">(레오나르도 다빈치, 1452∼1519)</p>
 	</div>
 	
-	<img id="layerviewBtn" src="assets/layerview-btn.svg" alt="">
+	<button id="layerviewBtn">작품 소개 보기</button>
 	
 	<!--################################################## Tab Content ##################################################-->
 	<div id="main-content">
 		
 		<!-- Content tab-1 -->
 		<div id="content-1">
-			<img class="closeBtn" src="assets/7.svg" alt="" onclick="closeContent()">
+			<img class="closeBtn" src="assets/7.svg" alt="" onclick="closeContent('#content-1')">
 			<h2>최후의 만찬 (The Last Supper, 1485 ~ 1497)</h2>
 			<p> '최후의 만찬'은 예수 그리스도가 십자가에 매달리기 전날 제자들과 함께 최후의 만찬의 정경을 그린 것이다.
 				밀라노의 산타마리아 델레 그라치에 수도원(Chiesa di Santa Maria delle Grazie)의 식당 벽에 그려져 있으며, 1980년 산타마리아 델레 그라치에 수도원과 함께 유네스코 세계문화유산으로 지정했다. 
@@ -128,12 +128,54 @@
 			<div id="secretPanel">
 				<h1>명작의 탄생 그 안에 든 1%의 비밀은?</h1>
 				<div id="redPoint"></div>
-				<img id="line" src="assets/line.svg" alt="">
+<!--				<img id="line" src="assets/line.svg" alt="">-->
+				<div class="wrap">
+					<svg version="1.1" id="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 2560 1443" style="enable-background:new 0 0 2560 1443;" xml:space="preserve">
+						<g class="linestart">
+							<!--가로 세로 중심 라인 -->
+							<line id="line1" class="st0" x1="1285" y1="0" x2="1285" y2="1443"/>
+							<line id="line2" class="st0" x1="0" y1="753" x2="2559" y2="753"/>
+							<line id="line3" class="st0" x1="0" y1="1041" x2="2559" y2="1041"/>
+							
+							<!-- x라인 -->
+							<line id="line4" class="st0" x1="497" y1="0" x2="2003" y2="1443"/>
+							<line id="line5" class="st0" x1="2072" y1="0" x2="566" y2="1442"/>
+							
+							<!-- 사선 왼쪽부터 360도 -->
+							<line id="line6" class="st0" x1="1284" y1="753" x2="0" y2="113"/>
+							<line id="line7" class="st0" x1="773" y1="3" x2="1284" y2="753"/>
+							<line id="line8" class="st0" x1="1028" y1="0" x2="1284" y2="753"/>
+							<line id="line9" class="st0" x1="1541" y1="0" x2="1285" y2="753"/>
+							<line id="line10" class="st0" x1="1796" y1="3" x2="1285" y2="753.38"/>
+							<line id="line11" class="st0" x1="1285" y1="753" x2="2557" y2="122"/>
+							<line id="line12" class="st0" x1="1286" y1="753" x2="2560" y2="1442"/>
+							<line id="line13" class="st0" x1="1285" y1="753" x2="1" y2="1442"/>
+							
+							<!--왼쪽부터 소실점까지 세로라인-->
+							<line id="line14" class="st0" x1="66" y1="146" x2="66" y2="753"/>
+							<line id="line15" class="st0" x1="443" y1="335" x2="443" y2="753"/>
+							<line id="line16" class="st0" x1="655" y1="439" x2="655" y2="753"/>
+							<line id="line17" class="st0" x1="795" y1="510" x2="795" y2="753"/>
+							<line id="line18" class="st0" x1="971" y1="596" x2="971" y2="753"/>
+							<line id="line19" class="st0" x1="1090" y1="657" x2="1090" y2="753"/>
+							
+							<!--오른쪽부터 소실점까지 세로라인-->
+							<line id="line14" class="st0" x1="2509" y1="147" x2="2509" y2="754"/>
+							<line id="line15" class="st0" x1="2124" y1="342" x2="2124" y2="754"/>
+							<line id="line16" class="st0" x1="1912" y1="447" x2="1912" y2="753"/>
+							<line id="line17" class="st0" x1="1774" y1="516" x2="1774" y2="754"/>
+							<line id="line18" class="st0" x1="1596" y1="605" x2="1596" y2="754"/>
+							<line id="line19"class="st0" x1="1480" y1="663" x2="1480" y2="754"/>
+						</g>
+					</svg>
+				</div>
+				
 				<button id="vanishingPointBtn" onclick="showVanishingPointInfo()">원근법과 소실점</button>
 				<div id="layer"></div>
 			</div>
 			
-			<div id="vanishingPointPanel" style="display: none" >
+			<div id="vanishingPointPanel" style="display: none">
+				<img class="closeBtn" src="assets/7.svg" alt="" onclick="closeContent('#vanishingPointPanel')">
 				<h3>원근법과 소실점</h3>
 				<p id="vanishingInfo">
 					레오나르도는  ‘모든 선이 모여드는 하나의 점’ 을 말하며,
@@ -146,8 +188,39 @@
 					복원 작업을 진행하던 중
 					예수 얼굴 오른쪽 관자놀이에 뚫린 못 자국을 발견했다.
 				</p>
-				<img src="assets/jesus-point.png" alt="">
+				<img src="assets/jesus-point@2x.png" alt="">
 			</div>
+		</div>
+		
+		<!-- Content tab-4 -->
+		<div id="content-4" style="display: none">
+			<div id="notePanel">
+				<h1>최후의 만찬에 숨겨진 암호 코드가 있다?</h1>
+				<div class="note_area">
+					<img src="assets/note-code.gif" alt="">
+				</div>
+				
+				<div class="btn_area">
+					<div class="blue_btn">
+						<span class="light"></span>
+						<button id="hiddenMusicBtn" onclick="showVideoPanel()">작품 속 숨겨진 음악</button>
+					</div>
+				</div>
+			</div>
+			
+			<div id="videoPanel" style="display: none">
+				<img class="closeBtn" src="assets/7.svg" alt="" onclick="closeContent('#videoPanel')">
+				<h3>작품 속 숨겨진 음악</h3>
+				<p id="videoInfo">
+					이탈리아 음악가 지오다니 마리아 팔라는 최후의 만찬 그림에서
+					40초짜리 악보를 발견하였으며
+					예수와 열두 제자들의 손과 빵이 음표 역할을 한다고 주장했다.
+				</p>
+				<div class="video-container">
+					<iframe width="480" height="300" src="https://www.youtube.com/embed/MkuIzdHwOAk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</div>
+			
 		</div>
 		
 		
