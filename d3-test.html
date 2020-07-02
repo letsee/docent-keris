@@ -139,7 +139,8 @@
 					"name": "바로톨로메오",
 					"id": "1",
 					"value": "1",
-					"cvr": "123"
+					"cvr": "123",
+					"person": true,
 				},
 				{
 					"name": "안드레아",
@@ -335,26 +336,29 @@
 				.enter()
 				.append("g");
 
-		node
-				.on("mouseover", function (d) {
-					d3.select(this).select("rect").style("fill", "red");
-					div.transition()
-							.duration(200)
-							.style("opacity", .9);
-					div.html("asdasd")
-							.style("left", (d3.event.pageX) + "px")
-							.style("top", (d3.event.pageY - 28) + "px");
-				})
-				.on("mouseout", function (d) {
-					d3.select(this).select("rect").style("fill", rectColour);
 
-					div.transition()
-							.duration(500)
-							.style("opacity", 0);
-				});
+		/*
+		 * 사각형을 클릭했을 때 색상을 빨간색으로 바꿔주는 이벤트 설정
+		 */
+		// node
+		// 		.on("mouseover", function (d) {
+		// 			d3.select(this).select("rect").style("fill", "red");
+		// 			div.transition()
+		// 					.duration(200)
+		// 					.style("opacity", .9);
+		// 			div.html("asdasd")
+		// 					.style("left", (d3.event.pageX) + "px")
+		// 					.style("top", (d3.event.pageY - 28) + "px");
+		// 		})
+		// 		.on("mouseout", function (d) {
+		// 			d3.select(this).select("rect").style("fill", rectColour);
+		//
+		// 			div.transition()
+		// 					.duration(500)
+		// 					.style("opacity", 0);
+		// 		});
 
-
-
+		// node에 사각형을 추가하고, 색상을 추가한다.
 		var rect = node.append("rect")
 				.attr("x", -rectWidth / 2)
 				.attr("y", -rectHeight / 2)
@@ -386,6 +390,7 @@
 		node.attr("transform", function (d) {
 			return "translate(" + d.x + "," + d.y + ")"
 		});
+
 
 		// Add drag capabilities
 		var drag_handler = d3.drag()
