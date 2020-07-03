@@ -32,6 +32,12 @@
 			#detect {
 				display: block !important;
 			}
+			#night{
+				display: none !important;
+			}
+			#capture {
+				display: none !important;
+			}
 		}
 	</style>
 
@@ -45,7 +51,7 @@
 </div>
 
 <!--Show at first time to alert user-->
-<div id="capture" style="display: block">
+<div id="capture">
 	<img id="cap1" src="assets/ico-camera.svg" alt="">
 	<p>작품을 정면으로 촬영해주세요.</p>
 </div>
@@ -61,7 +67,6 @@
 			<button id="spotLightBtn">자동 비추기</button>
 		</div>
 	</div>
-<!--	<button id="spotLightBtn">자동 비추기</button>-->
 </div>
 
 <div id="container">
@@ -314,7 +319,12 @@
 
 			app.addEventListener('trackend', e => {
 				initWorld(e);
-        showCapture();
+				
+				// Only show the 'capture' screen in landscape
+				// For portrait mode, 'capture' screen is hidden and controlled by media queries
+				if (screen.width > screen.height) {
+          showCapture();
+				}
 			})
 		}
 	}
