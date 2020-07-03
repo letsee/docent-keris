@@ -54,7 +54,14 @@
 <div id="night">
 	<img id="overlayGuide" src="assets/hands.svg" alt="">
 	<img id="centerPoint" src="assets/point-red.svg" alt="" style="display: none">
-	<button id="spotLightBtn">자동 비추기</button>
+	
+	<div class="btn_area">
+		<div class="blue_btn">
+			<span class="light"></span>
+			<button id="spotLightBtn">자동 비추기</button>
+		</div>
+	</div>
+<!--	<button id="spotLightBtn">자동 비추기</button>-->
 </div>
 
 <div id="container">
@@ -91,8 +98,13 @@
 		<p id="title">최후의 만찬</p>
 		<p id="author">(레오나르도 다빈치, 1452∼1519)</p>
 	</div>
-
-	<button id="layerviewBtn">작품 소개 보기</button>
+	
+	<div class="btn_area">
+		<div class="blue_btn">
+			<span class="light"></span>
+			<button id="layerviewBtn">작품 소개 보기</button>
+		</div>
+	</div>
 
 	<!--################################################## Tab Content ##################################################-->
 	<div id="main-content">
@@ -190,8 +202,13 @@
 						</g>
 					</svg>
 				</div>
-
-				<button id="vanishingPointBtn" onclick="showVanishingPointInfo()">원근법과 소실점</button>
+				
+				<div class="btn_area">
+					<div class="blue_btn">
+						<span class="light"></span>
+						<button id="vanishingPointBtn" onclick="showVanishingPointInfo()">원근법과 소실점</button>
+					</div>
+				</div>
 			</div>
 
 			<div id="vanishingPointPanel" style="display: none">

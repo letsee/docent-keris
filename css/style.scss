@@ -77,7 +77,6 @@ table {
     top: 60%;
     left: 50%;
   }
-
 }
 
 #capture {
@@ -142,11 +141,6 @@ table {
   }
 
   #spotLightBtn {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 90%;
-    left: 50%;
-
     border: solid 1.5px #00deff;
     border-radius: 34px;
     background-color: rgba(0, 235, 255, 0.5);
@@ -167,6 +161,39 @@ table {
     transform: translate(-50%, -50%);
     top: 50%;
     left: 45%;
+  }
+}
+
+.btn_area {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 90%;
+  display: block;
+  opacity: 0.96;
+  z-index: 500;
+
+  .blue_btn {
+    box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    -moz-border-radius: 4em;
+    -webkit-border-radis: 4em;
+    border-radius: 4em;
+    position: relative;
+    overflow: hidden;
+
+    .light {
+      background-color: rgba(255, 255, 255, 0.2);
+      height: 100%;
+      width: 3em;
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -90px;
+      transform: skewX(-45deg) translateX(0);
+      -webkit-transform: skewX(-45deg) translateX(0);
+      animation: example 6s 1s infinite;
+    }
   }
 }
 
@@ -264,11 +291,6 @@ table {
   }
 
   #layerviewBtn {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 90%;
-    left: 50%;
-
     border-radius: 34px;
     box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
     border: solid 1.5px #00deff;
@@ -788,10 +810,6 @@ table {
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 
         z-index: 50;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 90%;
-        left: 50%;
       }
       #vanishingPointPanel{
         width: 90%;
@@ -877,7 +895,21 @@ table {
           height: 140px;
         }
       }
-      .btn_area {
+      #hiddenMusicBtn {
+        border: solid 1.5px #00deff;
+        background-color: rgba(0, 235, 255, 0.5);
+        padding: 0.5em 1.2em 0.6em 1.2em;
+        font-size: 1.5em;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        opacity: 0.9;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+      /*.btn_area {
         position: absolute;
         left: 50%;
         transform: translate(-50%);
@@ -906,22 +938,8 @@ table {
             -webkit-transform: skewX(-45deg) translateX(0);
             animation: example 6s 1s infinite;
           }
-          #hiddenMusicBtn {
-            border: solid 1.5px #00deff;
-            background-color: rgba(0, 235, 255, 0.5);
-            padding: 0.5em 1.2em 0.6em 1.2em;
-            font-size: 1.5em;
-            font-weight: bold;
-            font-stretch: normal;
-            font-style: normal;
-            letter-spacing: normal;
-            text-align: center;
-            color: #ffffff;
-            opacity: 0.9;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-          }
         }
-      }
+      }*/
       #videoPanel{
         width: 90%;
         height: 400px;
