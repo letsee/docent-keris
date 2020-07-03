@@ -28,6 +28,23 @@
 	</style>
 	
 	<style>
+		@media screen and (min-width: 360px) and (orientation: portrait) {
+			#logo {
+				left: 33% !important;
+			}
+			#copyright {
+				left: 63% !important;
+			}
+		}
+		@media screen and (min-width: 360px) and (orientation: landscape) {
+			#logo {
+				left: 41% !important;
+			}
+			#copyright {
+				left: 58% !important;
+			}
+		}
+		
 		@media (orientation: portrait) {
 			#detect {
 				display: block !important;
@@ -36,12 +53,12 @@
 				display: block !important;
 			}
 			#logo {
-				left: 36% !important;
-				top: 50% !important;
+				left: 36%;
+				top: 50%;
 			}
 			#copyright{
-				left: 62% !important;
-				top: 50% !important;
+				left: 62%;
+				top: 50%;
 			}
 			#night{
 				display: none !important;
