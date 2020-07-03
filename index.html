@@ -28,7 +28,7 @@
 	</style>
 	
 	<style>
-		@media screen and (min-width: 360px) and (orientation: portrait) {
+		@media screen and (max-width: 360px) and (orientation: portrait) {
 			#logo {
 				left: 33% !important;
 			}
@@ -36,12 +36,22 @@
 				left: 63% !important;
 			}
 		}
-		@media screen and (min-width: 360px) and (orientation: landscape) {
+		@media screen and (max-width: 360px) and (orientation: landscape) {
 			#logo {
 				left: 41% !important;
 			}
 			#copyright {
 				left: 58% !important;
+			}
+		}
+		@media screen and (max-width: 1024px) and (orientation: portrait) {
+			#detect_img {
+				width: 25% !important;
+				top: 43% !important;
+			}
+			#detect_msg {
+				width: 35% !important;
+				top: 60% !important;
 			}
 		}
 		
