@@ -232,9 +232,78 @@ function showPeopleInfo(_people) {
       $('#man-name').text('베드로');
       $('#man-info').text('성질이 급한 베드로는 요한에게 배신자가 누구인지 물어보려는 듯 일어서고 있는데 베드로의 오른손에 식사 때 쓰는 칼을 쥔 채 앞에 있는 유다를 건드려 놀라게 하고 잇다.');
       break;
-      
-      
-      
+    case 'judasBtn':
+      $("#img-people img").css({top: '60%', left: '35%', width: '30%'});
+      $('#peopleInfo').css({top: '87%', left: '60.5%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/05-judas@3x.png');
+      $('#man-name').text('유다');
+      $('#man-info').text('예수님을 팔아 넘긴 제자로 예수님과 같은 빵을 집으려고 손을 내밀고 있다.');
+      break;
+    case 'jonnesBtn':
+      $("#img-people img").css({top: '55%', left: '43%', width: '30%'});
+      $('#peopleInfo').css({top: '30%', left: '69.5%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/06-jonnes@3x.png');
+      $('#man-name').text('요한');
+      $('#man-info').text('예수님이 가장 아꼈던 제자로 예수님 오른편에 앉아 베드로의 얘기를 듣고 있다.');
+      break;
+    case 'jesusBtn':
+      $("#img-people img").css({top: '55%', left: '50%', width: '33%'});
+      $('#peopleInfo').css({top: '91%', left: '63%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/00-jesus@3x.png');
+      $('#man-name').text('예수');
+      $('#man-info').text('자신은 무죄 라며 웅성거리고 있는 제자들 사이에서 예수는 움직이지 않고 고요히 앉아있다.');
+      break;
+    case 'jamesBtn':
+      $("#img-people img").css({top: '55%', left: '61%', width: '32%'});
+      $('#peopleInfo').css({top: '23%', left: '33%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/07-james@3x.png');
+      $('#man-name').text('작은 야고보');
+      $('#man-info').text('양쪽팔을 벌리고 비극을 예감한 듯이 공포스럽게 앉아 있다.');
+      break;
+    case 'thomasBtn':
+      $("#img-people img").css({top: '55%', left: '62%', width: '23%'});
+      $('#peopleInfo').css({top: '23%', left: '32.5%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/08-thomas@3x.png');
+      $('#man-name').text('토마스');
+      $('#man-info').text('의심이 많은 토마스는 놀람의 표시로 손가락을 들고 설마 나는 아니죠? 라는 듯 자신의 머리를 가리키고 있다.');
+      break;
+    case 'philipBtn':
+      $("#img-people img").css({top: '46%', left: '65%', width: '30%'});
+      $('#peopleInfo').css({top: '68%', left: '28.5%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/09-philip@3x.png');
+      $('#man-name').text('필립보');
+      $('#man-info').text('걱정이 많은 필립보는 가슴에 두 손을 모으고 자신의 순결을 주장하고 있다.');
+      break;
+    case 'mathewBtn':
+      $("#img-people img").css({top: '50%', left: '70%', width: '35%'});
+      $('#peopleInfo').css({top: '32%', left: '38.5%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/10-matthaeus@3x.png');
+      $('#man-name').text('마태오');
+      $('#man-info').text('마태오는 유대와 성 시몬에게 얼굴을 돌리고 있지만, 예수 쪽으로 두 손을 뻗은 채 믿을 수 없다는 표정을 지으며 두 동료를 바라보고 있다.');
+      break;
+    case 'thaddaeusBtn':
+      $("#img-people img").css({top: '50%', left: '80%', width: '25%'});
+      $('#peopleInfo').css({top: '48%', left: '46%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/11-thaddaeus@3x.png');
+      $('#man-name').text('유대');
+      $('#man-info').text('백발의 할아버지로 그린 유대는 갑작스런 사태를 믿을 수 없다는 표정으로 한 손으로 식탁을 짚고 다른 손은 식탁을 내리칠 듯이 들어올리고 있다.');
+      break;
+    case 'simonBtn':
+      $("#img-people img").css({top: '55%', left: '86%', width: '30%'});
+      $('#peopleInfo').css({top: '43%', left: '51%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/12-simon@3x.png');
+      $('#man-name').text('성 시몬');
+      $('#man-info').text('신의 율법을 철저히 지키는 열심당원이였으나 예수님의 설교와 기적을 보고 열심당원을 탈퇴하고 제자가 되었다. 최후의 만찬 때 식탁 맨 끝에 앉아 대단한 위엄을 보이고 앉아 있다.');
+      break;
   }
 }
 
