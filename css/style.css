@@ -58,6 +58,7 @@ table {
 }
 
 #detect {
+  display: none;
   z-index: 10;
   background: #504e4e;
   width: 100%;

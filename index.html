@@ -4,18 +4,15 @@
 	<meta charset="UTF-8">
 	<title>Letsee AR Demo - Ultima Cena</title>
 	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport" />
-	<script src="https://auth.letsee.io/webar?key=5d77d81e1debaa58b278e63044bb9e2da4732fd95c58ff4a496d929fbeec0927"></script>
+<!--	<script src="https://auth.letsee.io/webar?key=5d77d81e1debaa58b278e63044bb9e2da4732fd95c58ff4a496d929fbeec0927"></script>-->
 <!--	 <script src="https://intra.letsee.io:10000/lib/letsee-1.0.0.js"></script>-->
+	<script src="https://intra.letsee.io/lib2/Letsee.0.9.14.js"></script>
+	
 <!--	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">-->
 	
 	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-
-<!--	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>-->
-
-<!--	<script src="./vendor/jquery.scrollbar.min.js"></script>-->
-<!--	<link rel="stylesheet" href="./vendor/jquery.scrollbar.css">-->
-
+	
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/animation.css">
 
@@ -27,6 +24,14 @@
 			width: 1000px;
 			height: 560px;
 			/*border: 1px solid red;*/
+		}
+	</style>
+	
+	<style>
+		@media (orientation: portrait) {
+			#detect {
+				display: block !important;
+			}
 		}
 	</style>
 
@@ -251,22 +256,17 @@
 
 <script type="text/javascript">
 
-	let myConfig = letsee.config;
-  const onLoaded = () => {
-    console.log('Letsee started!');
-    switchCamera();
-  };
-
 	/**
 	 * Letsee Initialize function.
 	 */
-	/*function InitLetsee() {
+	function InitLetsee() {
 		let CURRENT_URI = null;
 		let currentTarget = null;
 		const world = new Object3D();
 
 		const initWorld = (e) =>  {
 			let uri = e.target.uri;
+			console.warn(uri);
 
 			if (CURRENT_URI == null) {
 				CURRENT_URI = uri;
@@ -281,6 +281,7 @@
 				e.target.addRenderable(world);
 			}
 		};
+		
 		const config = {
 			"appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
 			"trackerType": "PLANAR",
@@ -289,31 +290,23 @@
 		const app = new Letsee(config);
 		if(app !== null && typeof app !== 'undefined') {
 			app.addEventListener('trackstart', e => {
+			  console.warn(e);
 				initWorld(e);
-				switchPage(1);
+        showMainPage();
 			});
 
 			app.addEventListener('trackend', e => {
 				initWorld(e);
-				switchPage(0)
+        showCapture();
 			})
 		}
-	}*/
-
-	const initDocent = () => {
-    // Default config
-    letsee.init(myConfig, onLoaded);
-
-    letsee.eventManager.onTrackEnd(showCapture);
-    letsee.eventManager.onTrackStart(showMainPage);
-	};
+	}
 
 	/**
 	 * When the document is loaded, letsee is initialized.
 	 */
 	$(document).ready(() => {
-		// InitLetsee();
-    initDocent();
+		InitLetsee();
     $('#main-content').hide();
     $('#night').hide();
 	});
@@ -322,13 +315,6 @@
     $('#tab-1').addClass('tab-active');
     switchTab(1);
   });
-
-  // For testing only. Switch to use Logitech camera.
-  function switchCamera() {
-    console.warn('SWITCH CAMERA');
-    let videoOption = myConfig.setVideoOption({deviceId: 'be86ec87a66696a2a5dd6573e1f4fc8825f7a02468f9df3b6e3bd9c419c632c1'});
-    letsee.videoManager.setVideoSource(videoOption);
-  }
 
 </script>
 </body>
