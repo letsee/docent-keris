@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="49" height="49" viewBox="0 0 49 49">
+    <defs>
+        <filter id="prefix__사각형_7" width="49" height="49" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dx="3" dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g id="prefix__btn_close" transform="translate(1.5 1.5)">
+        <g filter="url(#prefix__사각형_7)" transform="translate(-1.5 -1.5)">
+            <rect id="prefix__사각형_7-2" width="40" height="40" fill="#fff" data-name="사각형 7" rx="20" transform="translate(1.5 1.5)"/>
+        </g>
+        <path id="prefix__패스_12" fill="#0a9393" d="M20.113 9.316h-8.257V1.059A1.179 1.179 0 0 0 10.586 0a1.179 1.179 0 0 0-1.27 1.059v8.257H1.059A1.18 1.18 0 0 0 0 10.586a1.179 1.179 0 0 0 1.059 1.27h8.256v8.257a1.178 1.178 0 0 0 1.27 1.059 1.178 1.178 0 0 0 1.27-1.059v-8.257h8.257a1.179 1.179 0 0 0 1.059-1.27 1.18 1.18 0 0 0-1.058-1.27z" data-name="패스 12" transform="rotate(45 3.93 26.657)"/>
+    </g>
+</svg>

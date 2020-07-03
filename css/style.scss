@@ -130,7 +130,7 @@ table {
   right: 0;
   pointer-events: none;
   display: block;
-  z-index: 20;
+  z-index: 200;
 
   #overlayGuide {
     position: absolute;
@@ -350,7 +350,7 @@ table {
 
       h1 {
         text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-        //font-size: 20px;
+        font-size: 2.3em;
         font-weight: bold;
         font-stretch: normal;
         font-style: normal;
@@ -359,33 +359,17 @@ table {
         text-align: center;
         width: 100%;
         color: #ffffff;
-        margin: 5% 0 0 0;
+        //margin: 5% 0 0 0;
       }
 
-      #u1 {
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-        font-size: 18px;
-        font-weight: bold;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: 1.71;
-        letter-spacing: normal;
-        text-align: center;
-        color: #ffffff;
-
-        border-radius: 18px;
-        width: 90px;
-        height: 37px;
+      #bartholomaeusBtn {
+        border-radius: 30px;
         box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
         border: solid 1px #0a9393;
-        background-color: rgba(10, 147, 147, 0.6);
-        position: absolute;
-        transform: translate(-50%, -50%);
-        top: 50%;
-        left: 50%;
-      }
-      #u2 {
-        font-size: 12px;
+        //border: solid 1px #00deff;
+        background-color: rgba(10, 147, 147, 0.4);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-size: 1.2em;
         font-weight: 500;
         font-stretch: normal;
         font-style: normal;
@@ -393,17 +377,272 @@ table {
         letter-spacing: normal;
         text-align: center;
         color: #ffffff;
+        padding: 4px 20px 4px 20px;
 
-        border-radius: 18px;
-        width: 70px;
-        height: 34px;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 30%;
+        left: 12%;
+      }
+      #andreasBtn {
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.4);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-size: 1.2em;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.82;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 4px 20px 4px 20px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 33%;
+        left: 27%;
+      }
+      #jacobusBtn {
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.4);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-size: 1.2em;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.82;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 4px 20px 4px 20px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 80%;
+        left: 22%;
+      }
+      #petrusBtn{
+        border-radius: 30px;
         box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
         border: solid 1px #0a9393;
         background-color: rgba(10, 147, 147, 0.6);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        font-size: 1.6em;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 5px 22px 5px 22px;
+
         position: absolute;
         transform: translate(-50%, -50%);
-        top: 70%;
-        left: 20%;
+        top: 29%;
+        left: 39%;
+      }
+      #judasBtn{
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.6);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        font-size: 1.6em;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 8px 25px 8px 25px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 87%;
+        left: 35%;
+      }
+      #jonnesBtn{
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.4);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-size: 1.2em;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.82;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 4px 20px 4px 20px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 44%;
+        left: 44%;
+      }
+      #jesusBtn{
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.6);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        font-size: 1.6em;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 8px 30px 8px 30px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 73%;
+        left: 50%;
+      }
+      #thomasBtn{
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.6);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        font-size: 1.6em;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 5px 22px 5px 22px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 25%;
+        left: 55%;
+      }
+      #jamesBtn{
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.4);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-size: 1.2em;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.82;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 4px 20px 4px 20px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 82%;
+        left: 66%;
+      }
+      #philipBtn{
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.4);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-size: 1.2em;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.82;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 4px 20px 4px 20px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 32%;
+        left: 69%;
+      }
+      #mathewBtn{
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.4);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-size: 1.2em;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.82;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 4px 20px 4px 20px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 30%;
+        left: 79%;
+      }
+      #thaddaeusBtn{
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.6);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        font-size: 1.6em;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 8px 30px 8px 30px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 84%;
+        left: 81%;
+      }
+      #simonBtn{
+        border-radius: 30px;
+        box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
+        border: solid 1px #0a9393;
+        background-color: rgba(10, 147, 147, 0.4);
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        font-size: 1.2em;
+        font-weight: 500;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.82;
+        letter-spacing: normal;
+        text-align: center;
+        color: #ffffff;
+        padding: 4px 20px 4px 20px;
+
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 26%;
+        left: 90%;
+      }
+
+      #img-people img {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+        width: 25%;
       }
 
       #peopleInfo {
@@ -411,8 +650,7 @@ table {
         box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
         border: solid 1px #0a9393;
         background-color: rgba(10, 147, 147, 0.5);
-        width: 320px;
-        //height: 92px;
+        width: 450px;
         display: block;
         padding: 13px;
         position: absolute;
@@ -428,6 +666,7 @@ table {
           letter-spacing: normal;
           text-align: left;
           color: #77ebfc;
+          font-size: 1.6em;
         }
         p{
           font-weight: 500;
@@ -438,6 +677,7 @@ table {
           text-align: left;
           color: #ffffff;
           margin-top: 5px;
+          font-size: 1.2em;
         }
         .closeBtn {
           position: absolute;
@@ -777,6 +1017,14 @@ table {
     color: #ffffff;
   }
 
+}
+
+.notransition {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+  animation: none !important;
 }
 
 @keyframes ani {

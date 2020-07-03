@@ -1,11 +1,10 @@
 {
 	"uri":"ultima-cena.json",
 	"name":"La última cena (Leonardo da Vinci)",
-	"size":{
+	"physicalSize":{
 		"width": 1000,
 		"height": 560
 	},
 	"scale": 1,
-	"image":"./assets/ultima_cena.jpg",
-	"information":{}
+	"image":"./assets/ultima_cena.jpg"
 }

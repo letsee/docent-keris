@@ -4,25 +4,22 @@
 	<meta charset="UTF-8">
 	<title>Letsee AR Demo - Ultima Cena</title>
 	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport" />
-	<script src="./Letsee.0.9.14.js"></script>
-<!--	<script src="https://intra.letsee.io:10000/lib/letsee-0.9.20.js"></script>-->
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">
+<!--	<script src="https://auth.letsee.io/webar?key=5d77d81e1debaa58b278e63044bb9e2da4732fd95c58ff4a496d929fbeec0927"></script>-->
+	 <script src="https://intra.letsee.io:10000/lib/letsee-1.0.0.js"></script>
+<!--	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">-->
 	
 	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	
-<!--	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>-->
-	
-	<script src="./vendor/jquery.scrollbar.min.js"></script>
-	<link rel="stylesheet" href="./vendor/jquery.scrollbar.css">
+<!--	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>-->
+
+<!--	<script src="./vendor/jquery.scrollbar.min.js"></script>-->
+<!--	<link rel="stylesheet" href="./vendor/jquery.scrollbar.css">-->
 
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/comments.css">
-	<link rel="stylesheet" href="css/response.css">
-	<link rel="stylesheet" href="vendor/animation.css">
+	<link rel="stylesheet" href="css/animation.css">
 	
 	<script src="js/main.js"></script>
-
 	<style media="place" type="text/css">
 		#container {
 			-letsee-target: uri('ultima-cena.json');
@@ -32,6 +29,7 @@
 			border: 1px solid red;
 		}
 	</style>
+	
 </head>
 <body>
 
@@ -96,7 +94,7 @@
 		
 		<!-- Content tab-1 -->
 		<div id="content-1">
-			<img class="closeBtn" src="assets/7.svg" alt="" onclick="closeContent('#content-1')">
+			<img class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closeContent('#content-1')">
 			<h2>최후의 만찬 (The Last Supper, 1485 ~ 1497)</h2>
 			<p> '최후의 만찬'은 예수 그리스도가 십자가에 매달리기 전날 제자들과 함께 최후의 만찬의 정경을 그린 것이다.
 				밀라노의 산타마리아 델레 그라치에 수도원(Chiesa di Santa Maria delle Grazie)의 식당 벽에 그려져 있으며, 1980년 산타마리아 델레 그라치에 수도원과 함께 유네스코 세계문화유산으로 지정했다. 
@@ -109,18 +107,37 @@
 		
 		<!-- Content tab-2 -->
 		<div id="content-2">
-			<h1>최후의 만찬을 함께한 예수의 제자들은 누구?</h1>
+			<h1 id="tab2-title">최후의 만찬을 함께한 예수의 제자들은 누구?</h1>
 			
-			<button id="u1" onclick="showPeopleInfo('u1')">베드로</button>
-			<button id="u2" onclick="showPeopleInfo('u2')">큰 야고보</button>
+			<div id="peopleBtn">
+				<button id="bartholomaeusBtn" onclick="showPeopleInfo('bartholomaeusBtn')">바로톨로메오</button>
+				<button id="andreasBtn" onclick="showPeopleInfo('andreasBtn')">안드레아</button>
+				<button id="jacobusBtn" onclick="showPeopleInfo('jacobusBtn')">큰 야고보</button>
+				<button id="petrusBtn" onclick="showPeopleInfo('petrusBtn')">베드로</button>
+				<button id="judasBtn" onclick="showPeopleInfo('judasBtn')">유다</button>
+				<button id="jonnesBtn" onclick="showPeopleInfo('jonnesBtn')">요한</button>
+				<button id="jesusBtn" onclick="showPeopleInfo('jesusBtn')">예수</button>
+				<button id="thomasBtn" onclick="showPeopleInfo('thomasBtn')">토마스</button>
+				<button id="jamesBtn" onclick="showPeopleInfo('jamesBtn')">작은 야고보</button>
+				<button id="philipBtn" onclick="showPeopleInfo('philipBtn')">필립보</button>
+				<button id="mathewBtn" onclick="showPeopleInfo('mathewBtn')">마테오</button>
+				<button id="thaddaeusBtn" onclick="showPeopleInfo('thaddaeusBtn')">유대</button>
+				<button id="simonBtn" onclick="showPeopleInfo('simonBtn')">성 시몬</button>
+			</div>
+			
+			<div id="img-people">
+				<img id="manImage" src="assets/last-supper/01-bartholomaeus@3x.png" alt="">
+			</div>
 			
 			<div id="peopleInfo" style="display: none">
-				<img class="closeBtn" src="assets/7.svg" alt="" onclick="closePeopleInfo('u1')">
-				<h3>베드로</h3>
-				<p>
-					성질이 급한 베드로는 요한에게 배신자가 누구인지 물어보려는 듯 일어서고 있는데 베드로의 오른손에 식사 때 쓰는 칼을 쥔 채 앞에 있는 유다를 건드려 놀라게 하고 잇다.
+				<img id="closeManInfo" class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closePeopleInfo()">
+				<h3 id="man-name">바르톨로메오</h3>
+				<p id="man-info">
+					야고보 곁에 허리를 굽혀 예수님 쪽을 주시하고 있으며,
+					많이 생각하고 연구하는 스타일이다.
 				</p>
 			</div>
+			
 		</div>
 		
 		<!-- Content tab-3 -->
@@ -128,7 +145,6 @@
 			<div id="secretPanel">
 				<h1>명작의 탄생 그 안에 든 1%의 비밀은?</h1>
 				<div id="redPoint"></div>
-<!--				<img id="line" src="assets/line.svg" alt="">-->
 				<div class="wrap">
 					<svg version="1.1" id="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 2560 1443" style="enable-background:new 0 0 2560 1443;" xml:space="preserve">
 						<g class="linestart">
@@ -171,11 +187,10 @@
 				</div>
 				
 				<button id="vanishingPointBtn" onclick="showVanishingPointInfo()">원근법과 소실점</button>
-<!--				<div id="layer"></div>-->
 			</div>
 			
 			<div id="vanishingPointPanel" style="display: none">
-				<img class="closeBtn" src="assets/7.svg" alt="" onclick="closeContent('#vanishingPointPanel')">
+				<img class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closeContent('#vanishingPointPanel')">
 				<h3>원근법과 소실점</h3>
 				<p id="vanishingInfo">
 					레오나르도는  ‘모든 선이 모여드는 하나의 점’ 을 말하며,
@@ -197,7 +212,7 @@
 			<div id="notePanel">
 				<h1>최후의 만찬에 숨겨진 암호 코드가 있다?</h1>
 				<div class="note_area">
-					<img src="assets/note-code.gif" alt="">
+					<img id="nodeCode" src="assets/note-code.gif" alt="">
 				</div>
 				
 				<div class="btn_area">
@@ -209,7 +224,7 @@
 			</div>
 			
 			<div id="videoPanel" style="display: none">
-				<img class="closeBtn" src="assets/7.svg" alt="" onclick="closeContent('#videoPanel')">
+				<img class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closeContent('#videoPanel')">
 				<h3>작품 속 숨겨진 음악</h3>
 				<p id="videoInfo">
 					이탈리아 음악가 지오다니 마리아 팔라는 최후의 만찬 그림에서
@@ -235,11 +250,17 @@
 </div>
 
 <script type="text/javascript">
-
+ 
+	let myConfig = letsee.config;
+  const onLoaded = () => {
+    console.log('Letsee started!');
+    switchCamera();
+  };
+  
 	/**
 	 * Letsee Initialize function.
 	 */
-	function InitLetsee() {
+	/*function InitLetsee() {
 		let CURRENT_URI = null;
 		let currentTarget = null;
 		const world = new Object3D();
@@ -277,14 +298,22 @@
 				switchPage(0)
 			})
 		}
-  
-	}
+	}*/
 
+	const initDocent = () => {
+    // Default config
+    letsee.init(myConfig, onLoaded);
+    
+    letsee.eventManager.onTrackEnd(showCapture);
+    letsee.eventManager.onTrackStart(showMainPage);
+	};
+	
 	/**
 	 * When the document is loaded, letsee is initialized.
 	 */
 	$(document).ready(() => {
-		InitLetsee();
+		// InitLetsee();
+    initDocent();
     $('#main-content').hide();
     $('#night').hide();
 	});
@@ -293,6 +322,13 @@
     $('#tab-1').addClass('tab-active');
     switchTab(1);
   });
+
+  // For testing only. Switch to use Logitech camera.
+  function switchCamera() {
+    console.warn('SWITCH CAMERA');
+    let videoOption = myConfig.setVideoOption({deviceId: 'be86ec87a66696a2a5dd6573e1f4fc8825f7a02468f9df3b6e3bd9c419c632c1'});
+    letsee.videoManager.setVideoSource(videoOption);
+  }
 
 </script>
 </body>

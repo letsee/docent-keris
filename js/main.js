@@ -7,7 +7,7 @@ let spotlightheight = 64;
  * 0: Initial Page (Before Detecting)
  * 1: Main Page
  */
-function switchPage(num) {
+/*function switchPitage(num) {
   switch (num) {
       // Initial Page
     case 0: {
@@ -22,7 +22,16 @@ function switchPage(num) {
       break;
     }
   }
-}
+}*/
+
+const showCapture = () => {
+  $('#capture').css('display', 'block');
+};
+
+const showMainPage = () => {
+  $('#capture').css('display', 'none');
+  $('#footer').css('display', 'none');
+};
 
 function switchTab(num) {
   
@@ -31,12 +40,13 @@ function switchTab(num) {
   $('#btn-layerview').css('display', 'none');
   
   // hide main button
-  $('#layerviewBtn').hide();
+  $('#layerviewBtn').fadeOut("slow");
   
   // show main content for all tabs
   $('#main-content').show();
   
   switch (num) {
+    
     // Tab 1
     case 1: {
       $('#tab-1').addClass('tab-active');
@@ -45,6 +55,8 @@ function switchTab(num) {
       $('#tab-4').removeClass('tab-active');
       
       $('#content-1').show();
+      $('#content-1').css('animation', 'fadeInUp 0.5s');
+      
       $('#content-2').hide();
       $('#content-3').hide();
       $('#content-4').hide();
@@ -60,6 +72,14 @@ function switchTab(num) {
       $('#tab-4').removeClass('tab-active');
       
       $('#content-2').show();
+      $('#content-2').css('animation', 'fadeIn 1s');
+      
+      // hide all men
+      $('#img-people').hide();
+      // show all men buttons
+      $('#peopleBtn').show();
+      $('#peopleBtn').css('animation', 'fadeIn 1s');
+      
       $('#content-1').hide();
       $('#content-3').hide();
       $('#content-4').hide();
@@ -67,6 +87,7 @@ function switchTab(num) {
       break;
     }
     
+    // Tab 3
     case 3: {
       $('#tab-3').addClass('tab-active');
       $('#tab-1').removeClass('tab-active');
@@ -80,6 +101,12 @@ function switchTab(num) {
       $('#content-3').hide();
       $('#content-4').hide();
   
+      // reset spotlight guide
+      $('#centerPoint').hide();
+      $('#overlayGuide').show();
+      $('#spotLightBtn').show();
+      $('#night').addClass('notransition');
+  
       // show overlay for spotlight
       $('#overlay').show();
       $('#night').show();
@@ -91,6 +118,7 @@ function switchTab(num) {
       break;
     }
     
+    // Tab 4
     case 4: {
       $('#tab-4').addClass('tab-active');
       $('#tab-1').removeClass('tab-active');
@@ -101,15 +129,28 @@ function switchTab(num) {
       $('#content-2').hide();
       $('#content-3').hide();
       $('#content-4').show();
-      // $("#content-4").load();
+      $('#content-4').css('animation', 'fadeIn 1s');
+      $('#nodeCode').attr("src",'assets/note-code.gif'+"?a="+Math.random());
       
       break;
     }
   }
 }
 
+/**
+ * Close <div>content by id.
+ * @param id
+ */
 function closeContent(id) {
-  $(id).hide();
+  $(id).fadeOut("slow");
+  
+  if (id === '#content-1') {
+    $('#content-1').fadeOut("slow");
+    $('#tab-1').removeClass('tab-active');
+    $('#main-content').fadeOut("slow");
+    $('#main-title').show();
+    $('#layerviewBtn').show();
+  }
   
   if(id === '#vanishingPointPanel'){
     $('#secretPanel').show();
@@ -117,54 +158,91 @@ function closeContent(id) {
   
   if(id === '#videoPanel'){
     $('#notePanel').show();
+    $('#notePanel').css('animation', 'fadeIn 1s');
+    
+    // repeat GIF
+    $('#nodeCode').attr("src",'assets/note-code.gif'+"?a="+Math.random());
   }
 }
 
 function showVideoPanel() {
-  $('#notePanel').hide();
+  $('#notePanel').fadeOut("slow");
+  
   $('#videoPanel').show();
+  $('#videoPanel').css('animation', 'fadeInUp 0.5s');
 }
 
 function closePeopleInfo(_people) {
   
   // hide info
-  $('#peopleInfo').hide();
+  $('#peopleInfo').fadeOut("slow");
+  $('#img-people').fadeOut('slow');
   
   // show all people
-  $('#u1').show();
-  $('#u2').show();
-  
-  switch (_people) {
-    case 'u1':
-      break;
-    case 'u2':
-      break;
-  }
-  
+  $('#peopleBtn').show();
+  $('#peopleInfo').css('animation', 'fadeIn 1s');
 }
 
 function showPeopleInfo(_people) {
-
+  console.warn(_people);
+  
+  // hide all people
+  $('#peopleBtn').fadeOut("slow");
+  $('#tab2-title').fadeOut('slow');
+  
   // show info panel
   $('#peopleInfo').show();
+  $('#peopleInfo').css('animation', 'fadeIn 1s');
   
-  // hide people
-  $('#u1').hide();
-  $('#u2').hide();
+  // show men's images
+  $('#img-people').show();
+  $('#img-people').css('animation', 'fadeIn 1s');
   
   switch (_people) {
-    case 'u1':
+    case 'bartholomaeusBtn':
+      $("#img-people img").css({top: '60%', left: '12%', width: '25%'});
+      $('#peopleInfo').css({top: '37%', left: '45%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/01-bartholomaeus@3x.png');
+      $('#man-name').text('바르톨로메오');
+      $('#man-info').text('야고보 곁에 허리를 굽혀 예수님 쪽을 주시하고 있으며, 많이 생각하고 연구하는 스타일이다.');
+      
       break;
-    case 'u2':
+    case 'jacobusBtn':
+      $("#img-people img").css({top: '52%', left: '16%', width: '20%'});
+      $('#peopleInfo').css({top: '84%', left: '42%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/02-jacobus@3x.png');
+      $('#man-name').text('큰 야고보');
+      $('#man-info').text('안드레아의 어깨에 손을 얹고 있으며 성격은 남보다 앞서기보다는 보조 역할에 머문다.');
       break;
+    case 'andreasBtn':
+      $("#img-people img").css({top: '55%', left: '22%', width: '24%'});
+      $('#peopleInfo').css({top: '43%', left: '54.5%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/03-andreas@3x.png');
+      $('#man-name').text('안드레아');
+      $('#man-info').text('베드로의 동생이며, 꼼꼼히 살펴보는 사려 깊은 사람으로 친구를 잘 사귀어서 인도자라고도 불렸다.');
+      break;
+    case 'petrusBtn':
+      $("#img-people img").css({top: '60%', left: '30%', width: '30%'});
+      $('#peopleInfo').css({top: '40%', left: '65%'});
+  
+      $('#manImage').attr('src', 'assets/last-supper/04-petrus@3x.png');
+      $('#man-name').text('베드로');
+      $('#man-info').text('성질이 급한 베드로는 요한에게 배신자가 누구인지 물어보려는 듯 일어서고 있는데 베드로의 오른손에 식사 때 쓰는 칼을 쥔 채 앞에 있는 유다를 건드려 놀라게 하고 잇다.');
+      break;
+      
+      
+      
   }
 }
 
 function showVanishingPointInfo(){
   
-  $('#secretPanel').hide();
+  $('#secretPanel').fadeOut("slow");
   $('#vanishingPointPanel').show();
-  
+  $('#vanishingPointPanel').css('animation', 'fadeInUp 0.5s');
 }
 
 // Register touch event handlers
@@ -187,13 +265,14 @@ function process_touchmove(ev) {
   
   if (pageX >= screen.width/2 && pageY >= screen.height/2) {
     $('#centerPoint').show();
+    $('#centerPoint').css('animation', 'fadeIn 1s');
+    $('#night').removeClass('notransition');
     
     setTimeout((e) => {
-      $('#night').css('animation', 'fadeOut 2s');
+      $('#night').fadeOut("slow");
   
       $('#tab-header').show();
       $('#tab-header').css('animation', 'fadeInDown 1s');
-      $('#night').hide();
   
       $('#content-3').show();
       $('#content-3').css('animation', 'fadeIn 2s');
@@ -205,9 +284,9 @@ function process_touchmove(ev) {
 function process_touchstart(ev) {
   switch (ev.touches.length) {
     case 1:
-      console.log('touch start');
-      $('#overlayGuide').hide();
-      $('#spotLightBtn').hide();
+      console.warn('touch start');
+      $('#overlayGuide').fadeOut("slow");
+      $('#spotLightBtn').fadeOut("slow");
       break;
     case 2: break;
     case 3: break;
