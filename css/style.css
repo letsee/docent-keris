@@ -239,8 +239,8 @@ table {
   top: 50%;
 }
 #container #tab-header .tab-item-wrapper img {
-  left: 32%;
-  width: 25%;
+  left: 35%;
+  width: 17%;
 }
 #container #tab-header .tab-item-wrapper p {
   left: 63%;
@@ -400,7 +400,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 33%;
-  left: 27%;
+  left: 25%;
 }
 #container #main-content #content-2 #jacobusBtn {
   border-radius: 30px;
@@ -420,7 +420,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 80%;
-  left: 22%;
+  left: 20%;
 }
 #container #main-content #content-2 #petrusBtn {
   border-radius: 30px;
@@ -440,7 +440,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 29%;
-  left: 39%;
+  left: 36%;
 }
 #container #main-content #content-2 #judasBtn {
   border-radius: 30px;
@@ -460,7 +460,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 87%;
-  left: 35%;
+  left: 34%;
 }
 #container #main-content #content-2 #jonnesBtn {
   border-radius: 30px;
@@ -480,7 +480,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 44%;
-  left: 44%;
+  left: 42%;
 }
 #container #main-content #content-2 #jesusBtn {
   border-radius: 30px;
@@ -519,8 +519,8 @@ table {
   padding: 5px 22px 5px 22px;
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 25%;
-  left: 55%;
+  top: 29%;
+  left: 55.5%;
 }
 #container #main-content #content-2 #jamesBtn {
   border-radius: 30px;
@@ -540,7 +540,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 82%;
-  left: 66%;
+  left: 65%;
 }
 #container #main-content #content-2 #philipBtn {
   border-radius: 30px;
@@ -560,7 +560,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 32%;
-  left: 69%;
+  left: 68.5%;
 }
 #container #main-content #content-2 #mathewBtn {
   border-radius: 30px;
@@ -600,7 +600,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 84%;
-  left: 81%;
+  left: 83%;
 }
 #container #main-content #content-2 #simonBtn {
   border-radius: 30px;
@@ -619,7 +619,98 @@ table {
   padding: 4px 20px 4px 20px;
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 26%;
+  top: 31%;
+  left: 89%;
+}
+#container #main-content #content-2 #l0 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 62%;
+  left: 50.5%;
+}
+#container #main-content #content-2 #l1 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 46.5%;
+  left: 12%;
+}
+#container #main-content #content-2 #l2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 68%;
+  left: 20%;
+}
+#container #main-content #content-2 #l3 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 43%;
+  left: 24%;
+}
+#container #main-content #content-2 #l4 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 44%;
+  left: 35%;
+}
+#container #main-content #content-2 #l5 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 72%;
+  left: 33%;
+}
+#container #main-content #content-2 #l6 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 54%;
+  left: 41%;
+}
+#container #main-content #content-2 #l7 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 5%;
+  top: 69.5%;
+  left: 64%;
+}
+#container #main-content #content-2 #l8 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 6%;
+  top: 41.5%;
+  left: 58%;
+}
+#container #main-content #content-2 #l9 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 43%;
+  left: 68%;
+}
+#container #main-content #content-2 #l10 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 40%;
+  left: 80%;
+}
+#container #main-content #content-2 #l11 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 70.5%;
+  left: 84%;
+}
+#container #main-content #content-2 #l12 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 42%;
   left: 90%;
 }
 #container #main-content #content-2 #img-people img {
@@ -1035,6 +1126,7 @@ table {
   height: 100px;
   z-index: 10;
   text-align: center;
+  display: block;
 }
 #footer #footer-wrapper {
   z-index: 20;
@@ -1045,13 +1137,13 @@ table {
 #footer #logo {
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 35%;
+  left: 43%;
   top: 50%;
 }
 #footer #copyright {
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 60%;
+  left: 56%;
   top: 50%;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   font-size: 12px;

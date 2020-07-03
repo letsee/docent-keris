@@ -32,6 +32,17 @@
 			#detect {
 				display: block !important;
 			}
+			#footer {
+				display: block !important;
+			}
+			#logo {
+				left: 36% !important;
+				top: 50% !important;
+			}
+			#copyright{
+				left: 62% !important;
+				top: 50% !important;
+			}
 			#night{
 				display: none !important;
 			}
@@ -133,22 +144,47 @@
 
 			<div id="peopleBtn">
 				<button id="bartholomaeusBtn" onclick="showPeopleInfo('bartholomaeusBtn')">바로톨로메오</button>
+				<img id="l1" src="assets/lines/01-line.svg" alt="">
+				
 				<button id="andreasBtn" onclick="showPeopleInfo('andreasBtn')">안드레아</button>
+				<img id="l3" src="assets/lines/03-line.svg" alt="">
+				
 				<button id="jacobusBtn" onclick="showPeopleInfo('jacobusBtn')">큰 야고보</button>
+				<img id="l2" src="assets/lines/02-line.svg" alt="">
+				
 				<button id="petrusBtn" onclick="showPeopleInfo('petrusBtn')">베드로</button>
+				<img id="l4" src="assets/lines/04-line.svg" alt="">
+				
 				<button id="judasBtn" onclick="showPeopleInfo('judasBtn')">유다</button>
+				<img id="l5" src="assets/lines/05-line.svg" alt="">
+				
 				<button id="jonnesBtn" onclick="showPeopleInfo('jonnesBtn')">요한</button>
+				<img id="l6" src="assets/lines/06-line.svg" alt="">
+				
 				<button id="jesusBtn" onclick="showPeopleInfo('jesusBtn')">예수</button>
+				<img id="l0" src="assets/lines/00-line.svg" alt="">
+				
 				<button id="thomasBtn" onclick="showPeopleInfo('thomasBtn')">토마스</button>
+				<img id="l8" src="assets/lines/08-line.svg" alt="">
+				
 				<button id="jamesBtn" onclick="showPeopleInfo('jamesBtn')">작은 야고보</button>
+				<img id="l7" src="assets/lines/07-line.svg" alt="">
+				
 				<button id="philipBtn" onclick="showPeopleInfo('philipBtn')">필립보</button>
+				<img id="l9" src="assets/lines/09-line.svg" alt="">
+				
 				<button id="mathewBtn" onclick="showPeopleInfo('mathewBtn')">마테오</button>
+				<img id="l10" src="assets/lines/10-line.svg" alt="">
+				
 				<button id="thaddaeusBtn" onclick="showPeopleInfo('thaddaeusBtn')">유대</button>
+				<img id="l11" src="assets/lines/11-line.svg" alt="">
+				
 				<button id="simonBtn" onclick="showPeopleInfo('simonBtn')">성 시몬</button>
+				<img id="l12" src="assets/lines/12-line.svg" alt="">
 			</div>
 
 			<div id="img-people">
-				<img id="manImage" src="assets/last-supper/01-bartholomaeus@3x.png" alt="">
+				<img id="manImage" src="" alt="">
 			</div>
 
 			<div id="peopleInfo" style="display: none">
@@ -281,7 +317,7 @@
 	/**
 	 * Letsee Initialize function.
 	 */
-	function InitLetsee() {
+	function initLetsee() {
 		let CURRENT_URI = null;
 		let currentTarget = null;
 		const world = new Object3D();
@@ -320,7 +356,7 @@
 			app.addEventListener('trackend', e => {
 				initWorld(e);
 				
-				// Only show the 'capture' screen in landscape
+				// Only show the 'capture' screen in landscape mode
 				// For portrait mode, 'capture' screen is hidden and controlled by media queries
 				if (screen.width > screen.height) {
           showCapture();
@@ -333,7 +369,7 @@
 	 * When the document is loaded, letsee is initialized.
 	 */
 	$(document).ready(() => {
-		InitLetsee();
+    initLetsee();
     $('#main-content').hide();
     $('#night').hide();
 	});

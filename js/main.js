@@ -2,30 +2,9 @@
 let spotlightwidth = 64;
 let spotlightheight = 64;
 
-/**
- * Change page function
- * 0: Initial Page (Before Detecting)
- * 1: Main Page
- */
-/*function switchPitage(num) {
-  switch (num) {
-      // Initial Page
-    case 0: {
-      $('#capture').css('display', 'block');
-      break;
-    }
-      
-      // Main Page
-    case 1: {
-      $('#capture').css('display', 'none');
-      $('#footer').css('display', 'none');
-      break;
-    }
-  }
-}*/
-
 const showCapture = () => {
   $('#capture').css('display', 'block');
+  $('#footer').css('display', 'block');
 };
 
 const showMainPage = () => {

@@ -245,8 +245,8 @@ table {
       top: 50%;
     }
     .tab-item-wrapper img {
-      left: 32%;
-      width: 25%;
+      left: 35%;
+      width: 17%;
     }
     .tab-item-wrapper p {
       left: 63%;
@@ -428,7 +428,7 @@ table {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 33%;
-        left: 27%;
+        left: 25%;
       }
       #jacobusBtn {
         border-radius: 30px;
@@ -449,7 +449,7 @@ table {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 80%;
-        left: 22%;
+        left: 20%;
       }
       #petrusBtn{
         border-radius: 30px;
@@ -470,7 +470,7 @@ table {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 29%;
-        left: 39%;
+        left: 36%;
       }
       #judasBtn{
         border-radius: 30px;
@@ -491,7 +491,7 @@ table {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 87%;
-        left: 35%;
+        left: 34%;
       }
       #jonnesBtn{
         border-radius: 30px;
@@ -512,7 +512,7 @@ table {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 44%;
-        left: 44%;
+        left: 42%;
       }
       #jesusBtn{
         border-radius: 30px;
@@ -553,8 +553,8 @@ table {
 
         position: absolute;
         transform: translate(-50%, -50%);
-        top: 25%;
-        left: 55%;
+        top: 29%;
+        left: 55.5%;
       }
       #jamesBtn{
         border-radius: 30px;
@@ -575,7 +575,7 @@ table {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 82%;
-        left: 66%;
+        left: 65%;
       }
       #philipBtn{
         border-radius: 30px;
@@ -596,7 +596,7 @@ table {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 32%;
-        left: 69%;
+        left: 68.5%;
       }
       #mathewBtn{
         border-radius: 30px;
@@ -638,7 +638,7 @@ table {
         position: absolute;
         transform: translate(-50%, -50%);
         top: 84%;
-        left: 81%;
+        left: 83%;
       }
       #simonBtn{
         border-radius: 30px;
@@ -658,7 +658,99 @@ table {
 
         position: absolute;
         transform: translate(-50%, -50%);
-        top: 26%;
+        top: 31%;
+        left: 89%;
+      }
+
+      #l0{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 3%;
+        top: 62%;
+        left: 50.5%;
+      }
+      #l1{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 3%;
+        top: 46.5%;
+        left: 12%;
+      }
+      #l2{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 4%;
+        top: 68%;
+        left: 20%;
+      }
+      #l3{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 4%;
+        top: 43%;
+        left: 24%;
+      }
+      #l4{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 4%;
+        top: 44%;
+        left: 35%;
+      }
+      #l5{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 4%;
+        top: 72%;
+        left: 33%;
+      }
+      #l6{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 4%;
+        top: 54%;
+        left: 41%;
+      }
+      #l7{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 5%;
+        top: 69.5%;
+        left: 64%;
+      }
+      #l8{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 6%;
+        top: 41.5%;
+        left: 58%;
+      }
+      #l9{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 4%;
+        top: 43%;
+        left: 68%;
+      }
+      #l10{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 3%;
+        top: 40%;
+        left: 80%;
+      }
+      #l11{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 3%;
+        top: 70.5%;
+        left: 84%;
+      }
+      #l12{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 3%;
+        top: 42%;
         left: 90%;
       }
 
@@ -669,7 +761,6 @@ table {
         left: 50%;
         width: 25%;
       }
-
       #peopleInfo {
         border-radius: 16px;
         box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
@@ -1003,6 +1094,7 @@ table {
   height: 100px;
   z-index: 10;
   text-align: center;
+  display: block;
   //border: 1px solid red;
 
   #footer-wrapper{
@@ -1017,14 +1109,18 @@ table {
     //box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.5);
     position: absolute;
     transform: translate(-50%, -50%);
-    left: 35%;
+    //left: 35%;
+    //top: 50%;
+    left: 43%;
     top: 50%;
   }
 
   #copyright {
     position: absolute;
     transform: translate(-50%, -50%);
-    left: 60%;
+    //left: 60%;
+    //top: 50%;
+    left: 56%;
     top: 50%;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     //font-family: NotoSansKR;
