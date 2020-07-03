@@ -14,25 +14,25 @@ const normalizePort = (val) => {
     // named pipe
     return val;
   }
-  
+
   if (parsed >= 0) {
     // port number
     return parsed;
   }
 };
 
-const port = normalizePort(process.env.PORT || '5000');
+const port = normalizePort(process.env.PORT || '5001');
 const app = express();
 app.set('port', port);
 app.use(cors());
-app.use(express.static(path.join(__dirname, '.')));
+app.use('/docent', express.static(path.join(__dirname, '.')));
 // app.use(bodyParser.json());
 /**
  * final catch-all route to index.html defined last
  * 마지막으로 정의 된 index.html에 대한 경로를 저장하여 캐싱
  * 아래 코드가 있어야 refresh에서 동작할수 있음.
  */
-app.get('*', (req, res) => {
+app.get('/docent', (req, res) => {
   res.sendFile(path.resolve(__dirname ,'index.html'));
 });
 
@@ -55,11 +55,11 @@ const onError = (error) => {
   if (error.syscall !== 'listen') {
     throw error;
   }
-  
+
   const bind = typeof port === 'string'
       ? `Pipe ${port}`
       : `Port ${port}`;
-  
+
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
@@ -86,7 +86,7 @@ const onListening = () => {
       ? `pipe ${addr}`
       : `port ${addr.port}`;
   // debug(`Listening on ${bind}`);
-  
+
   console.log(`Listening on ${bind}`);
 };
 
