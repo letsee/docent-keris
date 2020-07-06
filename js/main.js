@@ -315,7 +315,7 @@ function process_touchmove(ev) {
   console.warn('==============');
   
   
-  if (pageX >= screen.width/2 && pageY >= screen.height/2) {
+  if (pageX >= window.innerWidth / 2 && pageY >= window.innerHeight / 2) {
     // $('#centerPoint').show();
     // $('#centerPoint').css('animation', 'fadeIn 1s');
     $('#night').removeClass('notransition');
