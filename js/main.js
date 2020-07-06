@@ -308,9 +308,15 @@ function process_touchmove(ev) {
   let bg = "-webkit-radial-gradient(" + pageX + "px " + pageY + "px, " + spotlightwidth + "px " + spotlightheight + "px, transparent 50%, #000022)";
   $('#night').css('backgroundImage', bg);
   
+  console.warn(ev);
   console.warn(`pageX: ${pageX} /// pageY: ${pageY}`);
   console.warn(`screenX: ${screen.width/2} /// screenY: ${screen.height/2}`);
   console.warn('==============');
+  
+  if (pageX === screen.width/2 && pageY === screen.height/2) {
+    alert('center!');
+  }
+  
   
   if (pageX >= screen.width/2 && pageY >= screen.height/2) {
     // $('#centerPoint').show();
