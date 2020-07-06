@@ -179,9 +179,9 @@ html, body {margin: 0; height: 100%; overflow: hidden}
   .blue_btn {
     box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
     display: inline-block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
+    -moz-border-radius: 5em;
+    -webkit-border-radius: 5em;
+    border-radius: 5em;
     position: relative;
     overflow: hidden;
 
