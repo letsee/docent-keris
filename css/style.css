@@ -1143,7 +1143,7 @@ html, body {
 #footer #logo {
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 43%;
+  left: 41%;
   top: 50%;
 }
 #footer #copyright {
