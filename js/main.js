@@ -81,7 +81,7 @@ function switchTab(num) {
       $('#content-4').hide();
   
       // reset spotlight guide
-      $('#centerPoint').hide();
+      // $('#centerPoint').hide();
       $('#overlayGuide').show();
       $('#spotLightBtn').show();
       $('#night').addClass('notransition');
@@ -308,12 +308,11 @@ function process_touchmove(ev) {
   let bg = "-webkit-radial-gradient(" + pageX + "px " + pageY + "px, " + spotlightwidth + "px " + spotlightheight + "px, transparent 50%, #000022)";
   $('#night').css('backgroundImage', bg);
   
-  // console.log(`pageX: ${pageX} /// pageY: ${pageY}`);
-  // center: pageX: 564.30078125 /// pageY: 370.0078125
+  console.warn(`pageX: ${pageX} /// pageY: ${pageY}`);
   
   if (pageX >= screen.width/2 && pageY >= screen.height/2) {
-    $('#centerPoint').show();
-    $('#centerPoint').css('animation', 'fadeIn 1s');
+    // $('#centerPoint').show();
+    // $('#centerPoint').css('animation', 'fadeIn 1s');
     $('#night').removeClass('notransition');
     
     setTimeout((e) => {
