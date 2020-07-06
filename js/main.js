@@ -81,7 +81,7 @@ function switchTab(num) {
       $('#content-4').hide();
   
       // reset spotlight guide
-      // $('#centerPoint').hide();
+      $('#centerPoint').hide();
       $('#overlayGuide').show();
       $('#spotLightBtn').show();
       $('#night').addClass('notransition');
@@ -308,16 +308,15 @@ function process_touchmove(ev) {
   let bg = "-webkit-radial-gradient(" + pageX + "px " + pageY + "px, " + spotlightwidth + "px " + spotlightheight + "px, transparent 50%, #000022)";
   $('#night').css('backgroundImage', bg);
   
-  console.warn(ev);
-  console.warn(`pageX: ${pageX} /// pageY: ${pageY}`);
-  console.warn(`screenX: ${screen.width/2} /// screenY: ${screen.height/2}`);
-  console.warn(`windowX: ${ window.innerWidth / 2} /// windowY: ${window.innerHeight / 2}`);
-  console.warn('==============');
-  
+  // console.warn(ev);
+  // console.warn(`pageX: ${pageX} /// pageY: ${pageY}`);
+  // console.warn(`screenX: ${screen.width/2} /// screenY: ${screen.height/2}`);
+  // console.warn(`windowX: ${ window.innerWidth / 2} /// windowY: ${window.innerHeight / 2}`);
+  // console.warn('==============');
   
   if (pageX >= window.innerWidth / 2 && pageY >= window.innerHeight / 2) {
-    // $('#centerPoint').show();
-    // $('#centerPoint').css('animation', 'fadeIn 1s');
+    $('#centerPoint').show();
+    $('#centerPoint').css('animation', 'fadeIn 1s');
     $('#night').removeClass('notransition');
     
     setTimeout((e) => {
