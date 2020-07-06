@@ -309,6 +309,7 @@ function process_touchmove(ev) {
   $('#night').css('backgroundImage', bg);
   
   console.warn(`pageX: ${pageX} /// pageY: ${pageY}`);
+  console.warn(`screenX: ${screen.width/2} /// screenY: ${screen.height/2}`);
   
   if (pageX >= screen.width/2 && pageY >= screen.height/2) {
     // $('#centerPoint').show();
