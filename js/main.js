@@ -12,39 +12,65 @@ const showMainPage = () => {
   $('#footer').css('display', 'none');
 };
 
+function showFirstTab() {
+  console.warn('showFirstTab');
+  
+  $('#tab-1').addClass('tab-active');
+  $('#tab-2').removeClass('tab-active');
+  $('#tab-3').removeClass('tab-active');
+  $('#tab-4').removeClass('tab-active');
+  
+  $('#main-content').show();
+  $('#content-1').show();
+  $('#content-1').css('animation', 'fadeInUp 0.5s');
+  
+  $('#main-title').fadeOut("slow");
+  $('#layerviewBtn').fadeOut("slow");
+  
+  $('#content-2').hide();
+  $('#content-3').hide();
+  $('#content-4').hide();
+}
+
 function switchTab(num) {
   
   // hide title
   $('#main-title').css('display', 'none');
   $('#btn-layerview').css('display', 'none');
   
-  // hide main button
-  $('#layerviewBtn').fadeOut("slow");
-  
   // show main content for all tabs
   $('#main-content').show();
   
   switch (num) {
     
-    // Tab 1
+    // Tab 1 => Open the main page
     case 1: {
-      $('#tab-1').addClass('tab-active');
+      $('#tab-1').removeClass('tab-active');
       $('#tab-2').removeClass('tab-active');
       $('#tab-3').removeClass('tab-active');
       $('#tab-4').removeClass('tab-active');
       
-      $('#content-1').show();
+      /*$('#content-1').show();
       $('#content-1').css('animation', 'fadeInUp 0.5s');
-      
+
       $('#content-2').hide();
       $('#content-3').hide();
-      $('#content-4').hide();
+      $('#content-4').hide();*/
+  
+      $('#main-content').hide();
+      $('#main-title').show();
+      $('#main-title').css('animation', 'fadeIn 1s');
+      $('#layerviewBtn').show();
+      $('#layerviewBtn').css('animation', 'fadeIn 1s');
       
       break;
     }
     
     // Tab 2
     case 2: {
+      // hide main button
+      $('#layerviewBtn').hide();
+      
       $('#tab-2').addClass('tab-active');
       $('#tab-1').removeClass('tab-active');
       $('#tab-3').removeClass('tab-active');
@@ -68,6 +94,9 @@ function switchTab(num) {
     
     // Tab 3
     case 3: {
+      // hide main button
+      $('#layerviewBtn').hide();
+      
       $('#tab-3').addClass('tab-active');
       $('#tab-1').removeClass('tab-active');
       $('#tab-2').removeClass('tab-active');
@@ -99,6 +128,9 @@ function switchTab(num) {
     
     // Tab 4
     case 4: {
+      // hide main button
+      $('#layerviewBtn').hide();
+      
       $('#tab-4').addClass('tab-active');
       $('#tab-1').removeClass('tab-active');
       $('#tab-2').removeClass('tab-active');
