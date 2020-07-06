@@ -71,8 +71,8 @@ and (max-device-width: 736px)
 and (-webkit-min-device-pixel-ratio: 3)
 and (orientation: portrait) {
 	#detect_img {
-		width: 27%;
-		top: 40%;
+		width: 27% !important;
+		top: 40% !important;
 	}
 	#detect_msg {
 	
