@@ -310,6 +310,7 @@ function process_touchmove(ev) {
   
   console.warn(`pageX: ${pageX} /// pageY: ${pageY}`);
   console.warn(`screenX: ${screen.width/2} /// screenY: ${screen.height/2}`);
+  console.warn('==============');
   
   if (pageX >= screen.width/2 && pageY >= screen.height/2) {
     // $('#centerPoint').show();
@@ -324,7 +325,7 @@ function process_touchmove(ev) {
   
       $('#content-3').show();
       $('#content-3').css('animation', 'fadeIn 2s');
-    }, 500);
+    }, 100);
   }
 }
 
