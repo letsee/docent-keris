@@ -142,22 +142,6 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     left: 50%;
     width: 35%;
   }
-
-  #spotLightBtn {
-    border: solid 1.5px #00deff;
-    border-radius: 34px;
-    background-color: rgba(0, 235, 255, 0.5);
-    padding: 0.5em 1.2em 0.6em 1.2em;
-    font-size: 1.5em;
-    font-weight: bold;
-    font-stretch: normal;
-    font-style: normal;
-    letter-spacing: normal;
-    text-align: center;
-    color: #ffffff;
-    opacity: 0.9;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  }
   #centerPoint {
     position: absolute;
     display: block;
@@ -165,6 +149,21 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     top: 50%;
     left: 50%;
   }
+}
+#spotLightBtn {
+  border: solid 1.5px #00deff;
+  border-radius: 34px;
+  background-color: rgba(0, 235, 255, 0.5);
+  padding: 0.5em 1.2em 0.6em 1.2em;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  text-align: center;
+  color: #ffffff;
+  opacity: 0.9;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .btn_area {
@@ -248,7 +247,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
     }
     .tab-item-wrapper img {
       left: 35%;
-      width: 17%;
+      width: 15%;
     }
     .tab-item-wrapper p {
       left: 63%;
@@ -668,7 +667,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         position: absolute;
         transform: translate(-50%, -50%);
         width: 3%;
-        top: 62%;
+        top: 62.5%;
         left: 50.5%;
       }
       #l1{
@@ -703,7 +702,7 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         position: absolute;
         transform: translate(-50%, -50%);
         width: 4%;
-        top: 72%;
+        top: 72.5%;
         left: 33%;
       }
       #l6{
@@ -738,14 +737,14 @@ html, body {margin: 0; height: 100%; overflow: hidden}
         position: absolute;
         transform: translate(-50%, -50%);
         width: 3%;
-        top: 40%;
+        top: 39.5%;
         left: 80%;
       }
       #l11{
         position: absolute;
         transform: translate(-50%, -50%);
         width: 3%;
-        top: 70.5%;
+        top: 71%;
         left: 84%;
       }
       #l12{

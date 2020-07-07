@@ -148,7 +148,15 @@ html, body {
   left: 50%;
   width: 35%;
 }
-#night #spotLightBtn {
+#night #centerPoint {
+  position: absolute;
+  display: block;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+
+#spotLightBtn {
   border: solid 1.5px #00deff;
   border-radius: 34px;
   background-color: rgba(0, 235, 255, 0.5);
@@ -162,13 +170,6 @@ html, body {
   color: #ffffff;
   opacity: 0.9;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
-#night #centerPoint {
-  position: absolute;
-  display: block;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%;
 }
 
 .btn_area {
@@ -246,7 +247,7 @@ html, body {
 }
 #container #tab-header .tab-item-wrapper img {
   left: 35%;
-  width: 17%;
+  width: 15%;
 }
 #container #tab-header .tab-item-wrapper p {
   left: 63%;
@@ -632,7 +633,7 @@ html, body {
   position: absolute;
   transform: translate(-50%, -50%);
   width: 3%;
-  top: 62%;
+  top: 62.5%;
   left: 50.5%;
 }
 #container #main-content #content-2 #l1 {
@@ -667,7 +668,7 @@ html, body {
   position: absolute;
   transform: translate(-50%, -50%);
   width: 4%;
-  top: 72%;
+  top: 72.5%;
   left: 33%;
 }
 #container #main-content #content-2 #l6 {
@@ -702,14 +703,14 @@ html, body {
   position: absolute;
   transform: translate(-50%, -50%);
   width: 3%;
-  top: 40%;
+  top: 39.5%;
   left: 80%;
 }
 #container #main-content #content-2 #l11 {
   position: absolute;
   transform: translate(-50%, -50%);
   width: 3%;
-  top: 70.5%;
+  top: 71%;
   left: 84%;
 }
 #container #main-content #content-2 #l12 {

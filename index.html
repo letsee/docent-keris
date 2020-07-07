@@ -101,12 +101,11 @@
 <div id="night">
 	<img id="overlayGuide" src="assets/hands.svg" alt="">
 	<img id="centerPoint" src="assets/point-red.svg" alt="" style="display: block">
-	
-	<div class="btn_area">
-		<div class="blue_btn">
-			<span class="light"></span>
-			<button id="spotLightBtn">자동 비추기</button>
-		</div>
+</div>
+<div class="btn_area">
+	<div class="blue_btn">
+		<span class="light"></span>
+		<button id="spotLightBtn" onclick="callAutoLight()">자동 비추기</button>
 	</div>
 </div>
 
@@ -145,7 +144,7 @@
 		<p id="author">(레오나르도 다빈치, 1452∼1519)</p>
 	</div>
 	
-	<div class="btn_area">
+	<div class="btn_area" style="top: 83% !important;">
 		<div class="blue_btn">
 			<span class="light"></span>
 			<button id="layerviewBtn">작품 소개 보기</button>
@@ -402,6 +401,7 @@
     initLetsee();
     $('#main-content').hide();
     $('#night').hide();
+    $('#spotLightBtn').hide();
 	});
 
   $('#layerviewBtn').click((e) => {
