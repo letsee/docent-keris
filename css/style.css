@@ -804,7 +804,7 @@ html, body {
 #container #main-content #content-3 .wrap .st0 {
   fill: none;
   stroke-width: 2px;
-  stroke: yellow;
+  stroke: #00deff;
 }
 #container #main-content #content-3 .wrap #line1 {
   stroke-dasharray: 1443;

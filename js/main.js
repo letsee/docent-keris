@@ -1,4 +1,3 @@
-
 let spotlightwidth = 64;
 let spotlightheight = 64;
 
@@ -20,16 +19,16 @@ function showFirstTab() {
   $('#tab-3').removeClass('tab-active');
   $('#tab-4').removeClass('tab-active');
   
-  $('#main-content').show();
-  $('#content-1').show();
+  $('#main-content').css('display', 'block');
+  $('#content-1').css('display', 'block');
   $('#content-1').css('animation', 'fadeInUp 0.5s');
   
   $('#main-title').fadeOut("slow");
   $('#layerviewBtn').fadeOut("slow");
   
-  $('#content-2').hide();
-  $('#content-3').hide();
-  $('#content-4').hide();
+  $('#content-2').css('display', 'none');
+  $('#content-3').css('display', 'none');
+  $('#content-4').css('display', 'none');
 }
 
 function switchTab(num) {
@@ -39,7 +38,7 @@ function switchTab(num) {
   $('#btn-layerview').css('display', 'none');
   
   // show main content for all tabs
-  $('#main-content').show();
+  $('#main-content').css('display', 'block');
   
   switch (num) {
     
@@ -57,10 +56,10 @@ function switchTab(num) {
       $('#content-3').hide();
       $('#content-4').hide();*/
   
-      $('#main-content').hide();
-      $('#main-title').show();
+      $('#main-content').css('display', 'none');
+      $('#main-title').css('display', 'block');
       $('#main-title').css('animation', 'fadeIn 1s');
-      $('#layerviewBtn').show();
+      $('#layerviewBtn').css('display', 'block');
       $('#layerviewBtn').css('animation', 'fadeIn 1s');
       
       break;
@@ -69,25 +68,25 @@ function switchTab(num) {
     // Tab 2
     case 2: {
       // hide main button
-      $('#layerviewBtn').hide();
+      $('#layerviewBtn').css('display', 'none');
       
       $('#tab-2').addClass('tab-active');
       $('#tab-1').removeClass('tab-active');
       $('#tab-3').removeClass('tab-active');
       $('#tab-4').removeClass('tab-active');
       
-      $('#content-2').show();
+      $('#content-2').css('display', 'block');
       $('#content-2').css('animation', 'fadeIn 1s');
       
       // hide all men
-      $('#img-people').hide();
+      $('#img-people').css('display', 'none');
       // show all men buttons
-      $('#peopleBtn').show();
+      $('#peopleBtn').css('display', 'block');
       $('#peopleBtn').css('animation', 'fadeIn 1s');
       
-      $('#content-1').hide();
-      $('#content-3').hide();
-      $('#content-4').hide();
+      $('#content-1').css('display', 'none');
+      $('#content-3').css('display', 'none');
+      $('#content-4').css('display', 'none');
       
       break;
     }
@@ -95,7 +94,7 @@ function switchTab(num) {
     // Tab 3
     case 3: {
       // hide main button
-      $('#layerviewBtn').hide();
+      $('#layerviewBtn').css('display', 'none');
       
       $('#tab-3').addClass('tab-active');
       $('#tab-1').removeClass('tab-active');
@@ -103,21 +102,23 @@ function switchTab(num) {
       $('#tab-4').removeClass('tab-active');
   
       // hide all
-      $('#tab-header').hide();
-      $('#content-1').hide();
-      $('#content-2').hide();
-      $('#content-3').hide();
-      $('#content-4').hide();
+      $('#tab-header').css('display', 'none');
+      $('#content-1').css('display', 'none');
+      $('#content-2').css('display', 'none');
+      $('#content-4').css('display', 'none');
   
       // reset spotlight guide
-      $('#centerPoint').hide();
-      $('#overlayGuide').show();
-      $('#spotLightBtn').show();
+      $('#centerPoint').css('display', 'none');
+      $('#secretPanel').css('display', 'none');
+      
+      $('#overlayGuide').css('display', 'block');
+      $('#spotLightBtn').css('display', 'block');
       $('#night').addClass('notransition');
   
       // show overlay for spotlight
-      $('#overlay').show();
-      $('#night').show();
+      $('#overlay').css('display', 'block');
+      $('#night').css('display', 'block');
+      
       let bg = "-webkit-radial-gradient(38% 50%, 64px 64px, transparent 50%, rgb(0, 0, 34))";
       $('#night').css('backgroundImage', bg);
   
@@ -129,17 +130,17 @@ function switchTab(num) {
     // Tab 4
     case 4: {
       // hide main button
-      $('#layerviewBtn').hide();
+      $('#layerviewBtn').css('display', 'none');
       
       $('#tab-4').addClass('tab-active');
       $('#tab-1').removeClass('tab-active');
       $('#tab-2').removeClass('tab-active');
       $('#tab-3').removeClass('tab-active');
       
-      $('#content-1').hide();
-      $('#content-2').hide();
-      $('#content-3').hide();
-      $('#content-4').show();
+      $('#content-1').css('display', 'none');
+      $('#content-2').css('display', 'none');
+      $('#content-3').css('display', 'none');
+      $('#content-4').css('display', 'block');
       $('#content-4').css('animation', 'fadeIn 1s');
       $('#nodeCode').attr("src",'assets/note-code.gif'+"?a="+Math.random());
       
@@ -153,22 +154,23 @@ function switchTab(num) {
  * @param id
  */
 function closeContent(id) {
-  $(id).fadeOut("slow");
+  // $(id).fadeOut("slow");
+  $(id).css('display', 'none');
   
   if (id === '#content-1') {
     $('#content-1').fadeOut("slow");
     $('#tab-1').removeClass('tab-active');
     $('#main-content').fadeOut("slow");
-    $('#main-title').show();
-    $('#layerviewBtn').show();
+    $('#main-title').css('display', 'block');
+    $('#layerviewBtn').css('display', 'block');
   }
   
   if(id === '#vanishingPointPanel'){
-    $('#secretPanel').show();
+    $('#secretPanel').css('display', 'block');
   }
   
   if(id === '#videoPanel'){
-    $('#notePanel').show();
+    $('#notePanel').css('display', 'block');
     $('#notePanel').css('animation', 'fadeIn 1s');
     
     // repeat GIF
@@ -179,7 +181,7 @@ function closeContent(id) {
 function showVideoPanel() {
   $('#notePanel').fadeOut("slow");
   
-  $('#videoPanel').show();
+  $('#videoPanel').css('display', 'block');
   $('#videoPanel').css('animation', 'fadeInUp 0.5s');
 }
 
@@ -190,7 +192,7 @@ function closePeopleInfo(_people) {
   $('#img-people').fadeOut('slow');
   
   // show all people
-  $('#peopleBtn').show();
+  $('#peopleBtn').css('display', 'block');
   $('#peopleInfo').css('animation', 'fadeIn 1s');
 }
 
@@ -202,11 +204,11 @@ function showPeopleInfo(_people) {
   $('#tab2-title').fadeOut('slow');
   
   // show info panel
-  $('#peopleInfo').show();
+  $('#peopleInfo').css('display', 'block');
   $('#peopleInfo').css('animation', 'fadeIn 1s');
   
   // show men's images
-  $('#img-people').show();
+  $('#img-people').css('display', 'block');
   $('#img-people').css('animation', 'fadeIn 1s');
   
   switch (_people) {
@@ -242,7 +244,7 @@ function showPeopleInfo(_people) {
   
       $('#manImage').attr('src', 'assets/last-supper/04-petrus@3x.png');
       $('#man-name').text('베드로');
-      $('#man-info').text('성질이 급한 베드로는 요한에게 배신자가 누구인지 물어보려는 듯 일어서고 있는데 베드로의 오른손에 식사 때 쓰는 칼을 쥔 채 앞에 있는 유다를 건드려 놀라게 하고 잇다.');
+      $('#man-info').text('성질이 급한 베드로는 요한에게 배신자가 누구인지 물어보려는 듯 일어서고 있는데 베드로의 오른손에 식사 때 쓰는 칼을 쥔 채 앞에 있는 유다를 건드려 놀라게 하고 있다.');
       
       break;
     case 'judasBtn':
@@ -324,21 +326,24 @@ function showPeopleInfo(_people) {
 function showVanishingPointInfo(){
   
   $('#secretPanel').fadeOut("slow");
-  $('#vanishingPointPanel').show();
+  $('#vanishingPointPanel').css('display', 'block');
   $('#vanishingPointPanel').css('animation', 'fadeInUp 0.5s');
 }
 
 function callAutoLight(){
-  $('#centerPoint').show();
+  $('#centerPoint').css('display', 'block');
   $('#centerPoint').css('animation', 'fadeIn 1s');
   $('#night').removeClass('notransition');
   $('#night').fadeOut("slow");
 
-  $('#tab-header').show();
-  $('#tab-header').css('animation', 'fadeInDown 1s');
+  $('#tab-header').css('display', 'block');
+  // $('#tab-header').css('animation', 'fadeInDown 1s');
 
-  $('#content-3').show();
+  $('#content-3').css('display', 'block');
   $('#content-3').css('animation', 'fadeIn 2s');
+  
+  $('#secretPanel').css('display', 'block');
+  $('#spotLightBtn').css('display', 'none');
 }
 
 // Register touch event handlers
@@ -363,18 +368,21 @@ function process_touchmove(ev) {
   // console.warn('==============');
   
   if (pageX >= window.innerWidth / 2 && pageY >= window.innerHeight / 2) {
-    $('#centerPoint').show();
+    $('#centerPoint').css('display', 'block');
     $('#centerPoint').css('animation', 'fadeIn 1s');
     $('#night').removeClass('notransition');
     
     setTimeout((e) => {
       $('#night').fadeOut("slow");
+      $('#spotLightBtn').fadeOut("slow");
   
-      $('#tab-header').show();
-      $('#tab-header').css('animation', 'fadeInDown 1s');
+      $('#tab-header').css('display', 'block');
+      // $('#tab-header').css('animation', 'fadeInDown 1s');
   
-      $('#content-3').show();
+      $('#content-3').css('display', 'block');
       $('#content-3').css('animation', 'fadeIn 2s');
+  
+      $('#secretPanel').css('display', 'block');
     }, 100);
   }
 }
@@ -385,7 +393,7 @@ function process_touchstart(ev) {
     case 1:
       console.warn('touch start');
       $('#overlayGuide').fadeOut("slow");
-      $('#spotLightBtn').fadeOut("slow");
+      // $('#spotLightBtn').fadeOut("slow");
       break;
     case 2: break;
     case 3: break;
