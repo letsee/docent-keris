@@ -7,9 +7,9 @@
 <!--	<script src="https://auth.letsee.io/webar?key=5d77d81e1debaa58b278e63044bb9e2da4732fd95c58ff4a496d929fbeec0927"></script>-->
 <!--	 <script src="https://intra.letsee.io:10000/lib/letsee-1.0.0.js"></script>-->
 	<script src="https://intra.letsee.io/lib2/Letsee.0.9.14.js"></script>
-	
+
 <!--	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">-->
-	
+
 	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 	
@@ -17,7 +17,7 @@
 	<link rel="stylesheet" href="css/animation.css">
 	<link rel="stylesheet" href="css/layout.css">
 
-	<script src="js/main.js"></script>
+	
 	<style media="place" type="text/css">
 		#container {
 			-letsee-target: uri('/docent/ultima-cena.json');
@@ -144,7 +144,7 @@
 		<p id="author">(레오나르도 다빈치, 1452∼1519)</p>
 	</div>
 	
-	<div class="btn_area" style="top: 83% !important;">
+	<div class="btn_area">
 		<div class="blue_btn">
 			<span class="light"></span>
 			<button id="layerviewBtn">작품 소개 보기</button>
@@ -273,7 +273,7 @@
 					</svg>
 				</div>
 				
-				<div class="btn_area">
+				<div class="btn_area" style="top: 100% !important;">
 					<div class="blue_btn">
 						<span class="light"></span>
 						<button id="vanishingPointBtn" onclick="showVanishingPointInfo()">원근법과 소실점</button>
@@ -307,7 +307,7 @@
 					<img id="nodeCode" src="assets/note-code.gif" alt="">
 				</div>
 
-				<div class="btn_area">
+				<div class="btn_area" style="top: 100% !important;">
 					<div class="blue_btn">
 						<span class="light"></span>
 						<button id="hiddenMusicBtn" onclick="showVideoPanel()">작품 속 숨겨진 음악</button>
@@ -341,33 +341,15 @@
 	</div>
 </div>
 
+<script src="js/main.js"></script>
+
 <script type="text/javascript">
-
-	/**
-	 * Letsee Initialize function.
-	 */
+  
+  let CURRENT_URI = null;
+  let currentTarget = null;
+  const world = new Object3D();
+  
 	function initLetsee() {
-		let CURRENT_URI = null;
-		let currentTarget = null;
-		const world = new Object3D();
-
-		const initWorld = (e) =>  {
-			let uri = e.target.uri;
-			console.warn(uri);
-
-			if (CURRENT_URI == null) {
-				CURRENT_URI = uri;
-				currentTarget = app.engine.getEntity(CURRENT_URI);
-				e.target.addRenderable(world);
-			}
-
-			if (uri !== CURRENT_URI) {
-				app.engine.getEntity(CURRENT_URI).removeRenderable(world);
-				CURRENT_URI = uri;
-				currentTarget = app.engine.getEntity(CURRENT_URI);
-				e.target.addRenderable(world);
-			}
-		};
 		
 		const config = {
 			"appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
@@ -376,14 +358,23 @@
 		};
 		const app = new Letsee(config);
 		if(app !== null && typeof app !== 'undefined') {
+      /*app.addEventListener('app_status', e => {
+        console.log(e);
+        switch (e.code) {
+          case 202:
+            
+            break;
+        }
+      });*/
+      
 			app.addEventListener('trackstart', e => {
-			  console.warn(e);
-				initWorld(e);
+				// initWorld(e);
         showMainPage();
 			});
 
 			app.addEventListener('trackend', e => {
-				initWorld(e);
+				// initWorld(e);
+				console.warn(e);
 				
 				// Only show the 'capture' screen in landscape mode
 				// For portrait mode, 'capture' screen is hidden and controlled by media queries
@@ -398,11 +389,11 @@
 	 * When the document is loaded, letsee is initialized.
 	 */
 	$(document).ready(() => {
-    initLetsee();
     $('#main-content').css('display', 'none');
     $('#night').css('display', 'none');
     $('#spotLightBtn').css('display', 'none');
-	});
+    initLetsee();
+  });
 
   $('#layerviewBtn').click((e) => {
     // $('#tab-1').addClass('tab-active');

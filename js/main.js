@@ -1,23 +1,55 @@
 let spotlightwidth = 64;
 let spotlightheight = 64;
 
+const TAB_1 = $('#tab-1');
+const TAB_2 = $('#tab-2');
+const TAB_3 = $('#tab-3');
+const TAB_4 = $('#tab-4');
+
+let lastActiveElement = null;
+
 const showCapture = () => {
   $('#capture').css('display', 'block');
   $('#footer').css('display', 'block');
 };
 
 const showMainPage = () => {
-  $('#tab-1').addClass('tab-active');
+  console.warn('showMainPage');
+  // TAB_1.addClass('tab-active');
+  //showFirstTab();
+  
+  if (lastActiveElement !== null) {
+    if (lastActiveElement.selector === '#tab-2') {
+      switchTab(2);
+    }
+    else if (lastActiveElement.selector === '#tab-3') {
+      switchTab(3);
+    }
+    else if (lastActiveElement.selector === '#tab-4') {
+      switchTab(4);
+    }
+    //else switchTab(1);
+  }
+  else switchTab(1);
   
   $('#capture').css('display', 'none');
   $('#footer').css('display', 'none');
 };
 
 function showFirstTab() {
-  $('#tab-1').addClass('tab-active');
-  $('#tab-2').removeClass('tab-active');
-  $('#tab-3').removeClass('tab-active');
-  $('#tab-4').removeClass('tab-active');
+  
+  TAB_2.removeClass('tab-active');
+  TAB_3.removeClass('tab-active');
+  TAB_4.removeClass('tab-active');
+  TAB_1.addClass('tab-active');
+  
+  // reset abother tabs
+  /*TAB_2.css('background-color', 'none !important');
+  TAB_3.css('background-color', 'none !important');
+  TAB_4.css('background-color', 'none !important');
+  
+  // set tab-1 active
+  TAB_1.css('background-color', '#009bb1 !important');*/
   
   $('#main-content').css('display', 'block');
   $('#content-1').css('display', 'block');
@@ -44,17 +76,19 @@ function switchTab(num) {
     
     // Tab 1 => Open the main page
     case 1: {
-      $('#tab-1').addClass('tab-active');
-      $('#tab-2').removeClass('tab-active');
-      $('#tab-3').removeClass('tab-active');
-      $('#tab-4').removeClass('tab-active');
+      TAB_2.removeClass('tab-active');
+      TAB_3.removeClass('tab-active');
+      TAB_4.removeClass('tab-active');
+      TAB_1.addClass('tab-active');
+      lastActiveElement = TAB_1;
+  
+      // reset abother tabs
+      /*TAB_2.css('background-color', 'none !important');
+      TAB_3.css('background-color', 'none !important');
+      TAB_4.css('background-color', 'none !important');
       
-      /*$('#content-1').show();
-      $('#content-1').css('animation', 'fadeInUp 0.5s');
-
-      $('#content-2').hide();
-      $('#content-3').hide();
-      $('#content-4').hide();*/
+      // set tab-1 active
+      TAB_1.css('background-color', '#009bb1 !important');*/
   
       $('#main-content').css('display', 'none');
       $('#main-title').css('display', 'block');
@@ -69,17 +103,30 @@ function switchTab(num) {
     case 2: {
       // hide main button
       $('#layerviewBtn').css('display', 'none');
-      
-      $('#tab-2').addClass('tab-active');
-      $('#tab-1').removeClass('tab-active');
-      $('#tab-3').removeClass('tab-active');
-      $('#tab-4').removeClass('tab-active');
+  
+      TAB_1.removeClass('tab-active');
+      TAB_3.removeClass('tab-active');
+      TAB_4.removeClass('tab-active');
+      TAB_2.addClass('tab-active');
+      lastActiveElement = TAB_2;
+  
+      // reset another tabs
+      /*TAB_1.css('background-color', 'none !important');
+      TAB_3.css('background-color', 'none !important');
+      TAB_4.css('background-color', 'none !important');
+  
+      // set tab-2 active
+      TAB_2.css('background-color', '#009bb1 !important');*/
       
       $('#content-2').css('display', 'block');
       $('#content-2').css('animation', 'fadeIn 1s');
       
       // hide all men
       $('#img-people').css('display', 'none');
+      
+      // hide people info
+      $('#peopleInfo').css('display', 'none');
+      
       // show all men buttons
       $('#peopleBtn').css('display', 'block');
       $('#peopleBtn').css('animation', 'fadeIn 1s');
@@ -95,11 +142,20 @@ function switchTab(num) {
     case 3: {
       // hide main button
       $('#layerviewBtn').css('display', 'none');
-      
-      $('#tab-3').addClass('tab-active');
-      $('#tab-1').removeClass('tab-active');
-      $('#tab-2').removeClass('tab-active');
-      $('#tab-4').removeClass('tab-active');
+  
+      TAB_1.removeClass('tab-active');
+      TAB_2.removeClass('tab-active');
+      TAB_4.removeClass('tab-active');
+      TAB_3.addClass('tab-active');
+      lastActiveElement = TAB_3;
+  
+      // reset another tabs
+      /*TAB_1.css('background-color', 'none !important');
+      TAB_2.css('background-color', 'none !important');
+      TAB_4.css('background-color', 'none !important');
+  
+      // set tab-3 active
+      TAB_3.css('background-color', '#009bb1 !important');*/
   
       // hide all
       $('#tab-header').css('display', 'none');
@@ -131,11 +187,20 @@ function switchTab(num) {
     case 4: {
       // hide main button
       $('#layerviewBtn').css('display', 'none');
-      
-      $('#tab-4').addClass('tab-active');
-      $('#tab-1').removeClass('tab-active');
-      $('#tab-2').removeClass('tab-active');
-      $('#tab-3').removeClass('tab-active');
+  
+      TAB_1.removeClass('tab-active');
+      TAB_2.removeClass('tab-active');
+      TAB_3.removeClass('tab-active');
+      TAB_4.addClass('tab-active');
+      lastActiveElement = TAB_4;
+  
+      // reset another tabs
+      /*TAB_1.css('background-color', 'none !important');
+      TAB_2.css('background-color', 'none !important');
+      TAB_3.css('background-color', 'none !important');
+  
+      // set tab-4 active
+      TAB_4.css('background-color', '#009bb1 !important');*/
       
       $('#content-1').css('display', 'none');
       $('#content-2').css('display', 'none');
@@ -159,7 +224,10 @@ function closeContent(id) {
   
   if (id === '#content-1') {
     $('#content-1').fadeOut("slow");
-    $('#tab-1').removeClass('tab-active');
+    
+    // set tab-1 active
+    TAB_1.addClass('tab-active');
+    
     $('#main-content').fadeOut("slow");
     $('#main-title').css('display', 'block');
     $('#layerviewBtn').css('display', 'block');
@@ -240,7 +308,7 @@ function showPeopleInfo(_people) {
       break;
     case 'petrusBtn':
       $("#img-people img").css({top: '60%', left: '30%', width: '30%'});
-      $('#peopleInfo').css({top: '40%', left: '65%', width: '475px'});
+      $('#peopleInfo').css({top: '40%', left: '66.5%', width: '475px'});
   
       $('#manImage').attr('src', 'assets/last-supper/04-petrus@3x.png');
       $('#man-name').text('베드로');
@@ -257,8 +325,8 @@ function showPeopleInfo(_people) {
       
       break;
     case 'jonnesBtn':
-      $("#img-people img").css({top: '55%', left: '43%', width: '30%'});
-      $('#peopleInfo').css({top: '30%', left: '69.5%'});
+      $("#img-people img").css({top: '55%', left: '43%', width: '30%'}).end();
+      $('#peopleInfo').css({top: '30%', left: '69.5%'}).end();
   
       $('#manImage').attr('src', 'assets/last-supper/06-jonnes@3x.png');
       $('#man-name').text('요한');
@@ -274,7 +342,7 @@ function showPeopleInfo(_people) {
       break;
     case 'jamesBtn':
       $("#img-people img").css({top: '55%', left: '61%', width: '32%'});
-      $('#peopleInfo').css({top: '23%', left: '33%', width: '470px'});
+      $('#peopleInfo').css({top: '27%', left: '33%', width: '470px'});
   
       $('#manImage').attr('src', 'assets/last-supper/07-james@3x.png');
       $('#man-name').text('작은 야고보');
