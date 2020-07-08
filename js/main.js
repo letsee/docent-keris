@@ -101,6 +101,8 @@ function switchTab(num) {
     
     // Tab 2
     case 2: {
+      console.warn('TAB 2!');
+      
       // hide main button
       $('#layerviewBtn').css('display', 'none');
   
@@ -119,7 +121,7 @@ function switchTab(num) {
       TAB_2.css('background-color', '#009bb1 !important');*/
       
       $('#content-2').css('display', 'block');
-      $('#content-2').css('animation', 'fadeIn 1s');
+      // $('#content-2').css('animation', 'fadeIn 1s');
       
       // hide all men
       $('#img-people').css('display', 'none');
@@ -129,7 +131,7 @@ function switchTab(num) {
       
       // show all men buttons
       $('#peopleBtn').css('display', 'block');
-      $('#peopleBtn').css('animation', 'fadeIn 1s');
+      // $('#peopleBtn').css('animation', 'fadeIn 1s');
       
       $('#content-1').css('display', 'none');
       $('#content-3').css('display', 'none');
@@ -447,10 +449,14 @@ function process_touchmove(ev) {
       $('#tab-header').css('display', 'block');
       // $('#tab-header').css('animation', 'fadeInDown 1s');
   
-      $('#content-3').css('display', 'block');
-      $('#content-3').css('animation', 'fadeIn 2s');
+      // Only proceed if tab-3 is active
+      if (lastActiveElement !== null && lastActiveElement.selector === '#tab-3') {
+        $('#content-3').css('display', 'block');
+        $('#content-3').css('animation', 'fadeIn 2s');
   
-      $('#secretPanel').css('display', 'block');
+        $('#secretPanel').css('display', 'block');
+      }
+      
     }, 100);
   }
 }
@@ -460,8 +466,10 @@ function process_touchstart(ev) {
   switch (ev.touches.length) {
     case 1:
       console.warn('touch start');
+  
       $('#overlayGuide').fadeOut("slow");
       // $('#spotLightBtn').fadeOut("slow");
+      
       break;
     case 2: break;
     case 3: break;
