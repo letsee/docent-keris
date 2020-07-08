@@ -286,7 +286,7 @@ function showPeopleInfo(_people) {
   switch (_people) {
     case 'bartholomaeusBtn':
       $("#img-people img").css({top: '60%', left: '12%', width: '25%'});
-      $('#peopleInfo').css({top: '37%', left: '45%'});
+      $('#peopleInfo').css({top: '37%', left: '45%', width: '450px'});
   
       $('#manImage').attr('src', 'assets/last-supper/01-bartholomaeus@3x.png');
       $('#man-name').text('바르톨로메오');
@@ -295,7 +295,7 @@ function showPeopleInfo(_people) {
       break;
     case 'jacobusBtn':
       $("#img-people img").css({top: '52%', left: '16%', width: '20%'});
-      $('#peopleInfo').css({top: '84%', left: '42%'});
+      $('#peopleInfo').css({top: '84%', left: '42%', width: '450px'});
   
       $('#manImage').attr('src', 'assets/last-supper/02-jacobus@3x.png');
       $('#man-name').text('큰 야고보');
@@ -304,7 +304,7 @@ function showPeopleInfo(_people) {
       break;
     case 'andreasBtn':
       $("#img-people img").css({top: '55%', left: '22%', width: '24%'});
-      $('#peopleInfo').css({top: '43%', left: '54.5%'});
+      $('#peopleInfo').css({top: '43%', left: '54.5%', width: '450px' });
   
       $('#manImage').attr('src', 'assets/last-supper/03-andreas@3x.png');
       $('#man-name').text('안드레아');
@@ -321,7 +321,7 @@ function showPeopleInfo(_people) {
       break;
     case 'judasBtn':
       $("#img-people img").css({top: '60%', left: '35%', width: '30%'});
-      $('#peopleInfo').css({top: '87%', left: '60.5%'});
+      $('#peopleInfo').css({top: '87%', left: '60.3%', width: '450px'});
   
       $('#manImage').attr('src', 'assets/last-supper/05-judas@3x.png');
       $('#man-name').text('유다');
@@ -329,8 +329,8 @@ function showPeopleInfo(_people) {
       
       break;
     case 'jonnesBtn':
-      $("#img-people img").css({top: '55%', left: '43%', width: '30%'}).end();
-      $('#peopleInfo').css({top: '30%', left: '69.5%'}).end();
+      $("#img-people img").css({top: '55%', left: '43%', width: '30%'});
+      $('#peopleInfo').css({top: '30%', left: '69.5%', width: '450px'});
   
       $('#manImage').attr('src', 'assets/last-supper/06-jonnes@3x.png');
       $('#man-name').text('요한');
@@ -338,11 +338,11 @@ function showPeopleInfo(_people) {
       break;
     case 'jesusBtn':
       $("#img-people img").css({top: '55%', left: '50%', width: '33%'});
-      $('#peopleInfo').css({top: '91%', left: '63%', width: '420px'});
+      $('#peopleInfo').css({top: '91%', left: '63%', width: '450px'});
   
       $('#manImage').attr('src', 'assets/last-supper/00-jesus@3x.png');
       $('#man-name').text('예수');
-      $('#man-info').text('자신은 무죄 라며 웅성거리고 있는 제자들 사이에서 예수는 움직이지 않고 고요히 앉아있다.');
+      $('#man-info').html('자신은 무죄 라며 웅성거리고 있는 제자들 사이에서 <br> 예수는 움직이지 않고 고요히 앉아있다.');
       break;
     case 'jamesBtn':
       $("#img-people img").css({top: '55%', left: '61%', width: '32%'});
@@ -362,7 +362,7 @@ function showPeopleInfo(_people) {
       break;
     case 'philipBtn':
       $("#img-people img").css({top: '46%', left: '65%', width: '30%'});
-      $('#peopleInfo').css({top: '68%', left: '28.5%', width: '380px'});
+      $('#peopleInfo').css({top: '68%', left: '32.5%', width: '380px'});
   
       $('#manImage').attr('src', 'assets/last-supper/09-philip@3x.png');
       $('#man-name').text('필립보');
@@ -370,7 +370,7 @@ function showPeopleInfo(_people) {
       break;
     case 'mathewBtn':
       $("#img-people img").css({top: '50%', left: '70%', width: '35%'});
-      $('#peopleInfo').css({top: '32%', left: '38.5%', width: '465px'});
+      $('#peopleInfo').css({top: '32%', left: '38%', width: '465px'});
   
       $('#manImage').attr('src', 'assets/last-supper/10-matthaeus@3x.png');
       $('#man-name').text('마태오');
@@ -378,7 +378,7 @@ function showPeopleInfo(_people) {
       break;
     case 'thaddaeusBtn':
       $("#img-people img").css({top: '50%', left: '80%', width: '25%'});
-      $('#peopleInfo').css({top: '48%', left: '46%', width: '400px'});
+      $('#peopleInfo').css({top: '48%', left: '48.5%', width: '400px'});
   
       $('#manImage').attr('src', 'assets/last-supper/11-thaddaeus@3x.png');
       $('#man-name').text('유대');
@@ -386,7 +386,7 @@ function showPeopleInfo(_people) {
       break;
     case 'simonBtn':
       $("#img-people img").css({top: '55%', left: '86%', width: '30%'});
-      $('#peopleInfo').css({top: '43%', left: '51%', width: '525px'});
+      $('#peopleInfo').css({top: '40%', left: '47%', width: '525px'});
   
       $('#manImage').attr('src', 'assets/last-supper/12-simon@3x.png');
       $('#man-name').text('성 시몬');
