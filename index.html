@@ -91,6 +91,8 @@
 	<img id="detect_msg" src="assets/detect_msg.png" alt="">
 </div>
 
+<div id="blackCurtain"></div>
+
 <!--Show at first time to alert user-->
 <div id="capture">
 	<img id="cap1" src="assets/ico-camera.svg" alt="">
@@ -393,6 +395,10 @@
     $('#night').css('display', 'none');
     $('#spotLightBtn').css('display', 'none');
     initLetsee();
+    setTimeout(() => {
+      $('#blackCurtain').fadeOut('slow');
+    }, 1000);
+    
   });
 
   $('#layerviewBtn').click((e) => {
