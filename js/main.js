@@ -264,6 +264,8 @@ function closePeopleInfo(_people) {
   // show all people
   $('#peopleBtn').css('display', 'block');
   $('#peopleInfo').css('animation', 'fadeIn 1s');
+  
+  $('#tab2-title').css('display', 'block');
 }
 
 function showPeopleInfo(_people) {
