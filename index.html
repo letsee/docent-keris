@@ -4,36 +4,47 @@
 	<meta charset="UTF-8">
 	<title>Letsee AR Demo - Ultima Cena</title>
 	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport" />
-	<script src="https://intra.letsee.io/lib2/Letsee.0.9.14.js"></script>
-	<!--	<script src="https://auth.letsee.io/webar?key=5d77d81e1debaa58b278e63044bb9e2da4732fd95c58ff4a496d929fbeec0927"></script>-->
-	<!--	<script src="https://intra.letsee.io:10000/lib/letsee-1.0.0.js"></script>-->
+<!--	<script src="https://intra.letsee.io/lib2/Letsee.0.9.14.js"></script>-->
+<!--	<script src="https://auth.letsee.io/webar?key=5d77d81e1debaa58b278e63044bb9e2da4732fd95c58ff4a496d929fbeec0927"></script>-->
+	<script src="https://intra.letsee.io:10001/lib/letsee-1.0.0.js"></script>
 
 	<!--	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">-->
-
+	
 	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-
-<!--	 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>-->
-
-<!--	<script src="./vendor/jquery.scrollbar.min.js"></script>-->
-<!--	<link rel="stylesheet" href="./vendor/jquery.scrollbar.css">-->
-
+	
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/animation.css">
+	<link rel="stylesheet" href="css/layout.css">
 
-	<script src="js/main.js"></script>
 	<style media="place" type="text/css">
 		#container {
-			-letsee-target: uri('/docent/ultima-cena.json');
+			-letsee-target: uri('./ultima-cena.json');
 			-letsee-position: coords(0, 0, 0);
 			width: 1000px;
 			height: 560px;
 			/*border: 1px solid red;*/
 		}
 	</style>
+	<style>
+		@media (orientation: portrait) {
+			#detect {
+				display: block !important;
+			}
+			#footer {
+				display: block !important;
+			}
+			#night{
+				display: none !important;
+			}
+			#capture {
+				display: none !important;
+			}
+		}
+	</style>
 
 </head>
-<body>
+<body style="overflow:hidden;">>
 
 <!--###################################################### 증강전 #####################################################-->
 <div id="detect">
@@ -41,8 +52,10 @@
 	<img id="detect_msg" src="assets/detect_msg.png" alt="">
 </div>
 
+<div id="blackCurtain"></div>
+
 <!--Show at first time to alert user-->
-<div id="capture" style="display: block">
+<div id="capture">
 	<img id="cap1" src="assets/ico-camera.svg" alt="">
 	<p>작품을 정면으로 촬영해주세요.</p>
 </div>
@@ -50,12 +63,17 @@
 <!-- Spotlight-->
 <div id="night">
 	<img id="overlayGuide" src="assets/hands.svg" alt="">
-	<img id="centerPoint" src="assets/point-red.svg" alt="" style="display: none">
-	<button id="spotLightBtn">자동 비추기</button>
+	<img id="centerPoint" src="assets/point-red.svg" alt="" style="display: block">
+</div>
+<div class="btn_area">
+	<div class="blue_btn">
+		<span class="light"></span>
+		<button id="spotLightBtn" onclick="callAutoLight()">자동 비추기</button>
+	</div>
 </div>
 
 <div id="container">
-
+	
 	<!--################################################## Introduce ##################################################-->
 	<div id="tab-header">
 		<div id="tab-1" onclick="switchTab(1)">
@@ -83,17 +101,22 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<div id="main-title">
 		<p id="title">최후의 만찬</p>
 		<p id="author">(레오나르도 다빈치, 1452∼1519)</p>
 	</div>
-
-	<button id="layerviewBtn">작품 소개 보기</button>
-
+	
+	<div class="btn_area">
+		<div class="blue_btn">
+			<span class="light"></span>
+			<button id="layerviewBtn">작품 소개 보기</button>
+		</div>
+	</div>
+	
 	<!--################################################## Tab Content ##################################################-->
 	<div id="main-content">
-
+		
 		<!-- Content tab-1 -->
 		<div id="content-1">
 			<img class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closeContent('#content-1')">
@@ -103,34 +126,59 @@
 				<br><br>
 				다빈치는 예수와 12제자가 등장하는 그림 안에서는 여러 가지 일들이 동시에 벌어지고 상황을 등장인물들의 심리묘사와 함께 전체 화면의 조형성을 표현하고자 했다. 예루살렘의 어느 방에서 펼쳐진 역사적 사건에 등장하는 각 인물의 몸짓과 손짓, 미묘한 속임수와 암시를 역동적인 상황에 맞춰 절묘하게 묘사했다.
 			</p>
-
+			
 			<img id="intro-vinci" src="assets/vinci-0@3x.png" alt="">
 		</div>
-
+		
 		<!-- Content tab-2 -->
 		<div id="content-2">
 			<h1 id="tab2-title">최후의 만찬을 함께한 예수의 제자들은 누구?</h1>
-
+			
 			<div id="peopleBtn">
 				<button id="bartholomaeusBtn" onclick="showPeopleInfo('bartholomaeusBtn')">바로톨로메오</button>
+				<img id="l1" src="assets/lines/01-line.svg" alt="">
+				
 				<button id="andreasBtn" onclick="showPeopleInfo('andreasBtn')">안드레아</button>
+				<img id="l3" src="assets/lines/03-line.svg" alt="">
+				
 				<button id="jacobusBtn" onclick="showPeopleInfo('jacobusBtn')">큰 야고보</button>
+				<img id="l2" src="assets/lines/02-line.svg" alt="">
+				
 				<button id="petrusBtn" onclick="showPeopleInfo('petrusBtn')">베드로</button>
+				<img id="l4" src="assets/lines/04-line.svg" alt="">
+				
 				<button id="judasBtn" onclick="showPeopleInfo('judasBtn')">유다</button>
+				<img id="l5" src="assets/lines/05-line.svg" alt="">
+				
 				<button id="jonnesBtn" onclick="showPeopleInfo('jonnesBtn')">요한</button>
+				<img id="l6" src="assets/lines/06-line.svg" alt="">
+				
 				<button id="jesusBtn" onclick="showPeopleInfo('jesusBtn')">예수</button>
+				<img id="l0" src="assets/lines/00-line.svg" alt="">
+				
 				<button id="thomasBtn" onclick="showPeopleInfo('thomasBtn')">토마스</button>
+				<img id="l8" src="assets/lines/08-line.svg" alt="">
+				
 				<button id="jamesBtn" onclick="showPeopleInfo('jamesBtn')">작은 야고보</button>
+				<img id="l7" src="assets/lines/07-line.svg" alt="">
+				
 				<button id="philipBtn" onclick="showPeopleInfo('philipBtn')">필립보</button>
+				<img id="l9" src="assets/lines/09-line.svg" alt="">
+				
 				<button id="mathewBtn" onclick="showPeopleInfo('mathewBtn')">마테오</button>
+				<img id="l10" src="assets/lines/10-line.svg" alt="">
+				
 				<button id="thaddaeusBtn" onclick="showPeopleInfo('thaddaeusBtn')">유대</button>
+				<img id="l11" src="assets/lines/11-line.svg" alt="">
+				
 				<button id="simonBtn" onclick="showPeopleInfo('simonBtn')">성 시몬</button>
+				<img id="l12" src="assets/lines/12-line.svg" alt="">
 			</div>
-
+			
 			<div id="img-people">
-				<img id="manImage" src="assets/last-supper/01-bartholomaeus@3x.png" alt="">
+				<img id="manImage" src="" alt="">
 			</div>
-
+			
 			<div id="peopleInfo" style="display: none">
 				<img id="closeManInfo" class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closePeopleInfo()">
 				<h3 id="man-name">바르톨로메오</h3>
@@ -139,9 +187,9 @@
 					많이 생각하고 연구하는 스타일이다.
 				</p>
 			</div>
-
+		
 		</div>
-
+		
 		<!-- Content tab-3 -->
 		<div id="content-3">
 			<div id="secretPanel">
@@ -154,11 +202,11 @@
 							<line id="line1" class="st0" x1="1285" y1="0" x2="1285" y2="1443"/>
 							<line id="line2" class="st0" x1="0" y1="753" x2="2559" y2="753"/>
 							<line id="line3" class="st0" x1="0" y1="1041" x2="2559" y2="1041"/>
-
+							
 							<!-- x라인 -->
 							<line id="line4" class="st0" x1="497" y1="0" x2="2003" y2="1443"/>
 							<line id="line5" class="st0" x1="2072" y1="0" x2="566" y2="1442"/>
-
+							
 							<!-- 사선 왼쪽부터 360도 -->
 							<line id="line6" class="st0" x1="1284" y1="753" x2="0" y2="113"/>
 							<line id="line7" class="st0" x1="773" y1="3" x2="1284" y2="753"/>
@@ -168,7 +216,7 @@
 							<line id="line11" class="st0" x1="1285" y1="753" x2="2557" y2="122"/>
 							<line id="line12" class="st0" x1="1286" y1="753" x2="2560" y2="1442"/>
 							<line id="line13" class="st0" x1="1285" y1="753" x2="1" y2="1442"/>
-
+							
 							<!--왼쪽부터 소실점까지 세로라인-->
 							<line id="line14" class="st0" x1="66" y1="146" x2="66" y2="753"/>
 							<line id="line15" class="st0" x1="443" y1="335" x2="443" y2="753"/>
@@ -176,7 +224,7 @@
 							<line id="line17" class="st0" x1="795" y1="510" x2="795" y2="753"/>
 							<line id="line18" class="st0" x1="971" y1="596" x2="971" y2="753"/>
 							<line id="line19" class="st0" x1="1090" y1="657" x2="1090" y2="753"/>
-
+							
 							<!--오른쪽부터 소실점까지 세로라인-->
 							<line id="line14" class="st0" x1="2509" y1="147" x2="2509" y2="754"/>
 							<line id="line15" class="st0" x1="2124" y1="342" x2="2124" y2="754"/>
@@ -187,10 +235,15 @@
 						</g>
 					</svg>
 				</div>
-
-				<button id="vanishingPointBtn" onclick="showVanishingPointInfo()">원근법과 소실점</button>
+				
+				<div class="btn_area" style="top: 100% !important;">
+					<div class="blue_btn">
+						<span class="light"></span>
+						<button id="vanishingPointBtn" onclick="showVanishingPointInfo()">원근법과 소실점</button>
+					</div>
+				</div>
 			</div>
-
+			
 			<div id="vanishingPointPanel" style="display: none">
 				<img class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closeContent('#vanishingPointPanel')">
 				<h3>원근법과 소실점</h3>
@@ -208,7 +261,7 @@
 				<img src="assets/jesus-point@2x.png" alt="">
 			</div>
 		</div>
-
+		
 		<!-- Content tab-4 -->
 		<div id="content-4" style="display: none">
 			<div id="notePanel">
@@ -216,15 +269,15 @@
 				<div class="note_area">
 					<img id="nodeCode" src="assets/note-code.gif" alt="">
 				</div>
-
-				<div class="btn_area">
+				
+				<div class="btn_area" style="top: 100% !important;">
 					<div class="blue_btn">
 						<span class="light"></span>
 						<button id="hiddenMusicBtn" onclick="showVideoPanel()">작품 속 숨겨진 음악</button>
 					</div>
 				</div>
 			</div>
-
+			
 			<div id="videoPanel" style="display: none">
 				<img class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closeContent('#videoPanel')">
 				<h3>작품 속 숨겨진 음악</h3>
@@ -237,9 +290,9 @@
 					<iframe width="480" height="300" src="https://www.youtube.com/embed/MkuIzdHwOAk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				</div>
 			</div>
-
+		
 		</div>
-
+	
 	</div>
 </div>
 
@@ -251,84 +304,72 @@
 	</div>
 </div>
 
+<script src="js/main.js"></script>
 <script type="text/javascript">
+  
+  let myConfig = null;
 
-	let myConfig = letsee.config;
   const onLoaded = () => {
-    console.log('Letsee started!');
-    switchCamera();
+    console.warn('Letsee started!');
+    
+    letsee.eventManager.onTrackStart(letsee.ENTITY_EVENT.TRACK_START, showMainPage);
+    letsee.eventManager.onTrackEnd(letsee.ENTITY_EVENT.TRACK_END, function() {
+      // Only show the 'capture' screen in landscape mode
+      // For portrait mode, 'capture' screen is hidden and controlled by media queries
+      if (screen.width > screen.height) {
+        showCapture();
+      }
+    });
   };
 
-	/**
-	 * Letsee Initialize function.
-	 */
-	/*function InitLetsee() {
-		let CURRENT_URI = null;
-		let currentTarget = null;
-		const world = new Object3D();
+  // Default config
+  myConfig = letsee.config;
+  letsee.init(myConfig, onLoaded);
+  
+  /*function initLetsee() {
+  
+    const config = {
+      "appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
+      "trackerType": "PLANAR",
+      "isSteady": true
+    };
+    const app = new Letsee(config);
+    if(app !== null && typeof app !== 'undefined') {
+      
+      app.addEventListener('trackstart', e => {
+        showMainPage();
+      });
+    
+      app.addEventListener('trackend', e => {
+        // Only show the 'capture' screen in landscape mode
+        // For portrait mode, 'capture' screen is hidden and controlled by media queries
+        if (screen.width > screen.height) {
+          showCapture();
+        }
+      })
+    }
+  }*/
 
-		const initWorld = (e) =>  {
-			let uri = e.target.uri;
 
-			if (CURRENT_URI == null) {
-				CURRENT_URI = uri;
-				currentTarget = app.engine.getEntity(CURRENT_URI);
-				e.target.addRenderable(world);
-			}
-
-			if (uri !== CURRENT_URI) {
-				app.engine.getEntity(CURRENT_URI).removeRenderable(world);
-				CURRENT_URI = uri;
-				currentTarget = app.engine.getEntity(CURRENT_URI);
-				e.target.addRenderable(world);
-			}
-		};
-		const config = {
-			"appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
-			"trackerType": "PLANAR",
-			"isSteady": true
-		};
-		const app = new Letsee(config);
-		if(app !== null && typeof app !== 'undefined') {
-			app.addEventListener('trackstart', e => {
-				initWorld(e);
-				switchPage(1);
-			});
-
-			app.addEventListener('trackend', e => {
-				initWorld(e);
-				switchPage(0)
-			})
-		}
-	}*/
-
-	const initDocent = () => {
-    // Default config
-    letsee.init(myConfig, onLoaded);
-
-    letsee.eventManager.onTrackEnd(showCapture);
-    letsee.eventManager.onTrackStart(showMainPage);
-	};
-
-	/**
-	 * When the document is loaded, letsee is initialized.
-	 */
-	$(document).ready(() => {
-		// InitLetsee();
-    initDocent();
-    $('#main-content').hide();
-    $('#night').hide();
-	});
+  $(document).ready(() => {
+    $('#main-content').css('display', 'none');
+    $('#night').css('display', 'none');
+    $('#spotLightBtn').css('display', 'none');
+    // initLetsee();
+    setTimeout(() => {
+      $('#blackCurtain').fadeOut('slow');
+    }, 1000);
+  
+  });
 
   $('#layerviewBtn').click((e) => {
-    $('#tab-1').addClass('tab-active');
-    switchTab(1);
+    showFirstTab();
   });
 
   // For testing only. Switch to use Logitech camera.
   function switchCamera() {
     console.warn('SWITCH CAMERA');
-    let videoOption = myConfig.setVideoOption({deviceId: 'be86ec87a66696a2a5dd6573e1f4fc8825f7a02468f9df3b6e3bd9c419c632c1'});
+    let videoOption = myConfig.setVideoOption({deviceId: '32bdc3b00260d0399933bc185e41f061dd6b0add83c119da9d44c1ec8eedfe66'});
     letsee.videoManager.setVideoSource(videoOption);
   }
 

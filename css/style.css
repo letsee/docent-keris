@@ -57,7 +57,14 @@ table {
   border-spacing: 0;
 }
 
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
 #detect {
+  display: none;
   z-index: 10;
   background: #504e4e;
   width: 100%;
@@ -80,7 +87,20 @@ table {
   left: 50%;
 }
 
+#blackCurtain {
+  z-index: 700;
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  background: black;
+}
+
 #capture {
+  display: block;
   position: fixed;
   width: 100%;
   height: 100%;
@@ -140,11 +160,15 @@ table {
   left: 50%;
   width: 35%;
 }
-#night #spotLightBtn {
+#night #centerPoint {
   position: absolute;
+  display: block;
   transform: translate(-50%, -50%);
-  top: 90%;
+  top: 50%;
   left: 50%;
+}
+
+#spotLightBtn {
   border: solid 1.5px #00deff;
   border-radius: 34px;
   background-color: rgba(0, 235, 255, 0.5);
@@ -159,12 +183,36 @@ table {
   opacity: 0.9;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
-#night #centerPoint {
+
+.btn_area {
   position: absolute;
-  display: block;
   transform: translate(-50%, -50%);
-  top: 50%;
-  left: 45%;
+  left: 50%;
+  top: 90%;
+  display: block;
+  opacity: 0.96;
+  z-index: 500;
+}
+.btn_area .blue_btn {
+  box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  -moz-border-radius: 5em;
+  -webkit-border-radius: 5em;
+  border-radius: 5em;
+  position: relative;
+  overflow: hidden;
+}
+.btn_area .blue_btn .light {
+  background-color: rgba(255, 255, 255, 0.2);
+  height: 100%;
+  width: 3em;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -90px;
+  transform: skewX(-45deg) translateX(0);
+  -webkit-transform: skewX(-45deg) translateX(0);
+  animation: example 6s 1s infinite;
 }
 
 #container {
@@ -186,6 +234,7 @@ table {
   border: solid 1px #5c6065;
   float: left;
   position: relative;
+  box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
 }
 #container #tab-header #tab-1, #container #tab-header #tab-2, #container #tab-header #tab-3, #container #tab-header #tab-4 p {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
@@ -210,8 +259,8 @@ table {
   top: 50%;
 }
 #container #tab-header .tab-item-wrapper img {
-  left: 32%;
-  width: 25%;
+  left: 35%;
+  width: 15%;
 }
 #container #tab-header .tab-item-wrapper p {
   left: 63%;
@@ -249,10 +298,6 @@ table {
   color: #ffffff;
 }
 #container #layerviewBtn {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 90%;
-  left: 50%;
   border-radius: 34px;
   box-shadow: 3px 3px 3px 0 rgba(0, 0, 0, 0.5);
   border: solid 1.5px #00deff;
@@ -375,7 +420,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 33%;
-  left: 27%;
+  left: 25%;
 }
 #container #main-content #content-2 #jacobusBtn {
   border-radius: 30px;
@@ -395,7 +440,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 80%;
-  left: 22%;
+  left: 20%;
 }
 #container #main-content #content-2 #petrusBtn {
   border-radius: 30px;
@@ -415,7 +460,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 29%;
-  left: 39%;
+  left: 36%;
 }
 #container #main-content #content-2 #judasBtn {
   border-radius: 30px;
@@ -435,7 +480,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 87%;
-  left: 35%;
+  left: 34%;
 }
 #container #main-content #content-2 #jonnesBtn {
   border-radius: 30px;
@@ -455,7 +500,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 44%;
-  left: 44%;
+  left: 42%;
 }
 #container #main-content #content-2 #jesusBtn {
   border-radius: 30px;
@@ -494,8 +539,8 @@ table {
   padding: 5px 22px 5px 22px;
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 25%;
-  left: 55%;
+  top: 29%;
+  left: 55.5%;
 }
 #container #main-content #content-2 #jamesBtn {
   border-radius: 30px;
@@ -515,7 +560,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 82%;
-  left: 66%;
+  left: 65%;
 }
 #container #main-content #content-2 #philipBtn {
   border-radius: 30px;
@@ -535,7 +580,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 32%;
-  left: 69%;
+  left: 68.5%;
 }
 #container #main-content #content-2 #mathewBtn {
   border-radius: 30px;
@@ -575,7 +620,7 @@ table {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 84%;
-  left: 81%;
+  left: 83%;
 }
 #container #main-content #content-2 #simonBtn {
   border-radius: 30px;
@@ -594,7 +639,98 @@ table {
   padding: 4px 20px 4px 20px;
   position: absolute;
   transform: translate(-50%, -50%);
-  top: 26%;
+  top: 31%;
+  left: 89%;
+}
+#container #main-content #content-2 #l0 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 62.5%;
+  left: 50.5%;
+}
+#container #main-content #content-2 #l1 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 46.5%;
+  left: 12%;
+}
+#container #main-content #content-2 #l2 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 68%;
+  left: 20%;
+}
+#container #main-content #content-2 #l3 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 43%;
+  left: 24%;
+}
+#container #main-content #content-2 #l4 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 44%;
+  left: 35%;
+}
+#container #main-content #content-2 #l5 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 72.5%;
+  left: 33%;
+}
+#container #main-content #content-2 #l6 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 54%;
+  left: 41%;
+}
+#container #main-content #content-2 #l7 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 5%;
+  top: 69.5%;
+  left: 64%;
+}
+#container #main-content #content-2 #l8 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 6%;
+  top: 41.5%;
+  left: 58%;
+}
+#container #main-content #content-2 #l9 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 4%;
+  top: 43%;
+  left: 68%;
+}
+#container #main-content #content-2 #l10 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 39.5%;
+  left: 80%;
+}
+#container #main-content #content-2 #l11 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 71%;
+  left: 84%;
+}
+#container #main-content #content-2 #l12 {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 3%;
+  top: 42%;
   left: 90%;
 }
 #container #main-content #content-2 #img-people img {
@@ -681,7 +817,7 @@ table {
 #container #main-content #content-3 .wrap .st0 {
   fill: none;
   stroke-width: 2px;
-  stroke: yellow;
+  stroke: #00deff;
 }
 #container #main-content #content-3 .wrap #line1 {
   stroke-dasharray: 1443;
@@ -828,10 +964,6 @@ table {
   opacity: 0.9;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   z-index: 50;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  top: 90%;
-  left: 50%;
 }
 #container #main-content #content-3 #vanishingPointPanel {
   width: 90%;
@@ -882,6 +1014,39 @@ table {
   right: 5%;
   width: 35%;
 }
+#container #main-content #content-4 {
+  /*.btn_area {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 5%;
+    opacity: 0.96;
+    -webkit-transform: translate(-50%);
+
+    .blue_btn {
+      box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
+      display: inline-block;
+      -moz-border-radius: 4em;
+      -webkit-border-radis: 4em;
+      border-radius: 4em;
+      position: relative;
+      overflow: hidden;
+
+      .light {
+        background-color: rgba(255, 255, 255, 0.2);
+        height: 100%;
+        width: 3em;
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -90px;
+        transform: skewX(-45deg) translateX(0);
+        -webkit-transform: skewX(-45deg) translateX(0);
+        animation: example 6s 1s infinite;
+      }
+    }
+  }*/
+}
 #container #main-content #content-4 h1 {
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   font-weight: bold;
@@ -911,39 +1076,11 @@ table {
   width: 100%;
   height: 140px;
 }
-#container #main-content #content-4 .btn_area {
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%);
-  bottom: 5%;
-  opacity: 0.96;
-  -webkit-transform: translate(-50%);
-}
-#container #main-content #content-4 .btn_area .blue_btn {
-  box-shadow: 3px 3px 6px 0 rgba(0, 0, 0, 0.5);
-  display: inline-block;
-  -moz-border-radius: 4em;
-  -webkit-border-radis: 4em;
-  border-radius: 4em;
-  position: relative;
-  overflow: hidden;
-}
-#container #main-content #content-4 .btn_area .blue_btn .light {
-  background-color: rgba(255, 255, 255, 0.2);
-  height: 100%;
-  width: 3em;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: -90px;
-  transform: skewX(-45deg) translateX(0);
-  -webkit-transform: skewX(-45deg) translateX(0);
-  animation: example 6s 1s infinite;
-}
-#container #main-content #content-4 .btn_area .blue_btn #hiddenMusicBtn {
+#container #main-content #content-4 #hiddenMusicBtn {
   border: solid 1.5px #00deff;
   background-color: rgba(0, 235, 255, 0.5);
   padding: 0.5em 1.2em 0.6em 1.2em;
+  border-radius: 5em;
   font-size: 1.5em;
   font-weight: bold;
   font-stretch: normal;
@@ -1010,6 +1147,7 @@ table {
   height: 100px;
   z-index: 10;
   text-align: center;
+  display: block;
 }
 #footer #footer-wrapper {
   z-index: 20;
@@ -1020,13 +1158,13 @@ table {
 #footer #logo {
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 35%;
+  left: 41%;
   top: 50%;
 }
 #footer #copyright {
   position: absolute;
   transform: translate(-50%, -50%);
-  left: 60%;
+  left: 56%;
   top: 50%;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   font-size: 12px;

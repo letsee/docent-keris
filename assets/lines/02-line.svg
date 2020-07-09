@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="19.106" height="40.606" viewBox="0 0 19.106 40.606">
+    <defs>
+        <filter id="prefix__선_8" width="16.213" height="34.213" x="2.894" y="6.394" filterUnits="userSpaceOnUse">
+            <feOffset dx="3" dy="3"/>
+            <feGaussianBlur result="blur" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+        <filter id="prefix__타원_68" width="16" height="16" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dx="3" dy="3"/>
+            <feGaussianBlur result="blur-2" stdDeviation="1.5"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur-2" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g id="prefix___02_line" data-name="02_line">
+        <g filter="url(#prefix__선_8)" transform="translate(-284.5 -114.648) translate(284.5 114.65)">
+            <path id="prefix__선_8-2" fill="none" stroke="#0a9393" stroke-linecap="round" d="M6 24L0 0" data-name="선 8" transform="translate(5 8.5)"/>
+        </g>
+        <g filter="url(#prefix__타원_68)" transform="translate(-284.5 -114.648) translate(284.5 114.65)">
+            <g id="prefix__타원_68-2" fill="#0a9393" stroke="#0a9393" data-name="타원 68" transform="translate(1.5 1.5)">
+                <circle cx="3.5" cy="3.5" r="3.5" stroke="none"/>
+                <circle cx="3.5" cy="3.5" r="3" fill="none"/>
+            </g>
+        </g>
+    </g>
+</svg>
