@@ -4,9 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Letsee AR Demo - Ultima Cena</title>
 	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport" />
-<!--	<script src="https://auth.letsee.io/webar?key=5d77d81e1debaa58b278e63044bb9e2da4732fd95c58ff4a496d929fbeec0927"></script>-->
-<!--	 <script src="https://intra.letsee.io:10000/lib/letsee-1.0.0.js"></script>-->
-	<script src="https://intra.letsee.io/lib2/Letsee.0.9.14.js"></script>
+	<script src="https://developer.letsee.io/api/webar?key=e9270840704142e2639eef773034ba7b9a32fb12e9140a545288720650207bab"></script>
 
 <!--	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">-->
 
@@ -20,10 +18,10 @@
 	
 	<style media="place" type="text/css">
 		#container {
-			-letsee-target: uri('/docent/ultima-cena.json');
-			-letsee-position: coords(0, 0, 0);
+			-letsee-target: uri('/ultima-cena.json');
 			width: 1000px;
 			height: 560px;
+			z-index: 300;
 			/*border: 1px solid red;*/
 		}
 	</style>
@@ -349,9 +347,8 @@
   
   let CURRENT_URI = null;
   let currentTarget = null;
-  const world = new Object3D();
-  
-	function initLetsee() {
+
+  function initLetsee() {
 		
 		const config = {
 			"appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
@@ -360,18 +357,10 @@
 		};
 		const app = new Letsee(config);
 		if(app !== null && typeof app !== 'undefined') {
-      /*app.addEventListener('app_status', e => {
-        console.log(e);
-        switch (e.code) {
-          case 202:
-            
-            break;
-        }
-      });*/
-      
+
 			app.addEventListener('trackstart', e => {
 				// initWorld(e);
-        showMainPage();
+        		showMainPage();
 			});
 
 			app.addEventListener('trackend', e => {
@@ -380,7 +369,7 @@
 				// Only show the 'capture' screen in landscape mode
 				// For portrait mode, 'capture' screen is hidden and controlled by media queries
 				if (screen.width > screen.height) {
-          showCapture();
+          			showCapture();
 				}
 			})
 		}
@@ -390,21 +379,32 @@
 	 * When the document is loaded, letsee is initialized.
 	 */
 	$(document).ready(() => {
-    $('#main-content').css('display', 'none');
-    $('#night').css('display', 'none');
-    $('#spotLightBtn').css('display', 'none');
-    initLetsee();
-    setTimeout(() => {
-      $('#blackCurtain').fadeOut('slow');
-    }, 1000);
-    
-  });
+		$('#main-content').css('display', 'none');
+		$('#night').css('display', 'none');
+		$('#spotLightBtn').css('display', 'none');
+		//initLetsee();
 
-  $('#layerviewBtn').click((e) => {
-    // $('#tab-1').addClass('tab-active');
-    // switchTab(1);
-	  showFirstTab();
-  });
+		letsee.ready(() => {
+			letsee.start();
+			letsee.onTrackStart(showMainPage);
+			letsee.onTrackEnd(() => {
+				if (screen.width > screen.height) {
+					showCapture();
+				}
+			});
+		});
+		letsee.init();
+
+		setTimeout(() => {
+		  $('#blackCurtain').fadeOut('slow');
+		}, 1000);
+	});
+
+	$('#layerviewBtn').click((e) => {
+		// $('#tab-1').addClass('tab-active');
+		// switchTab(1);
+		showFirstTab();
+	});
 
 </script>
 </body>
