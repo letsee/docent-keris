@@ -1,3 +1,8 @@
+
+// Buttons
+let layerviewBtn;
+
+
 let spotlightwidth = 64;
 let spotlightheight = 64;
 
@@ -36,32 +41,7 @@ const showMainPage = () => {
   $('#footer').css('display', 'none');
 };
 
-function showFirstTab() {
-  
-  TAB_2.removeClass('tab-active');
-  TAB_3.removeClass('tab-active');
-  TAB_4.removeClass('tab-active');
-  TAB_1.addClass('tab-active');
-  
-  // reset abother tabs
-  /*TAB_2.css('background-color', 'none !important');
-  TAB_3.css('background-color', 'none !important');
-  TAB_4.css('background-color', 'none !important');
-  
-  // set tab-1 active
-  TAB_1.css('background-color', '#009bb1 !important');*/
-  
-  $('#main-content').css('display', 'block');
-  $('#content-1').css('display', 'block');
-  $('#content-1').css('animation', 'fadeInUp 0.5s');
-  
-  $('#main-title').fadeOut("slow");
-  $('#layerviewBtn').fadeOut("slow");
-  
-  $('#content-2').css('display', 'none');
-  $('#content-3').css('display', 'none');
-  $('#content-4').css('display', 'none');
-}
+
 
 function switchTab(num) {
   
@@ -92,10 +72,8 @@ function switchTab(num) {
   
       $('#main-content').css('display', 'none');
       $('#main-title').css('display', 'block');
-      $('#main-title').css('animation', 'fadeIn 1s');
       $('#layerviewBtn').css('display', 'block');
-      $('#layerviewBtn').css('animation', 'fadeIn 1s');
-      
+
       break;
     }
     
@@ -121,8 +99,7 @@ function switchTab(num) {
       TAB_2.css('background-color', '#009bb1 !important');*/
       
       $('#content-2').css('display', 'block');
-      // $('#content-2').css('animation', 'fadeIn 1s');
-      
+
       // hide all men
       $('#img-people').css('display', 'none');
       
@@ -131,8 +108,7 @@ function switchTab(num) {
       
       // show all men buttons
       $('#peopleBtn').css('display', 'block');
-      // $('#peopleBtn').css('animation', 'fadeIn 1s');
-      
+
       $('#content-1').css('display', 'none');
       $('#content-3').css('display', 'none');
       $('#content-4').css('display', 'none');
@@ -208,7 +184,6 @@ function switchTab(num) {
       $('#content-2').css('display', 'none');
       $('#content-3').css('display', 'none');
       $('#content-4').css('display', 'block');
-      $('#content-4').css('animation', 'fadeIn 1s');
       $('#nodeCode').attr("src",'assets/note-code.gif'+"?a="+Math.random());
       
       break;
@@ -241,8 +216,7 @@ function closeContent(id) {
   
   if(id === '#videoPanel'){
     $('#notePanel').css('display', 'block');
-    $('#notePanel').css('animation', 'fadeIn 1s');
-    
+
     // repeat GIF
     $('#nodeCode').attr("src",'assets/note-code.gif'+"?a="+Math.random());
   }
@@ -252,7 +226,6 @@ function showVideoPanel() {
   $('#notePanel').fadeOut("slow");
   
   $('#videoPanel').css('display', 'block');
-  $('#videoPanel').css('animation', 'fadeInUp 0.5s');
 }
 
 function closePeopleInfo(_people) {
@@ -263,8 +236,7 @@ function closePeopleInfo(_people) {
   
   // show all people
   $('#peopleBtn').css('display', 'block');
-  $('#peopleInfo').css('animation', 'fadeIn 1s');
-  
+
   $('#tab2-title').css('display', 'block');
 }
 
@@ -277,12 +249,10 @@ function showPeopleInfo(_people) {
   
   // show info panel
   $('#peopleInfo').css('display', 'block');
-  $('#peopleInfo').css('animation', 'fadeIn 1s');
-  
+
   // show men's images
   $('#img-people').css('display', 'block');
-  $('#img-people').css('animation', 'fadeIn 1s');
-  
+
   switch (_people) {
     case 'bartholomaeusBtn':
       $("#img-people img").css({top: '60%', left: '12%', width: '25%'});
@@ -399,21 +369,17 @@ function showVanishingPointInfo(){
   
   $('#secretPanel').fadeOut("slow");
   $('#vanishingPointPanel').css('display', 'block');
-  $('#vanishingPointPanel').css('animation', 'fadeInUp 0.5s');
 }
 
 function callAutoLight(){
   $('#centerPoint').css('display', 'block');
-  $('#centerPoint').css('animation', 'fadeIn 1s');
   $('#night').removeClass('notransition');
   $('#night').fadeOut("slow");
 
   $('#tab-header').css('display', 'block');
-  // $('#tab-header').css('animation', 'fadeInDown 1s');
 
   $('#content-3').css('display', 'block');
-  $('#content-3').css('animation', 'fadeIn 2s');
-  
+
   $('#secretPanel').css('display', 'block');
   $('#spotLightBtn').css('display', 'none');
 }
@@ -432,30 +398,19 @@ function process_touchmove(ev) {
   
   let bg = "-webkit-radial-gradient(" + pageX + "px " + pageY + "px, " + spotlightwidth + "px " + spotlightheight + "px, transparent 50%, #000022)";
   $('#night').css('backgroundImage', bg);
-  
-  // console.warn(ev);
-  // console.warn(`pageX: ${pageX} /// pageY: ${pageY}`);
-  // console.warn(`screenX: ${screen.width/2} /// screenY: ${screen.height/2}`);
-  // console.warn(`windowX: ${ window.innerWidth / 2} /// windowY: ${window.innerHeight / 2}`);
-  // console.warn('==============');
-  
+
   if (pageX >= window.innerWidth / 2 && pageY >= window.innerHeight / 2) {
     $('#centerPoint').css('display', 'block');
-    $('#centerPoint').css('animation', 'fadeIn 1s');
     $('#night').removeClass('notransition');
     
     setTimeout((e) => {
       $('#night').fadeOut("slow");
       $('#spotLightBtn').fadeOut("slow");
-  
       $('#tab-header').css('display', 'block');
-      // $('#tab-header').css('animation', 'fadeInDown 1s');
-  
+
       // Only proceed if tab-3 is active
       if (lastActiveElement !== null && lastActiveElement.selector === '#tab-3') {
         $('#content-3').css('display', 'block');
-        $('#content-3').css('animation', 'fadeIn 2s');
-  
         $('#secretPanel').css('display', 'block');
       }
       
@@ -479,3 +434,51 @@ function process_touchstart(ev) {
   }
 }
 
+/**
+ * Show first tab
+ */
+function showFirstTab() {
+
+  console.warn(`show first tab`);
+
+  TAB_2.removeClass('tab-active');
+  TAB_3.removeClass('tab-active');
+  TAB_4.removeClass('tab-active');
+  TAB_1.addClass('tab-active');
+
+  // reset abother tabs
+  /*TAB_2.css('background-color', 'none !important');
+  TAB_3.css('background-color', 'none !important');
+  TAB_4.css('background-color', 'none !important');
+
+  // set tab-1 active
+  TAB_1.css('background-color', '#009bb1 !important');*/
+
+  $('#main-content').css('display', 'block');
+  $('#content-1').css('display', 'block');
+
+  $('#main-title').fadeOut("slow");
+  $('#layerviewBtn').fadeOut("slow");
+
+  $('#content-2').css('display', 'none');
+  $('#content-3').css('display', 'none');
+  $('#content-4').css('display', 'none');
+}
+
+window.onload = () => {
+
+  $('#main-content').css('display', 'none');
+  $('#night').css('display', 'none');
+  $('#spotLightBtn').css('display', 'none');
+  // initLetsee();
+  setTimeout(() => {
+    $('#blackCurtain').fadeOut('slow');
+  }, 1000);
+
+  // Buttons
+  layerviewBtn = document.getElementById('layerviewBtn');
+
+  layerviewBtn.addEventListener('click', showFirstTab);
+
+
+}

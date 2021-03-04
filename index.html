@@ -3,69 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Letsee AR Demo - Ultima Cena</title>
-	<meta content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no, viewport-fit=cover" name="viewport" />
-<!--	<script src="https://auth.letsee.io/webar?key=5d77d81e1debaa58b278e63044bb9e2da4732fd95c58ff4a496d929fbeec0927"></script>-->
-<!--	 <script src="https://intra.letsee.io:10000/lib/letsee-1.0.0.js"></script>-->
-	<script src="https://intra.letsee.io/lib2/Letsee.0.9.14.js"></script>
-
-<!--	<link href="https://fonts.googleapis.com/css?family=Noto+Sans:100,300,400,700,900&display=swap" rel="stylesheet">-->
-
-	<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-	<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-	
+  
+  <!-- Letsee SDK -->
+  <script src="https://s-developer.letsee.io/api/webar?key=14aa281aa96726ced88c33b043e013cfb669453a67929d56bc8b90a060c3402a"></script>
+  
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+ 
 	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/animation.css">
 	<link rel="stylesheet" href="css/layout.css">
-
-	
-	<style media="place" type="text/css">
-		#container {
-			-letsee-target: uri('/docent/ultima-cena.json');
-			-letsee-position: coords(0, 0, 0);
-			width: 1000px;
-			height: 560px;
-			/*border: 1px solid red;*/
-		}
-	</style>
+  <style media="place" type="text/css">
+    #container {
+      -letsee-target: uri('ultima-cena.json');
+      width: 1000px;
+      height: 560px;
+    }
+  </style>
 	
 	<style>
-		/*@media screen and (max-width: 360px) and (orientation: portrait) {
-			#logo {
-				left: 33% !important;
-			}
-			#copyright {
-				left: 63% !important;
-			}
-		}
-		@media screen and (max-width: 360px) and (orientation: landscape) {
-			#logo {
-				left: 41% !important;
-			}
-			#copyright {
-				left: 58% !important;
-			}
-		}*/
-		/*@media screen and (max-width: 768px) and (orientation: portrait) {
-			#logo {
-				left: 41% !important;
-			}
-		}
-		@media screen and (max-width: 768px) and (orientation: landscape) {
-			#logo {
-				left: 44% !important;
-			}
-		}*/
-		/*@media screen and (max-width: 1024px) and (orientation: portrait) {
-			#detect_img {
-				width: 25% !important;
-				top: 43% !important;
-			}
-			#detect_msg {
-				width: 35% !important;
-				top: 60% !important;
-			}
-		}*/
-		
 		@media (orientation: portrait) {
 			#detect {
 				display: block !important;
@@ -82,13 +40,28 @@
 		}
 	</style>
 
+  <style>
+    .animate__animated.animate__fadeInUp {
+      --animate-duration: 0.5s;
+
+      transform: translate(-50%, -50%);
+      left: 10%;
+    }
+    .animate__animated.animate__fadeIn {
+      --animate-duration: 1s;
+    }
+  </style>
 </head>
 <body style="overflow:hidden;">
 
 <!--###################################################### 증강전 #####################################################-->
-<div id="detect">
-	<img id="detect_img" src="assets/phone-rotation.svg" alt=""/>
-	<img id="detect_msg" src="assets/detect_msg.png" alt="">
+<div id="landscapeGuide">
+  <div class="wrap">
+    <div class="inner">
+      <img src="assets/rotate_device.svg">
+      <p>화면을 가로방향으로 돌려주세요.</p>
+    </div>
+  </div>
 </div>
 
 <div id="blackCurtain"></div>
@@ -102,7 +75,7 @@
 <!-- Spotlight-->
 <div id="night">
 	<img id="overlayGuide" src="assets/hands.svg" alt="">
-	<img id="centerPoint" src="assets/point-red.svg" alt="" style="display: block">
+	<img id="centerPoint" class="animate__animated animate__fadeIn" src="assets/point-red.svg" alt="" style="display: block">
 </div>
 <div class="btn_area">
 	<div class="blue_btn">
@@ -141,7 +114,7 @@
 		</div>
 	</div>
 
-	<div id="main-title">
+	<div id="main-title" class="animate__animated animate__fadeIn">
 		<p id="title">최후의 만찬</p>
 		<p id="author">(레오나르도 다빈치, 1452∼1519)</p>
 	</div>
@@ -149,7 +122,7 @@
 	<div class="btn_area">
 		<div class="blue_btn">
 			<span class="light"></span>
-			<button id="layerviewBtn">작품 소개 보기</button>
+			<button id="layerviewBtn" class="animate__animated animate__fadeIn">작품 소개 보기</button>
 		</div>
 	</div>
 
@@ -157,7 +130,7 @@
 	<div id="main-content">
 
 		<!-- Content tab-1 -->
-		<div id="content-1">
+		<div id="content-1" class="animate__animated animate__fadeInUp">
 			<img class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closeContent('#content-1')">
 			<h2>최후의 만찬 (The Last Supper, 1485 ~ 1497)</h2>
 			<p> '최후의 만찬'은 예수 그리스도가 십자가에 매달리기 전날 제자들과 함께 최후의 만찬의 정경을 그린 것이다.
@@ -170,10 +143,10 @@
 		</div>
 
 		<!-- Content tab-2 -->
-		<div id="content-2">
+		<div id="content-2" class="animate__animated animate__fadeIn">
 			<h1 id="tab2-title">최후의 만찬을 함께한 예수의 제자들은 누구?</h1>
 
-			<div id="peopleBtn">
+			<div id="peopleBtn" class="animate__animated animate__fadeIn">
 				<button id="bartholomaeusBtn" onclick="showPeopleInfo('bartholomaeusBtn')">바로톨로메오</button>
 				<img id="l1" src="assets/lines/01-line.svg" alt="">
 				
@@ -214,11 +187,11 @@
 				<img id="l12" src="assets/lines/12-line.svg" alt="">
 			</div>
 
-			<div id="img-people">
+			<div id="img-people"class="animate__animated animate__fadeIn">
 				<img id="manImage" src="" alt="">
 			</div>
 
-			<div id="peopleInfo" style="display: none">
+			<div id="peopleInfo" class="animate__animated animate__fadeIn" style="display: none">
 				<img id="closeManInfo" class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closePeopleInfo()">
 				<h3 id="man-name">바르톨로메오</h3>
 				<p id="man-info">
@@ -230,7 +203,7 @@
 		</div>
 
 		<!-- Content tab-3 -->
-		<div id="content-3">
+		<div id="content-3"class="animate__animated animate__fadeIn" >
 			<div id="secretPanel">
 				<h1>명작의 탄생 그 안에 든 1%의 비밀은?</h1>
 				<div id="redPoint"></div>
@@ -283,7 +256,7 @@
 				</div>
 			</div>
 
-			<div id="vanishingPointPanel" style="display: none">
+			<div id="vanishingPointPanel" class="animate__animated animate__fadeInUp" style="display: none">
 				<img class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closeContent('#vanishingPointPanel')">
 				<h3>원근법과 소실점</h3>
 				<p id="vanishingInfo">
@@ -302,8 +275,8 @@
 		</div>
 
 		<!-- Content tab-4 -->
-		<div id="content-4" style="display: none">
-			<div id="notePanel">
+		<div id="content-4" class="animate__animated animate__fadeIn" style="display: none">
+			<div id="notePanel" class="animate__animated animate__fadeIn">
 				<h1>최후의 만찬에 숨겨진 암호 코드가 있다?</h1>
 				<div class="note_area">
 					<img id="nodeCode" src="assets/note-code.gif" alt="">
@@ -317,7 +290,7 @@
 				</div>
 			</div>
 
-			<div id="videoPanel" style="display: none">
+			<div id="videoPanel" class="animate__animated animate__fadeInUp" style="display: none">
 				<img class="closeBtn" src="assets/btn-close.svg" alt="" onclick="closeContent('#videoPanel')">
 				<h3>작품 속 숨겨진 음악</h3>
 				<p id="videoInfo">
@@ -347,64 +320,22 @@
 
 <script type="text/javascript">
   
-  let CURRENT_URI = null;
-  let currentTarget = null;
-  const world = new Object3D();
-  
-	function initLetsee() {
-		
-		const config = {
-			"appKey": "8hTenCFZL3q3jIBZLHoQ72QYTvJdKM5IROK5hdUS69JeH91iGfWD7ApQWZSwzN2g",
-			"trackerType": "PLANAR",
-			"isSteady": true
-		};
-		const app = new Letsee(config);
-		if(app !== null && typeof app !== 'undefined') {
-      /*app.addEventListener('app_status', e => {
-        console.log(e);
-        switch (e.code) {
-          case 202:
-            
-            break;
-        }
-      });*/
-      
-			app.addEventListener('trackstart', e => {
-				// initWorld(e);
-        showMainPage();
-			});
-
-			app.addEventListener('trackend', e => {
-				// initWorld(e);
-				
-				// Only show the 'capture' screen in landscape mode
-				// For portrait mode, 'capture' screen is hidden and controlled by media queries
-				if (screen.width > screen.height) {
-          showCapture();
-				}
-			})
-		}
-	}
-
-	/**
-	 * When the document is loaded, letsee is initialized.
-	 */
-	$(document).ready(() => {
-    $('#main-content').css('display', 'none');
-    $('#night').css('display', 'none');
-    $('#spotLightBtn').css('display', 'none');
-    initLetsee();
-    setTimeout(() => {
-      $('#blackCurtain').fadeOut('slow');
-    }, 1000);
+  letsee.ready(() => {
+    letsee.start();
     
+    letsee.onTrackStart(() => {
+      showMainPage();
+    });
+    letsee.onTrackEnd(() => {
+      // Only show the 'capture' screen in landscape mode
+      // For portrait mode, 'capture' screen is hidden and controlled by media queries
+      if (screen.width > screen.height) {
+        showCapture();
+      }
+    });
+    letsee.onTrackMove(() => {});
   });
-
-  $('#layerviewBtn').click((e) => {
-    // $('#tab-1').addClass('tab-active');
-    // switchTab(1);
-	  showFirstTab();
-  });
+  letsee.init();
 
 </script>
 </body>
