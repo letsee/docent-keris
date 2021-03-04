@@ -330,6 +330,10 @@ function showPeopleInfo(_people) {
  * Show vanishing point.
  */
 function showVanishingPointInfo(){
+
+  // Remove click listener
+  document.removeEventListener('touchmove', process_touchmove, false);
+
   $('#secretPanel').fadeOut("slow");
   $('#vanishingPointPanel').css('display', 'block');
 }
@@ -348,8 +352,6 @@ function callAutoLight(){
   $('#secretPanel').css('display', 'block');
   $('#spotLightBtn').css('display', 'none');
 }
-
-
 
 // touchmove handler
 function process_touchmove(ev) {
