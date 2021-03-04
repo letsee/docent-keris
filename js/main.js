@@ -1,48 +1,19 @@
 
 // Buttons
 let layerviewBtn;
+let lastActiveElement = null;
 
-
-let spotlightwidth = 64;
-let spotlightheight = 64;
+let spotlightwidth = 64, spotlightheight = 64;
 
 const TAB_1 = $('#tab-1');
 const TAB_2 = $('#tab-2');
 const TAB_3 = $('#tab-3');
 const TAB_4 = $('#tab-4');
 
-let lastActiveElement = null;
-
-const showCapture = () => {
-  $('#capture').css('display', 'block');
-  $('#footer').css('display', 'block');
-};
-
-const showMainPage = () => {
-  console.warn('showMainPage');
-  // TAB_1.addClass('tab-active');
-  //showFirstTab();
-  
-  if (lastActiveElement !== null) {
-    if (lastActiveElement.selector === '#tab-2') {
-      switchTab(2);
-    }
-    else if (lastActiveElement.selector === '#tab-3') {
-      switchTab(3);
-    }
-    else if (lastActiveElement.selector === '#tab-4') {
-      switchTab(4);
-    }
-    //else switchTab(1);
-  }
-  else switchTab(1);
-  
-  $('#capture').css('display', 'none');
-  $('#footer').css('display', 'none');
-};
-
-
-
+/**
+ * Navigate between tabs
+ * @param num
+ */
 function switchTab(num) {
   
   // hide title
@@ -178,7 +149,6 @@ function switchTab(num) {
  * @param id
  */
 function closeContent(id) {
-  // $(id).fadeOut("slow");
   $(id).css('display', 'none');
   
   if (id === '#content-1') {
@@ -204,12 +174,18 @@ function closeContent(id) {
   }
 }
 
+/**
+ * show video panel for tab 4
+ */
 function showVideoPanel() {
   $('#notePanel').fadeOut("slow");
-  
   $('#videoPanel').css('display', 'block');
 }
 
+/**
+ * Close people info.
+ * @param _people
+ */
 function closePeopleInfo(_people) {
   
   // hide info
@@ -218,10 +194,13 @@ function closePeopleInfo(_people) {
   
   // show all people
   $('#peopleBtn').css('display', 'block');
-
   $('#tab2-title').css('display', 'block');
 }
 
+/**
+ * Show people info.
+ * @param _people
+ */
 function showPeopleInfo(_people) {
   console.warn(_people);
   
@@ -347,16 +326,18 @@ function showPeopleInfo(_people) {
   }
 }
 
+/**
+ * Show vanishing point.
+ */
 function showVanishingPointInfo(){
-  
   $('#secretPanel').fadeOut("slow");
   $('#vanishingPointPanel').css('display', 'block');
 }
 
+/**
+ * Turn on the light
+ */
 function callAutoLight(){
-
-  console.warn(`turn on light`);
-
   $('#centerPoint').css('display', 'block');
   $('#night').removeClass('notransition');
   $('#night').fadeOut("slow");
@@ -368,8 +349,7 @@ function callAutoLight(){
   $('#spotLightBtn').css('display', 'none');
 }
 
-// Register touch event handlers
-document.addEventListener('touchmove', process_touchmove, false);
+
 
 // touchmove handler
 function process_touchmove(ev) {
@@ -411,8 +391,6 @@ function process_touchstart(ev) {
       console.warn('touch start');
   
       $('#overlayGuide').fadeOut("slow");
-      // $('#spotLightBtn').fadeOut("slow");
-      
       break;
     case 2: break;
     case 3: break;
@@ -441,6 +419,37 @@ function showFirstTab() {
   $('#content-4').css('display', 'none');
 }
 
+/**
+ * Only show the 'capture' screen in landscape mode
+ * For portrait mode, 'capture' screen is hidden
+ * and controlled by media queries.
+ */
+const showCapture = () => {
+  $('#capture').css('display', 'block');
+  $('#footer').css('display', 'block');
+};
+
+/**
+ * Show main page
+ */
+const showMainPage = () => {
+  if (lastActiveElement !== null) {
+    if (lastActiveElement.selector === '#tab-2') {
+      switchTab(2);
+    }
+    else if (lastActiveElement.selector === '#tab-3') {
+      switchTab(3);
+    }
+    else if (lastActiveElement.selector === '#tab-4') {
+      switchTab(4);
+    }
+  }
+  else switchTab(1);
+
+  $('#capture').css('display', 'none');
+  $('#footer').css('display', 'none');
+};
+
 window.onload = () => {
 
   $('#main-content').css('display', 'none');
@@ -452,8 +461,9 @@ window.onload = () => {
 
   // Buttons
   layerviewBtn = document.getElementById('layerviewBtn');
-
   if (layerviewBtn) layerviewBtn.addEventListener('click', showFirstTab);
 
+  // Register touch event handlers
+  document.addEventListener('touchmove', process_touchmove, false);
 
 }

@@ -25,9 +25,6 @@
 	
 	<style>
 		@media (orientation: portrait) {
-			#detect {
-				display: block !important;
-			}
 			#footer {
 				display: block !important;
 			}
@@ -38,23 +35,20 @@
 				display: none !important;
 			}
 		}
-	</style>
-
-  <style>
     .animate__animated.animate__fadeInUp {
       --animate-duration: 0.5s;
-
+      
       transform: translate(-50%, -50%);
       left: 10%;
     }
     .animate__animated.animate__fadeIn {
       --animate-duration: 1s;
     }
-  </style>
+	</style>
 </head>
 <body style="overflow:hidden;">
 
-<!--###################################################### 증강전 #####################################################-->
+<!-- Detect potrait and landscape -->
 <div id="landscapeGuide">
   <div class="wrap">
     <div class="inner">
@@ -86,7 +80,6 @@
 
 <div id="container">
 
-	<!--################################################## Introduce ##################################################-->
 	<div id="tab-header">
 		<div id="tab-1" onclick="switchTab(1)">
 			<div class="tab-item-wrapper">
@@ -308,7 +301,6 @@
 	</div>
 </div>
 
-<!--##################################################### Footer ####################################################-->
 <div id="footer">
 	<div id="footer-wrapper">
 		<img id="logo" src="assets/letsee-signature-w-rgb.png" alt="">
