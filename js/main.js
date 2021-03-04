@@ -56,20 +56,16 @@ function switchTab(num) {
     
     // Tab 1 => Open the main page
     case 1: {
+
+      // remove 'click' listener
+      document.removeEventListener('touchmove', process_touchmove, false);
+
       TAB_2.removeClass('tab-active');
       TAB_3.removeClass('tab-active');
       TAB_4.removeClass('tab-active');
       TAB_1.addClass('tab-active');
       lastActiveElement = TAB_1;
-  
-      // reset abother tabs
-      /*TAB_2.css('background-color', 'none !important');
-      TAB_3.css('background-color', 'none !important');
-      TAB_4.css('background-color', 'none !important');
-      
-      // set tab-1 active
-      TAB_1.css('background-color', '#009bb1 !important');*/
-  
+
       $('#main-content').css('display', 'none');
       $('#main-title').css('display', 'block');
       $('#layerviewBtn').css('display', 'block');
@@ -79,6 +75,9 @@ function switchTab(num) {
     
     // Tab 2
     case 2: {
+
+      // remove 'click' listener
+      document.removeEventListener('touchmove', process_touchmove, false);
       console.warn('TAB 2!');
       
       // hide main button
@@ -89,15 +88,7 @@ function switchTab(num) {
       TAB_4.removeClass('tab-active');
       TAB_2.addClass('tab-active');
       lastActiveElement = TAB_2;
-  
-      // reset another tabs
-      /*TAB_1.css('background-color', 'none !important');
-      TAB_3.css('background-color', 'none !important');
-      TAB_4.css('background-color', 'none !important');
-  
-      // set tab-2 active
-      TAB_2.css('background-color', '#009bb1 !important');*/
-      
+
       $('#content-2').css('display', 'block');
 
       // hide all men
@@ -118,6 +109,10 @@ function switchTab(num) {
     
     // Tab 3
     case 3: {
+
+      // Again add 'click' listener
+      document.addEventListener('touchmove', process_touchmove, false);
+
       // hide main button
       $('#layerviewBtn').css('display', 'none');
   
@@ -126,15 +121,7 @@ function switchTab(num) {
       TAB_4.removeClass('tab-active');
       TAB_3.addClass('tab-active');
       lastActiveElement = TAB_3;
-  
-      // reset another tabs
-      /*TAB_1.css('background-color', 'none !important');
-      TAB_2.css('background-color', 'none !important');
-      TAB_4.css('background-color', 'none !important');
-  
-      // set tab-3 active
-      TAB_3.css('background-color', '#009bb1 !important');*/
-  
+
       // hide all
       $('#tab-header').css('display', 'none');
       $('#content-1').css('display', 'none');
@@ -163,6 +150,10 @@ function switchTab(num) {
     
     // Tab 4
     case 4: {
+
+      // Remove click listener
+      document.removeEventListener('touchmove', process_touchmove, false);
+
       // hide main button
       $('#layerviewBtn').css('display', 'none');
   
@@ -171,21 +162,12 @@ function switchTab(num) {
       TAB_3.removeClass('tab-active');
       TAB_4.addClass('tab-active');
       lastActiveElement = TAB_4;
-  
-      // reset another tabs
-      /*TAB_1.css('background-color', 'none !important');
-      TAB_2.css('background-color', 'none !important');
-      TAB_3.css('background-color', 'none !important');
-  
-      // set tab-4 active
-      TAB_4.css('background-color', '#009bb1 !important');*/
-      
+
       $('#content-1').css('display', 'none');
       $('#content-2').css('display', 'none');
       $('#content-3').css('display', 'none');
       $('#content-4').css('display', 'block');
       $('#nodeCode').attr("src",'assets/note-code.gif'+"?a="+Math.random());
-      
       break;
     }
   }
@@ -372,6 +354,9 @@ function showVanishingPointInfo(){
 }
 
 function callAutoLight(){
+
+  console.warn(`turn on light`);
+
   $('#centerPoint').css('display', 'block');
   $('#night').removeClass('notransition');
   $('#night').fadeOut("slow");
@@ -379,7 +364,6 @@ function callAutoLight(){
   $('#tab-header').css('display', 'block');
 
   $('#content-3').css('display', 'block');
-
   $('#secretPanel').css('display', 'block');
   $('#spotLightBtn').css('display', 'none');
 }
@@ -404,16 +388,18 @@ function process_touchmove(ev) {
     $('#night').removeClass('notransition');
     
     setTimeout((e) => {
-      $('#night').fadeOut("slow");
+      /*$('#night').fadeOut("slow");
       $('#spotLightBtn').fadeOut("slow");
-      $('#tab-header').css('display', 'block');
+      $('#tab-header').css('display', 'block');*/
 
       // Only proceed if tab-3 is active
       if (lastActiveElement !== null && lastActiveElement.selector === '#tab-3') {
-        $('#content-3').css('display', 'block');
-        $('#secretPanel').css('display', 'block');
+        // $('#content-3').css('display', 'block');
+        // $('#secretPanel').css('display', 'block');
       }
-      
+
+      callAutoLight();
+
     }, 100);
   }
 }
@@ -439,20 +425,10 @@ function process_touchstart(ev) {
  */
 function showFirstTab() {
 
-  console.warn(`show first tab`);
-
   TAB_2.removeClass('tab-active');
   TAB_3.removeClass('tab-active');
   TAB_4.removeClass('tab-active');
   TAB_1.addClass('tab-active');
-
-  // reset abother tabs
-  /*TAB_2.css('background-color', 'none !important');
-  TAB_3.css('background-color', 'none !important');
-  TAB_4.css('background-color', 'none !important');
-
-  // set tab-1 active
-  TAB_1.css('background-color', '#009bb1 !important');*/
 
   $('#main-content').css('display', 'block');
   $('#content-1').css('display', 'block');
@@ -470,7 +446,6 @@ window.onload = () => {
   $('#main-content').css('display', 'none');
   $('#night').css('display', 'none');
   $('#spotLightBtn').css('display', 'none');
-  // initLetsee();
   setTimeout(() => {
     $('#blackCurtain').fadeOut('slow');
   }, 1000);
@@ -478,7 +453,7 @@ window.onload = () => {
   // Buttons
   layerviewBtn = document.getElementById('layerviewBtn');
 
-  layerviewBtn.addEventListener('click', showFirstTab);
+  if (layerviewBtn) layerviewBtn.addEventListener('click', showFirstTab);
 
 
 }
