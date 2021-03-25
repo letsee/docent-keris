@@ -15,6 +15,10 @@ const TAB_4 = $('#tab-4');
  * @param num
  */
 function switchTab(num) {
+
+  console.error(`Stop video if open another pages.`);
+  player.stopVideo();
+  playButton.style.display ='block';
   
   // hide title
   $('#main-title').css('display', 'none');
@@ -167,6 +171,11 @@ function closeContent(id) {
   }
   
   if(id === '#videoPanel'){
+
+    console.error(`stop video`);
+    player.stopVideo();
+    playButton.style.display ='block';
+
     $('#notePanel').css('display', 'block');
 
     // repeat GIF
@@ -451,6 +460,43 @@ const showMainPage = () => {
   $('#capture').css('display', 'none');
   $('#footer').css('display', 'none');
 };
+
+// Youtube button control
+// Inject YouTube API script
+let playButton = document.getElementById("playYoutube");
+var tag = document.createElement("script");
+tag.src = "//www.youtube.com/player_api";
+var firstScriptTag = document.getElementsByTagName("script")[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+let player;
+// this function gets called when API is ready to use
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('myFrame', {
+    height: '300',
+    width: '480',
+    videoId: 'MkuIzdHwOAk',
+    events: {
+      'onReady': onPlayerReady,
+    }
+  });
+}
+
+function onPlayerReady(event) {
+  // bind events
+  playButton.addEventListener("click", function () {
+    console.log(`play video`);
+    player.unMute();
+    player.playVideo();
+    playButton.style.display ='none';
+  });
+
+  /*closeButton.addEventListener('click', () => {
+    console.error(`stop video`);
+    player.stopVideo();
+    playButton.style.display ='block';
+  })*/
+}
 
 window.onload = () => {
 
