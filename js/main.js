@@ -490,12 +490,6 @@ function onPlayerReady(event) {
     player.playVideo();
     playButton.style.display ='none';
   });
-
-  /*closeButton.addEventListener('click', () => {
-    console.error(`stop video`);
-    player.stopVideo();
-    playButton.style.display ='block';
-  })*/
 }
 
 window.onload = () => {
